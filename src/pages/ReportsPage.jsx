@@ -132,14 +132,14 @@ export default function ReportsPage() {
             const doc = new jsPDF('l', 'mm', 'a4');
 
             // Título
-            doc.setFontSize(18);
+            doc.setFontSize(16);
             doc.setTextColor(30, 58, 138);
-            doc.text('Reporte de Contratos - Nuevo Ingreso', 14, 20);
+            doc.text('Reporte de Contratos - Nuevo Ingreso', 14, 15);
 
             // Fecha de generación
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setTextColor(100);
-            doc.text(`Generado: ${new Date().toLocaleString('es-MX')}`, 14, 28);
+            doc.text(`Generado: ${new Date().toLocaleString('es-MX')}`, 14, 22);
 
             // Filtros aplicados
             const activeFilters = [];
@@ -149,19 +149,19 @@ export default function ReportsPage() {
             if (filters.status) activeFilters.push(`Estado: ${getStatusLabel(filters.status)}`);
 
             if (activeFilters.length > 0) {
-                doc.text(`Filtros: ${activeFilters.join(', ')}`, 14, 34);
+                doc.text(`Filtros: ${activeFilters.join(', ')}`, 14, 28);
             }
 
-            // Tabla
+            // Tabla con datos simplificados
             const tableData = filteredEmployees.map(emp => [
-                emp.employeeNumber,
-                emp.fullName,
-                emp.area,
-                emp.department,
-                emp.shift,
+                emp.employeeNumber || '',
+                (emp.fullName || '').substring(0, 25),
+                (emp.area || '').substring(0, 15),
+                (emp.department || '').substring(0, 12),
+                (emp.shift || '').substring(0, 8),
                 formatDate(emp.startDate),
                 formatDate(emp.contractEndDate),
-                getStatusLabel(emp.status),
+                getStatusLabel(emp.status).substring(0, 8),
                 emp.formRGREC048Delivered ? 'Sí' : 'No',
                 emp.evaluations?.day30?.score ?? '-',
                 emp.evaluations?.day60?.score ?? '-',
@@ -169,37 +169,64 @@ export default function ReportsPage() {
             ]);
 
             autoTable(doc, {
-                startY: activeFilters.length > 0 ? 40 : 34,
+                startY: activeFilters.length > 0 ? 34 : 28,
                 head: [[
-                    'No. Emp', 'Nombre', 'Área', 'Depto', 'Turno',
-                    'Ingreso', 'Fin Contrato', 'Estado', 'RG-048',
-                    'E30', 'E60', 'E75'
+                    'No.Emp', 'Nombre', 'Área', 'Depto', 'Turno',
+                    'Ingreso', 'Fin', 'Estado', 'RG',
+                    'E1', 'E2', 'E3'
                 ]],
                 body: tableData,
-                theme: 'striped',
+                theme: 'grid',
                 headStyles: {
                     fillColor: [30, 58, 138],
                     textColor: 255,
-                    fontSize: 8
+                    fontSize: 7,
+                    fontStyle: 'bold',
+                    halign: 'center',
+                    cellPadding: 2
                 },
                 bodyStyles: {
-                    fontSize: 7
+                    fontSize: 6,
+                    cellPadding: 1.5,
+                    valign: 'middle'
+                },
+                alternateRowStyles: {
+                    fillColor: [245, 247, 250]
+                },
+                styles: {
+                    overflow: 'linebreak',
+                    cellWidth: 'wrap'
                 },
                 columnStyles: {
-                    0: { cellWidth: 18 },
-                    1: { cellWidth: 35 },
-                    2: { cellWidth: 20 },
+                    0: { cellWidth: 14, halign: 'center' },
+                    1: { cellWidth: 38 },
+                    2: { cellWidth: 22 },
                     3: { cellWidth: 20 },
-                    4: { cellWidth: 18 },
-                    5: { cellWidth: 20 },
-                    6: { cellWidth: 22 },
-                    7: { cellWidth: 18 },
-                    8: { cellWidth: 15 },
-                    9: { cellWidth: 12 },
-                    10: { cellWidth: 12 },
-                    11: { cellWidth: 12 }
-                }
+                    4: { cellWidth: 14, halign: 'center' },
+                    5: { cellWidth: 18, halign: 'center' },
+                    6: { cellWidth: 18, halign: 'center' },
+                    7: { cellWidth: 14, halign: 'center' },
+                    8: { cellWidth: 10, halign: 'center' },
+                    9: { cellWidth: 10, halign: 'center' },
+                    10: { cellWidth: 10, halign: 'center' },
+                    11: { cellWidth: 10, halign: 'center' }
+                },
+                margin: { left: 8, right: 8 }
             });
+
+            // Pie de página
+            const pageCount = doc.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(150);
+                doc.text(
+                    `Página ${i} de ${pageCount} | Total: ${filteredEmployees.length} empleados`,
+                    doc.internal.pageSize.width / 2,
+                    doc.internal.pageSize.height - 10,
+                    { align: 'center' }
+                );
+            }
 
             const fileName = `reporte_contratos_${new Date().toISOString().split('T')[0]}.pdf`;
             doc.save(fileName);
@@ -348,23 +375,35 @@ export default function ReportsPage() {
                     <div className="card-header">
                         <h3>Vista previa</h3>
                     </div>
-                    <div className="table-container">
-                        <table className="table">
+                    <div style={{ overflowX: 'auto' }}>
+                        <table className="table" style={{ minWidth: '600px' }}>
                             <thead>
                                 <tr>
-                                    <th>No. Emp</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>No. Emp</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Nombre</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Área</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Depto</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Ingreso</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Estado</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>RG-048</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredEmployees.slice(0, 5).map(emp => (
+                                {filteredEmployees.slice(0, 8).map(emp => (
                                     <tr key={emp.id}>
                                         <td>{emp.employeeNumber}</td>
-                                        <td>{emp.fullName}</td>
+                                        <td style={{ whiteSpace: 'nowrap' }}>{emp.fullName}</td>
+                                        <td>{emp.area}</td>
+                                        <td>{emp.department}</td>
+                                        <td style={{ whiteSpace: 'nowrap' }}>{formatDate(emp.startDate)}</td>
                                         <td>
                                             <span className={`badge badge-${emp.status === 'active' ? 'success' : emp.status === 'terminated' ? 'danger' : 'warning'}`}>
                                                 {getStatusLabel(emp.status)}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className={`badge badge-${emp.formRGREC048Delivered ? 'success' : 'warning'}`}>
+                                                {emp.formRGREC048Delivered ? 'Sí' : 'No'}
                                             </span>
                                         </td>
                                     </tr>
@@ -372,10 +411,10 @@ export default function ReportsPage() {
                             </tbody>
                         </table>
                     </div>
-                    {filteredEmployees.length > 5 && (
+                    {filteredEmployees.length > 8 && (
                         <div className="card-footer">
                             <p className="text-sm text-muted text-center">
-                                Mostrando 5 de {filteredEmployees.length} registros
+                                Mostrando 8 de {filteredEmployees.length} registros
                             </p>
                         </div>
                     )}
