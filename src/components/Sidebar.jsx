@@ -1,0 +1,118 @@
+import { Link, useLocation } from 'react-router-dom';
+import {
+    Users,
+    Bell,
+    FileText,
+    Settings,
+    LogOut,
+    FileSpreadsheet
+} from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+export default function Sidebar({ notificationCount = 0 }) {
+    const location = useLocation();
+    const { adminData, logout } = useAuth();
+
+    const isActive = (path) => location.pathname === path;
+
+    const handleLogout = async () => {
+        await logout();
+    };
+
+    return (
+        <aside className="desktop-sidebar">
+            <div className="desktop-sidebar-logo">
+                <FileSpreadsheet size={28} />
+                <h1>Contratos</h1>
+            </div>
+
+            <nav className="desktop-nav">
+                <Link
+                    to="/"
+                    className={`desktop-nav-item ${isActive('/') ? 'active' : ''}`}
+                >
+                    <Users size={20} />
+                    Dashboard
+                </Link>
+
+                <Link
+                    to="/notifications"
+                    className={`desktop-nav-item ${isActive('/notifications') ? 'active' : ''}`}
+                >
+                    <Bell size={20} />
+                    Notificaciones
+                    {notificationCount > 0 && (
+                        <span className="desktop-nav-badge">{notificationCount}</span>
+                    )}
+                </Link>
+
+                <Link
+                    to="/reports"
+                    className={`desktop-nav-item ${isActive('/reports') ? 'active' : ''}`}
+                >
+                    <FileText size={20} />
+                    Reportes
+                </Link>
+
+                <Link
+                    to="/settings"
+                    className={`desktop-nav-item ${isActive('/settings') ? 'active' : ''}`}
+                >
+                    <Settings size={20} />
+                    Ajustes
+                </Link>
+            </nav>
+
+            <div style={{
+                borderTop: '1px solid rgba(255,255,255,0.1)',
+                paddingTop: '16px',
+                marginTop: 'auto'
+            }}>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    marginBottom: '12px',
+                    padding: '8px',
+                    borderRadius: '8px',
+                    background: 'rgba(255,255,255,0.05)'
+                }}>
+                    <div style={{
+                        width: '36px',
+                        height: '36px',
+                        borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.2)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 600
+                    }}>
+                        {adminData?.name?.charAt(0) || 'A'}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontWeight: 500, fontSize: '0.875rem' }}>
+                            {adminData?.name || 'Admin'}
+                        </div>
+                        <div style={{ fontSize: '0.75rem', opacity: 0.7, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {adminData?.email}
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    onClick={handleLogout}
+                    className="desktop-nav-item"
+                    style={{
+                        width: '100%',
+                        border: 'none',
+                        cursor: 'pointer',
+                        background: 'transparent'
+                    }}
+                >
+                    <LogOut size={20} />
+                    Cerrar sesión
+                </button>
+            </div>
+        </aside>
+    );
+}

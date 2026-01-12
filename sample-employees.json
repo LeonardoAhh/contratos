@@ -1,0 +1,52 @@
+[
+    {
+        "employeeNumber": "EMP001",
+        "fullName": "Juan Pérez García",
+        "area": "Producción",
+        "department": "Ensamble",
+        "shift": "Matutino",
+        "startDate": "2026-01-01",
+        "contractEndDate": "2026-04-01",
+        "status": "active",
+        "formRGREC048Delivered": true
+    },
+    {
+        "employeeNumber": "EMP002",
+        "fullName": "María López Hernández",
+        "area": "Calidad",
+        "department": "Inspección",
+        "shift": "Vespertino",
+        "startDate": "2025-12-15",
+        "contractEndDate": "2026-03-15",
+        "status": "active",
+        "formRGREC048Delivered": false
+    },
+    {
+        "employeeNumber": "EMP003",
+        "fullName": "Carlos Rodríguez Martínez",
+        "area": "Logística",
+        "department": "Almacén",
+        "shift": "Nocturno",
+        "startDate": "2025-11-20",
+        "contractEndDate": "2026-02-20",
+        "status": "active",
+        "formRGREC048Delivered": true,
+        "evaluations": {
+            "day30": {
+                "score": 85,
+                "requiresFollowUp": false,
+                "notes": "Buen desempeño inicial"
+            },
+            "day60": {
+                "score": 78,
+                "requiresFollowUp": true,
+                "notes": "Necesita mejorar puntualidad"
+            },
+            "day75": {
+                "score": null,
+                "requiresFollowUp": null,
+                "notes": ""
+            }
+        }
+    }
+]
