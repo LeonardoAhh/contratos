@@ -4,6 +4,9 @@ import { collection, doc, setDoc, getDocs, deleteDoc, Timestamp, writeBatch } fr
 import { db } from '../firebase/firebase';
 import { useAuth, PERMISSIONS } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage, useTranslation } from '../context/LanguageContext';
+import { migrateEmployeesTrainingPlan } from '../utils/migrateTrainingPlan';
+import { importHistoricalTrainingPlanData } from '../utils/importHistoricalData';
 import Sidebar from '../components/Sidebar';
 import {
     ArrowLeft,
@@ -21,13 +24,16 @@ import {
     FolderCog,
     ChevronRight,
     Shield,
-    Crown
+    Crown,
+    RefreshCw
 } from 'lucide-react';
 
 export default function SettingsPage() {
     const navigate = useNavigate();
     const { logout, createAdmin, adminData, isSuperAdmin, hasPermission } = useAuth();
     const { isDark, toggleTheme } = useTheme();
+    const { language, setLanguage } = useLanguage();
+    const { t } = useTranslation();
     const fileInputRef = useRef(null);
 
     const [importing, setImporting] = useState(false);
@@ -39,6 +45,12 @@ export default function SettingsPage() {
 
     const [showClearModal, setShowClearModal] = useState(false);
     const [clearing, setClearing] = useState(false);
+
+    const [migrating, setMigrating] = useState(false);
+    const [migrationResult, setMigrationResult] = useState(null);
+
+    const [importingHistorical, setImportingHistorical] = useState(false);
+    const [historicalImportResult, setHistoricalImportResult] = useState(null);
 
     const canManageAdmins = isSuperAdmin() || hasPermission(PERMISSIONS.MANAGE_ADMINS);
     const canImportData = isSuperAdmin() || hasPermission(PERMISSIONS.IMPORT_DATA);
@@ -155,6 +167,48 @@ export default function SettingsPage() {
         setClearing(false);
     };
 
+    const handleMigrateTrainingPlan = async () => {
+        setMigrating(true);
+        setMigrationResult(null);
+
+        try {
+            const result = await migrateEmployeesTrainingPlan();
+            setMigrationResult({
+                success: true,
+                message: `Migración completada: ${result.updated} actualizados, ${result.skipped} omitidos, ${result.errors} errores`
+            });
+        } catch (error) {
+            console.error('Error in migration:', error);
+            setMigrationResult({
+                success: false,
+                message: 'Error al ejecutar la migración'
+            });
+        }
+
+        setMigrating(false);
+    };
+
+    const handleImportHistoricalData = async () => {
+        setImportingHistorical(true);
+        setHistoricalImportResult(null);
+
+        try {
+            const result = await importHistoricalTrainingPlanData();
+            setHistoricalImportResult({
+                success: true,
+                message: `Importación completada: ${result.created} creados, ${result.updated} actualizados, ${result.skipped} omitidos, ${result.errors} errores`
+            });
+        } catch (error) {
+            console.error('Error in historical import:', error);
+            setHistoricalImportResult({
+                success: false,
+                message: 'Error al importar datos históricos'
+            });
+        }
+
+        setImportingHistorical(false);
+    };
+
     return (
         <div className="app-layout">
             <Sidebar />
@@ -169,7 +223,7 @@ export default function SettingsPage() {
                         >
                             <ArrowLeft size={20} />
                         </Link>
-                        <h1 className="app-title">Ajustes</h1>
+                        <h1 className="app-title">{t('settings')}</h1>
                     </div>
                 </div>
             </header>
@@ -178,7 +232,7 @@ export default function SettingsPage() {
                 {/* Account Info */}
                 <div className="card">
                     <div className="card-header">
-                        <h3>Cuenta</h3>
+                        <h3>{t('account')}</h3>
                     </div>
                     <div className="card-body">
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -193,7 +247,7 @@ export default function SettingsPage() {
                                     {adminData?.name || 'Administrador'}
                                     {isSuperAdmin() && (
                                         <span className="badge badge-warning" style={{ fontSize: '0.65rem' }}>
-                                            Super Admin
+                                            {t('super_admin')}
                                         </span>
                                     )}
                                 </div>
@@ -208,7 +262,7 @@ export default function SettingsPage() {
                     <div className="card-header">
                         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             {isDark ? <Moon size={18} /> : <Sun size={18} />}
-                            Apariencia
+                            {t('appearance')}
                         </h3>
                     </div>
                     <div className="card-body">
@@ -221,8 +275,8 @@ export default function SettingsPage() {
                             }}
                         >
                             <div>
-                                <div style={{ fontWeight: 500 }}>Modo oscuro</div>
-                                <div className="text-sm text-muted">Reduce el brillo de la pantalla</div>
+                                <div style={{ fontWeight: 500 }}>{t('dark_mode')}</div>
+                                <div className="text-sm text-muted">{t('dark_mode_desc')}</div>
                             </div>
                             <button
                                 onClick={toggleTheme}
@@ -258,13 +312,41 @@ export default function SettingsPage() {
                     </div>
                 </div>
 
+                {/* Language */}
+                <div className="card" style={{ marginTop: '16px' }}>
+                    <div className="card-header">
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            🌐 Idioma / Language
+                        </h3>
+                    </div>
+                    <div className="card-body">
+                        <div style={{ display: 'flex', gap: '12px' }}>
+                            <button
+                                onClick={() => setLanguage('es')}
+                                className={`btn ${language === 'es' ? 'btn-primary' : 'btn-secondary'}`}
+                                style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                            >
+                                <span style={{ fontSize: '1.25rem' }}>🇲🇽</span>
+                                Español
+                            </button>
+                            <button
+                                onClick={() => setLanguage('en')}
+                                className={`btn ${language === 'en' ? 'btn-primary' : 'btn-secondary'}`}
+                                style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                            >
+                                <span style={{ fontSize: '1.25rem' }}>🇺🇸</span>
+                                English
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 {/* Catalogs - Solo si tiene permiso */}
                 {canManageCatalogs && (
                     <div className="card" style={{ marginTop: '16px' }}>
                         <div className="card-header">
                             <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                 <FolderCog size={18} />
-                                Catálogos
+                                {t('catalogs')}
                             </h3>
                         </div>
                         <div className="card-body">
@@ -282,8 +364,8 @@ export default function SettingsPage() {
                                 }}
                             >
                                 <div>
-                                    <div style={{ fontWeight: 500 }}>Gestionar catálogos</div>
-                                    <div className="text-sm text-muted">Áreas, departamentos, puestos y criterios</div>
+                                    <div style={{ fontWeight: 500 }}>{t('manage_catalogs')}</div>
+                                    <div className="text-sm text-muted">{t('catalogs_desc')}</div>
                                 </div>
                                 <ChevronRight size={20} color="var(--neutral-400)" />
                             </Link>
@@ -297,7 +379,7 @@ export default function SettingsPage() {
                         <div className="card-header">
                             <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                 <Shield size={18} />
-                                Administradores
+                                {t('administrators')}
                             </h3>
                         </div>
                         <div className="card-body">
@@ -316,8 +398,8 @@ export default function SettingsPage() {
                                 }}
                             >
                                 <div>
-                                    <div style={{ fontWeight: 500 }}>Gestionar administradores</div>
-                                    <div className="text-sm text-muted">Ver, editar permisos y eliminar</div>
+                                    <div style={{ fontWeight: 500 }}>{t('manage_admins')}</div>
+                                    <div className="text-sm text-muted">{t('admins_desc')}</div>
                                 </div>
                                 <ChevronRight size={20} color="var(--neutral-400)" />
                             </Link>
@@ -327,7 +409,7 @@ export default function SettingsPage() {
                                 onClick={() => setShowAdminModal(true)}
                             >
                                 <UserPlus size={18} />
-                                Agregar administrador
+                                {t('add_admin')}
                             </button>
                         </div>
                     </div>
@@ -339,12 +421,12 @@ export default function SettingsPage() {
                         <div className="card-header">
                             <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                 <Upload size={18} />
-                                Importar datos
+                                {t('import_data')}
                             </h3>
                         </div>
                         <div className="card-body">
                             <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
-                                Carga un archivo JSON con los datos de los empleados
+                                {t('import_desc')}
                             </p>
 
                             <input
@@ -361,7 +443,7 @@ export default function SettingsPage() {
                                 disabled={importing}
                             >
                                 <Upload size={18} />
-                                {importing ? 'Importando...' : 'Seleccionar archivo JSON'}
+                                {importing ? t('importing') : t('select_json')}
                             </button>
 
                             {importResult && (
@@ -376,13 +458,83 @@ export default function SettingsPage() {
                     </div>
                 )}
 
+                {/* Migración Plan de Formación - Solo si tiene permiso */}
+                {(isSuperAdmin() || canImportData) && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <FileText size={18} />
+                                Migrar Plan de Formación
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
+                                Actualiza los empleados existentes para agregar el campo de Plan de Formación RG-REC-048 con fechas límite calculadas automáticamente.
+                            </p>
+
+                            <button
+                                className="btn btn-secondary btn-full"
+                                onClick={handleMigrateTrainingPlan}
+                                disabled={migrating}
+                            >
+                                <RefreshCw size={18} />
+                                {migrating ? 'Migrando...' : 'Ejecutar migración'}
+                            </button>
+
+                            {migrationResult && (
+                                <div
+                                    className={`badge ${migrationResult.success ? 'badge-success' : 'badge-danger'}`}
+                                    style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
+                                >
+                                    {migrationResult.message}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Importar Datos Históricos - Solo si tiene permiso */}
+                {(isSuperAdmin() || canImportData) && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Upload size={18} />
+                                Importar Datos Históricos
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
+                                Importa los datos históricos de planes de formación desde datos.json. Actualiza empleados existentes y crea nuevos si no existen.
+                            </p>
+
+                            <button
+                                className="btn btn-secondary btn-full"
+                                onClick={handleImportHistoricalData}
+                                disabled={importingHistorical}
+                            >
+                                <Upload size={18} />
+                                {importingHistorical ? 'Importando...' : 'Importar datos históricos'}
+                            </button>
+
+                            {historicalImportResult && (
+                                <div
+                                    className={`badge ${historicalImportResult.success ? 'badge-success' : 'badge-danger'}`}
+                                    style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
+                                >
+                                    {historicalImportResult.message}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+
                 {/* Danger Zone - Solo si tiene permiso */}
                 {canDeleteEmployees && (
                     <div className="card" style={{ marginTop: '16px', borderColor: 'var(--danger)' }}>
                         <div className="card-header" style={{ background: 'rgba(220, 38, 38, 0.05)' }}>
                             <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--danger)' }}>
                                 <AlertTriangle size={18} />
-                                Zona de peligro
+                                {t('danger_zone')}
                             </h3>
                         </div>
                         <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -391,7 +543,7 @@ export default function SettingsPage() {
                                 onClick={() => setShowClearModal(true)}
                             >
                                 <Trash2 size={18} />
-                                Eliminar todos los empleados
+                                {t('delete_all_employees')}
                             </button>
                         </div>
                     </div>
@@ -405,7 +557,7 @@ export default function SettingsPage() {
                             onClick={handleLogout}
                         >
                             <LogOut size={18} />
-                            Cerrar sesión
+                            {t('logout')}
                         </button>
                     </div>
                 </div>

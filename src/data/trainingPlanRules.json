@@ -1,0 +1,112 @@
+[
+    {
+        "DEPARTAMENTO": "ALMACÉN",
+        "ÁREA": "ALMACÉN",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "CALIDAD",
+        "ÁREA": "A. CALIDAD 1ER TURNO",
+        "TIEMPO": "7 DÍAS APARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "CALIDAD",
+        "ÁREA": "A. CALIDAD 2DO TURNO",
+        "TIEMPO": "7 DÍAS APARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "CALIDAD",
+        "ÁREA": "RESIDENTES DE CALIDAD",
+        "TIEMPO": "7 DÍAS APARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "CALIDAD",
+        "ÁREA": "CALIDAD ADMINISTRATIVO",
+        "TIEMPO": "7 DÍAS APARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "CALIDAD",
+        "ÁREA": "METROLOGÍA",
+        "TIEMPO": "7 DÍAS APARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "DIRECCIÓN",
+        "ÁREA": "DIRECCIÓN",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "GERENCIA DE PLANTA",
+        "ÁREA": "GERENCIA",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "LOGÍSTICA",
+        "ÁREA": "LOGÍSTICA",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "MANTENIMIENTO",
+        "ÁREA": "MANTENIMIENTO",
+        "TIEMPO": "3 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PRODUCCIÓN",
+        "ÁREA": "PRODUCCIÓN 1ER TURNO",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PRODUCCIÓN",
+        "ÁREA": "PRODUCCIÓN 2DO TURNO",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PRODUCCIÓN",
+        "ÁREA": "PRODUCCIÓN 3ER TURNO",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PRODUCCIÓN",
+        "ÁREA": "PRODUCCIÓN 4TO TURNO",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PRODUCCIÓN",
+        "ÁREA": "PRODUCCIÓN ADMINISTRATIVO",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PRODUCCIÓN",
+        "ÁREA": "PRODUCCIÓN MONTAJE",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "SGI",
+        "ÁREA": "SGI",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "SISTEMAS",
+        "ÁREA": "SISTEMAS",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "PROYECTOS",
+        "ÁREA": "PROYECTOS",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "RECURSOS HUMANOS",
+        "ÁREA": "RECURSOS HUMANOS",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "TALLER DE MOLDES",
+        "ÁREA": "TALLER DE MOLDES",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    },
+    {
+        "DEPARTAMENTO": "TALLER DE MOLDES",
+        "ÁREA": "MOLDES",
+        "TIEMPO": "2 MESES A PARTIR DE SU FECHA DE INGRESO"
+    }
+]

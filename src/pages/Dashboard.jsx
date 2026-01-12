@@ -30,6 +30,16 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
+// Helper function to get evaluation name
+const getEvaluationName = (day) => {
+    const names = {
+        30: 'First evaluation',
+        60: 'Second evaluation',
+        75: 'Third evaluation'
+    };
+    return names[day] || `Evaluation ${day} days`;
+};
+
 export default function Dashboard() {
     const { adminData, logout } = useAuth();
     const { requestPermission, permission, checkAlerts } = useNotifications();
@@ -114,7 +124,7 @@ export default function Dashboard() {
                         notifs.push({
                             id: `eval-${emp.id}-${day}`,
                             type: 'info',
-                            title: `Evaluación ${day} días pendiente`,
+                            title: `${getEvaluationName(day)} pending`,
                             message: emp.fullName,
                             employeeId: emp.id
                         });

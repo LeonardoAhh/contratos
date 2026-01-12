@@ -5,6 +5,11 @@ import { db } from '../firebase/firebase';
 import Sidebar from '../components/Sidebar';
 import { usePermissions } from '../components/PermissionGuard';
 import {
+    calculateTrainingPlanDueDate,
+    getTrainingPlanStatus,
+    getDaysUntilDue
+} from '../utils/trainingPlanHelpers';
+import {
     ArrowLeft,
     Edit,
     Trash2,
@@ -30,6 +35,7 @@ export default function EmployeeDetail() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showRenewModal, setShowRenewModal] = useState(false);
     const [renewDays, setRenewDays] = useState(90);
+    const [markingPlanDelivered, setMarkingPlanDelivered] = useState(false);
 
     useEffect(() => {
         loadEmployee();
@@ -179,6 +185,32 @@ export default function EmployeeDetail() {
         }
     };
 
+    // Marcar plan de formación como entregado
+    const handleMarkTrainingPlanDelivered = async () => {
+        setMarkingPlanDelivered(true);
+        try {
+            await updateDoc(doc(db, 'employees', id), {
+                'trainingPlan.delivered': true,
+                'trainingPlan.deliveredAt': Timestamp.now(),
+                formRGREC048Delivered: true // Mantener compatibilidad
+            });
+            setEmployee(prev => ({
+                ...prev,
+                trainingPlan: {
+                    ...prev.trainingPlan,
+                    delivered: true,
+                    deliveredAt: Timestamp.now()
+                },
+                formRGREC048Delivered: true
+            }));
+            alert('Plan de formación marcado como entregado');
+        } catch (error) {
+            console.error('Error marking training plan as delivered:', error);
+            alert('Error al marcar el plan como entregado');
+        }
+        setMarkingPlanDelivered(false);
+    };
+
     if (loading) {
         return (
             <div className="loading">
@@ -190,9 +222,9 @@ export default function EmployeeDetail() {
     if (!employee) return null;
 
     const evaluations = [
-        { day: 30, label: 'Evaluación 30 días', key: 'day30' },
-        { day: 60, label: 'Evaluación 60 días', key: 'day60' },
-        { day: 75, label: 'Evaluación 75 días', key: 'day75' }
+        { day: 30, label: 'First evaluation', key: 'day30' },
+        { day: 60, label: 'Second evaluation', key: 'day60' },
+        { day: 75, label: 'Third evaluation', key: 'day75' }
     ];
 
     // Calcular días restantes del contrato
@@ -339,6 +371,86 @@ export default function EmployeeDetail() {
                                 )}
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* Training Plan RG-REC-048 */}
+                <div className="card" style={{ marginTop: '16px' }}>
+                    <div className="card-header">
+                        <h3>Plan de Formación RG-REC-048</h3>
+                    </div>
+                    <div className="card-body">
+                        {(() => {
+                            // Calcular información del plan
+                            const startDate = employee.startDate?.toDate ? employee.startDate.toDate() : new Date(employee.startDate);
+                            const { dueDate, dueDays } = calculateTrainingPlanDueDate(
+                                startDate,
+                                employee.department,
+                                employee.area
+                            );
+
+                            const delivered = employee.trainingPlan?.delivered || employee.formRGREC048Delivered || false;
+                            const deliveredAt = employee.trainingPlan?.deliveredAt;
+                            const planStatus = getTrainingPlanStatus(delivered, dueDate);
+                            const daysUntilDue = getDaysUntilDue(dueDate);
+
+                            return (
+                                <>
+                                    <div style={{ display: 'grid', gap: '12px' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span className="text-muted">Estado</span>
+                                            <span className={`badge badge-${planStatus.color}`}>
+                                                {planStatus.status === 'delivered' && <CheckCircle size={14} style={{ marginRight: '4px' }} />}
+                                                {planStatus.status === 'overdue' && <AlertCircle size={14} style={{ marginRight: '4px' }} />}
+                                                {planStatus.status === 'warning' && <Clock size={14} style={{ marginRight: '4px' }} />}
+                                                {planStatus.label}
+                                            </span>
+                                        </div>
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span className="text-muted">Plazo de entrega</span>
+                                            <span style={{ fontWeight: 500 }}>{dueDays} días</span>
+                                        </div>
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span className="text-muted">Fecha límite</span>
+                                            <div style={{ textAlign: 'right' }}>
+                                                <span style={{ fontWeight: 500 }}>{formatDate(dueDate)}</span>
+                                                {!delivered && (
+                                                    <div className={`text-xs ${planStatus.status === 'overdue' ? 'text-danger' :
+                                                        planStatus.status === 'warning' ? 'text-warning' : 'text-muted'
+                                                        }`}>
+                                                        {planStatus.status === 'overdue'
+                                                            ? `Vencido hace ${Math.abs(daysUntilDue)} días`
+                                                            : `${daysUntilDue} días restantes`
+                                                        }
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {delivered && deliveredAt && (
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <span className="text-muted">Fecha de entrega</span>
+                                                <span style={{ fontWeight: 500 }}>{formatDate(deliveredAt)}</span>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {!delivered && canEditEmployees && (
+                                        <button
+                                            className="btn btn-primary btn-full"
+                                            style={{ marginTop: '16px' }}
+                                            onClick={handleMarkTrainingPlanDelivered}
+                                            disabled={markingPlanDelivered}
+                                        >
+                                            <CheckCircle size={16} />
+                                            {markingPlanDelivered ? 'Marcando...' : 'Marcar como entregado'}
+                                        </button>
+                                    )}
+                                </>
+                            );
+                        })()}
                     </div>
                 </div>
 
@@ -509,8 +621,8 @@ export default function EmployeeDetail() {
                                     value={renewDays}
                                     onChange={(e) => setRenewDays(e.target.value)}
                                 >
-                                    <option value="30">30 días</option>
-                                    <option value="60">60 días</option>
+                                    <option value="30">First evaluation (30 days)</option>
+                                    <option value="60">Second evaluation (60 days)</option>
                                     <option value="90">90 días (3 meses)</option>
                                     <option value="180">180 días (6 meses)</option>
                                     <option value="365">365 días (1 año)</option>

@@ -2,6 +2,16 @@ import { useState, useEffect, createContext, useContext } from 'react';
 
 const NotificationContext = createContext(null);
 
+// Helper function to get evaluation name
+const getEvaluationName = (day) => {
+    const names = {
+        30: 'First evaluation',
+        60: 'Second evaluation',
+        75: 'Third evaluation'
+    };
+    return names[day] || `Evaluation ${day} days`;
+};
+
 export function NotificationProvider({ children }) {
     const [permission, setPermission] = useState('default');
     const [supported, setSupported] = useState(false);
@@ -93,7 +103,7 @@ export function NotificationProvider({ children }) {
                     const evalKey = `day${day}`;
                     if (!emp.evaluations[evalKey]?.score && daysSinceStart === day) {
                         sendNotification('📋 Evaluación pendiente', {
-                            body: `${emp.fullName} - Evaluación ${day} días`,
+                            body: `${emp.fullName} - ${getEvaluationName(day)}`,
                             tag: `eval-${emp.id}-${day}`,
                             data: { employeeId: emp.id }
                         });

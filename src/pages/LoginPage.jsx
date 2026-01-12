@@ -28,7 +28,7 @@ export default function LoginPage() {
             <div className="login-container">
                 <div className="login-header">
                     <div className="login-logo">
-                        <FileText size={36} color="#1E3A8A" />
+                        <FileText size={40} strokeWidth={1.5} />
                     </div>
                     <h1 className="login-title">Gestión de Contratos</h1>
                     <p className="login-subtitle">Sistema de seguimiento de nuevo ingreso</p>

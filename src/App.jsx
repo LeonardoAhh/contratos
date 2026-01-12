@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import EmployeeDetail from './pages/EmployeeDetail';
@@ -11,6 +12,8 @@ import NotificationsPage from './pages/NotificationsPage';
 import SettingsPage from './pages/SettingsPage';
 import CatalogsPage from './pages/CatalogsPage';
 import AdminManagementPage from './pages/AdminManagementPage';
+import CalendarPage from './pages/CalendarPage';
+import IndicatorsPage from './pages/IndicatorsPage';
 
 function ProtectedRoute({ children }) {
     const { isAuthenticated, loading } = useAuth();
@@ -131,6 +134,22 @@ function AppRoutes() {
                     </ProtectedRoute>
                 }
             />
+            <Route
+                path="/calendar"
+                element={
+                    <ProtectedRoute>
+                        <CalendarPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/indicators"
+                element={
+                    <ProtectedRoute>
+                        <IndicatorsPage />
+                    </ProtectedRoute>
+                }
+            />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
@@ -138,13 +157,15 @@ function AppRoutes() {
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true }}>
             <ThemeProvider>
-                <AuthProvider>
-                    <NotificationProvider>
-                        <AppRoutes />
-                    </NotificationProvider>
-                </AuthProvider>
+                <LanguageProvider>
+                    <AuthProvider>
+                        <NotificationProvider>
+                            <AppRoutes />
+                        </NotificationProvider>
+                    </AuthProvider>
+                </LanguageProvider>
             </ThemeProvider>
         </BrowserRouter>
     );

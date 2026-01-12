@@ -15,6 +15,16 @@ import {
     Settings
 } from 'lucide-react';
 
+// Helper function to get evaluation name
+const getEvaluationName = (day) => {
+    const names = {
+        30: 'First evaluation',
+        60: 'Second evaluation',
+        75: 'Third evaluation'
+    };
+    return names[day] || `Evaluation ${day} days`;
+};
+
 export default function NotificationsPage() {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -80,7 +90,7 @@ export default function NotificationsPage() {
                             type: isOverdue ? 'danger' : 'warning',
                             category: 'evaluation',
                             icon: ClipboardCheck,
-                            title: `Evaluación ${day} días ${isOverdue ? '(vencida)' : 'pendiente'}`,
+                            title: `${getEvaluationName(day)} ${isOverdue ? '(overdue)' : 'pending'}`,
                             message: emp.fullName,
                             employeeId: emp.id,
                             employeeName: emp.fullName,
@@ -100,7 +110,7 @@ export default function NotificationsPage() {
                             type: 'warning',
                             category: 'followup',
                             icon: AlertTriangle,
-                            title: `Requiere seguimiento (Eval ${day} días)`,
+                            title: `Requires follow-up (${getEvaluationName(parseInt(day))})`,
                             message: `${emp.fullName} - Calificación: ${eval_.score}`,
                             employeeId: emp.id,
                             employeeName: emp.fullName

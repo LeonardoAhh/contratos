@@ -5,13 +5,17 @@ import {
     FileText,
     Settings,
     LogOut,
-    FileSpreadsheet
+    Calendar,
+    Layers,
+    BarChart3
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTranslation } from '../context/LanguageContext';
 
 export default function Sidebar({ notificationCount = 0 }) {
     const location = useLocation();
     const { adminData, logout } = useAuth();
+    const { t } = useTranslation();
 
     const isActive = (path) => location.pathname === path;
 
@@ -22,8 +26,8 @@ export default function Sidebar({ notificationCount = 0 }) {
     return (
         <aside className="desktop-sidebar">
             <div className="desktop-sidebar-logo">
-                <FileSpreadsheet size={28} />
-                <h1>Contratos</h1>
+                <Layers size={24} strokeWidth={1.5} />
+                <span>Contratos</span>
             </div>
 
             <nav className="desktop-nav">
@@ -32,7 +36,7 @@ export default function Sidebar({ notificationCount = 0 }) {
                     className={`desktop-nav-item ${isActive('/') ? 'active' : ''}`}
                 >
                     <Users size={20} />
-                    Dashboard
+                    {t('dashboard')}
                 </Link>
 
                 <Link
@@ -40,10 +44,18 @@ export default function Sidebar({ notificationCount = 0 }) {
                     className={`desktop-nav-item ${isActive('/notifications') ? 'active' : ''}`}
                 >
                     <Bell size={20} />
-                    Notificaciones
+                    {t('notifications')}
                     {notificationCount > 0 && (
                         <span className="desktop-nav-badge">{notificationCount}</span>
                     )}
+                </Link>
+
+                <Link
+                    to="/calendar"
+                    className={`desktop-nav-item ${isActive('/calendar') ? 'active' : ''}`}
+                >
+                    <Calendar size={20} />
+                    {t('calendar')}
                 </Link>
 
                 <Link
@@ -51,7 +63,15 @@ export default function Sidebar({ notificationCount = 0 }) {
                     className={`desktop-nav-item ${isActive('/reports') ? 'active' : ''}`}
                 >
                     <FileText size={20} />
-                    Reportes
+                    {t('reports')}
+                </Link>
+
+                <Link
+                    to="/indicators"
+                    className={`desktop-nav-item ${isActive('/indicators') ? 'active' : ''}`}
+                >
+                    <BarChart3 size={20} />
+                    Indicadores
                 </Link>
 
                 <Link
@@ -59,7 +79,7 @@ export default function Sidebar({ notificationCount = 0 }) {
                     className={`desktop-nav-item ${isActive('/settings') ? 'active' : ''}`}
                 >
                     <Settings size={20} />
-                    Ajustes
+                    {t('settings')}
                 </Link>
             </nav>
 
@@ -110,7 +130,7 @@ export default function Sidebar({ notificationCount = 0 }) {
                     }}
                 >
                     <LogOut size={20} />
-                    Cerrar sesión
+                    {t('logout')}
                 </button>
             </div>
         </aside>

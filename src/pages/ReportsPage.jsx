@@ -84,9 +84,9 @@ export default function ReportsPage() {
             'Fin Contrato': formatDate(emp.contractEndDate),
             'Estado': getStatusLabel(emp.status),
             'RG-REC-048': emp.formRGREC048Delivered ? 'Sí' : 'No',
-            'Eval 30 días': emp.evaluations?.day30?.score ?? '-',
-            'Eval 60 días': emp.evaluations?.day60?.score ?? '-',
-            'Eval 75 días': emp.evaluations?.day75?.score ?? '-'
+            'First eval': emp.evaluations?.day30?.score ?? '-',
+            'Second eval': emp.evaluations?.day60?.score ?? '-',
+            'Third eval': emp.evaluations?.day75?.score ?? '-'
         }));
     };
 
