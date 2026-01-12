@@ -257,60 +257,6 @@ export default function SettingsPage() {
                     </div>
                 </div>
 
-                {/* Appearance */}
-                <div className="card" style={{ marginTop: '16px' }}>
-                    <div className="card-header">
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            {isDark ? <Moon size={18} /> : <Sun size={18} />}
-                            {t('appearance')}
-                        </h3>
-                    </div>
-                    <div className="card-body">
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                                padding: '8px 0'
-                            }}
-                        >
-                            <div>
-                                <div style={{ fontWeight: 500 }}>{t('dark_mode')}</div>
-                                <div className="text-sm text-muted">{t('dark_mode_desc')}</div>
-                            </div>
-                            <button
-                                onClick={toggleTheme}
-                                className="btn btn-secondary"
-                                style={{
-                                    width: '56px',
-                                    height: '32px',
-                                    padding: 0,
-                                    borderRadius: '16px',
-                                    position: 'relative',
-                                    background: isDark ? 'var(--primary)' : 'var(--neutral-200)'
-                                }}
-                            >
-                                <span
-                                    style={{
-                                        position: 'absolute',
-                                        top: '4px',
-                                        left: isDark ? '28px' : '4px',
-                                        width: '24px',
-                                        height: '24px',
-                                        background: 'white',
-                                        borderRadius: '50%',
-                                        transition: 'left 0.2s ease',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    {isDark ? <Moon size={14} color="var(--primary)" /> : <Sun size={14} color="var(--warning)" />}
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Language */}
                 <div className="card" style={{ marginTop: '16px' }}>

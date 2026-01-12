@@ -1,22 +1,19 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
-    const [isDark, setIsDark] = useState(() => {
-        // Recuperar preferencia guardada o usar preferencia del sistema
-        const saved = localStorage.getItem('theme');
-        if (saved) return saved === 'dark';
-        return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    });
+    // Siempre modo oscuro - sin opción de cambiar
+    const isDark = true;
 
     useEffect(() => {
-        // Aplicar tema al documento
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }, [isDark]);
+        // Aplicar tema oscuro al documento
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }, []);
 
-    const toggleTheme = () => setIsDark(prev => !prev);
+    // toggleTheme ya no hace nada, pero lo mantenemos para evitar errores
+    const toggleTheme = () => { };
 
     return (
         <ThemeContext.Provider value={{ isDark, toggleTheme }}>

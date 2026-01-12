@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc, setDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { ArrowLeft, Save } from 'lucide-react';
+import { calculateTrainingPlanDueDate } from '../utils/trainingPlanHelpers';
 
 export default function EmployeeForm() {
     const navigate = useNavigate();
@@ -81,10 +82,24 @@ export default function EmployeeForm() {
             if (isEditing) {
                 await updateDoc(doc(db, 'employees', id), employeeData);
             } else {
+                // Calcular fecha límite del plan de formación para nuevos empleados
+                const startDate = formData.startDate ? new Date(formData.startDate) : new Date();
+                const { dueDate, dueDays } = calculateTrainingPlanDueDate(
+                    startDate,
+                    formData.department,
+                    formData.area
+                );
+
                 const newId = `emp_${Date.now()}`;
                 await setDoc(doc(db, 'employees', newId), {
                     ...employeeData,
-                    createdAt: Timestamp.now()
+                    createdAt: Timestamp.now(),
+                    trainingPlan: {
+                        delivered: formData.formRGREC048Delivered || false,
+                        dueDate: dueDate ? Timestamp.fromDate(dueDate) : null,
+                        dueDays: dueDays,
+                        deliveredAt: formData.formRGREC048Delivered ? Timestamp.now() : null
+                    }
                 });
             }
 
