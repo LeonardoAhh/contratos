@@ -10,6 +10,7 @@ import ReportsPage from './pages/ReportsPage';
 import NotificationsPage from './pages/NotificationsPage';
 import SettingsPage from './pages/SettingsPage';
 import CatalogsPage from './pages/CatalogsPage';
+import AdminManagementPage from './pages/AdminManagementPage';
 
 function ProtectedRoute({ children }) {
     const { isAuthenticated, loading } = useAuth();
@@ -119,6 +120,14 @@ function AppRoutes() {
                 element={
                     <ProtectedRoute>
                         <CatalogsPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/admin-management"
+                element={
+                    <ProtectedRoute>
+                        <AdminManagementPage />
                     </ProtectedRoute>
                 }
             />

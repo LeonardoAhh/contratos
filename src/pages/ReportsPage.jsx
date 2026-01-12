@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import Sidebar from '../components/Sidebar';
+import { usePermissions } from '../components/PermissionGuard';
 import * as XLSX from 'xlsx';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -19,6 +20,7 @@ import {
 } from 'lucide-react';
 
 export default function ReportsPage() {
+    const { canExportReports } = usePermissions();
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({
@@ -315,9 +317,9 @@ export default function ReportsPage() {
                     <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <button
                             className="btn btn-primary btn-full"
-                            onClick={exportToExcel}
+                            onClick={canExportReports ? exportToExcel : () => alert('No tienes permiso para exportar reportes')}
                             disabled={generating || filteredEmployees.length === 0}
-                            style={{ background: '#217346' }}
+                            style={{ background: '#217346', opacity: canExportReports ? 1 : 0.5 }}
                         >
                             <FileSpreadsheet size={20} />
                             Descargar Excel
@@ -325,12 +327,19 @@ export default function ReportsPage() {
 
                         <button
                             className="btn btn-danger btn-full"
-                            onClick={exportToPDF}
+                            onClick={canExportReports ? exportToPDF : () => alert('No tienes permiso para exportar reportes')}
                             disabled={generating || filteredEmployees.length === 0}
+                            style={!canExportReports ? { opacity: 0.5 } : {}}
                         >
                             <FilePDF size={20} />
                             Descargar PDF
                         </button>
+
+                        {!canExportReports && (
+                            <p className="text-sm text-muted text-center">
+                                No tienes permiso para exportar reportes
+                            </p>
+                        )}
                     </div>
                 </div>
 

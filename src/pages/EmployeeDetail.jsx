@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { doc, getDoc, updateDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import Sidebar from '../components/Sidebar';
+import { usePermissions } from '../components/PermissionGuard';
 import {
     ArrowLeft,
     Edit,
@@ -21,6 +22,7 @@ import {
 export default function EmployeeDetail() {
     const navigate = useNavigate();
     const { id } = useParams();
+    const { canEditEmployees, canDeleteEmployees, canRenewContracts, canManageEvaluations } = usePermissions();
     const [employee, setEmployee] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showEvalModal, setShowEvalModal] = useState(null);
@@ -229,20 +231,40 @@ export default function EmployeeDetail() {
                                 color={employee.isFavorite ? 'var(--warning)' : 'white'}
                             />
                         </button>
-                        <Link
-                            to={`/employee/${id}/edit`}
-                            className="btn btn-icon"
-                            style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}
-                        >
-                            <Edit size={18} />
-                        </Link>
-                        <button
-                            onClick={() => setShowDeleteModal(true)}
-                            className="btn btn-icon"
-                            style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}
-                        >
-                            <Trash2 size={18} />
-                        </button>
+                        {canEditEmployees ? (
+                            <Link
+                                to={`/employee/${id}/edit`}
+                                className="btn btn-icon"
+                                style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}
+                            >
+                                <Edit size={18} />
+                            </Link>
+                        ) : (
+                            <span
+                                className="btn btn-icon"
+                                style={{ background: 'rgba(255,255,255,0.1)', color: 'white', opacity: 0.5, cursor: 'not-allowed' }}
+                                title="No tienes permiso para editar"
+                            >
+                                <Edit size={18} />
+                            </span>
+                        )}
+                        {canDeleteEmployees ? (
+                            <button
+                                onClick={() => setShowDeleteModal(true)}
+                                className="btn btn-icon"
+                                style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}
+                            >
+                                <Trash2 size={18} />
+                            </button>
+                        ) : (
+                            <span
+                                className="btn btn-icon"
+                                style={{ background: 'rgba(255,255,255,0.1)', color: 'white', opacity: 0.5, cursor: 'not-allowed' }}
+                                title="No tienes permiso para eliminar"
+                            >
+                                <Trash2 size={18} />
+                            </span>
+                        )}
                     </div>
                 </div>
             </header>
@@ -326,16 +348,18 @@ export default function EmployeeDetail() {
                         <h3>Acciones rápidas</h3>
                     </div>
                     <div className="card-body" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                        {/* Botón de renovar contrato - siempre visible */}
+                        {/* Botón de renovar contrato */}
                         <button
                             className="btn btn-primary btn-sm"
-                            onClick={() => setShowRenewModal(true)}
+                            onClick={() => canRenewContracts ? setShowRenewModal(true) : alert('No tienes permiso para renovar contratos')}
+                            style={!canRenewContracts ? { opacity: 0.5 } : {}}
+                            title={!canRenewContracts ? 'No tienes permiso' : ''}
                         >
                             <RefreshCw size={16} />
                             Renovar contrato
                         </button>
 
-                        {employee.status === 'active' && (
+                        {employee.status === 'active' && canEditEmployees && (
                             <>
                                 <button
                                     className="btn btn-secondary btn-sm"
@@ -410,7 +434,7 @@ export default function EmployeeDetail() {
                                                 <span className={`badge badge-${status === 'overdue' ? 'danger' : status === 'pending' ? 'warning' : 'neutral'}`}>
                                                     {status === 'overdue' ? 'Vencida' : status === 'pending' ? 'Próxima' : 'Pendiente'}
                                                 </span>
-                                                {(status === 'pending' || status === 'overdue') && (
+                                                {(status === 'pending' || status === 'overdue') && canManageEvaluations && (
                                                     <button
                                                         className="btn btn-primary btn-sm"
                                                         style={{ marginTop: '12px', width: '100%' }}
@@ -421,6 +445,15 @@ export default function EmployeeDetail() {
                                                     >
                                                         Capturar calificación
                                                     </button>
+                                                )}
+                                                {(status === 'pending' || status === 'overdue') && !canManageEvaluations && (
+                                                    <span
+                                                        className="btn btn-primary btn-sm"
+                                                        style={{ marginTop: '12px', width: '100%', opacity: 0.5, cursor: 'not-allowed' }}
+                                                        title="No tienes permiso para capturar evaluaciones"
+                                                    >
+                                                        Capturar calificación
+                                                    </span>
                                                 )}
                                             </div>
                                         )}

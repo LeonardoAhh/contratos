@@ -11,6 +11,7 @@ import { db } from '../firebase/firebase';
 import { useAuth } from '../context/AuthContext';
 import { useNotifications } from '../context/NotificationContext';
 import Sidebar from '../components/Sidebar';
+import { usePermissions } from '../components/PermissionGuard';
 import {
     Users,
     Clock,
@@ -32,6 +33,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Dashboard() {
     const { adminData, logout } = useAuth();
     const { requestPermission, permission, checkAlerts } = useNotifications();
+    const { canEditEmployees } = usePermissions();
     const navigate = useNavigate();
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -388,10 +390,21 @@ export default function Dashboard() {
                 {/* Employee List */}
                 <div className="section-title">
                     <span>Empleados ({filteredEmployees.length})</span>
-                    <Link to="/employee/new" className="btn btn-primary btn-sm">
-                        <Plus size={16} />
-                        Nuevo
-                    </Link>
+                    {canEditEmployees ? (
+                        <Link to="/employee/new" className="btn btn-primary btn-sm">
+                            <Plus size={16} />
+                            Nuevo
+                        </Link>
+                    ) : (
+                        <span
+                            className="btn btn-primary btn-sm"
+                            style={{ opacity: 0.5, cursor: 'not-allowed' }}
+                            title="No tienes permiso para agregar empleados"
+                        >
+                            <Plus size={16} />
+                            Nuevo
+                        </span>
+                    )}
                 </div>
 
                 {filteredEmployees.length === 0 ? (
@@ -400,7 +413,7 @@ export default function Dashboard() {
                             <Users size={32} />
                         </div>
                         <p>{searchQuery ? 'No se encontraron resultados' : 'No hay empleados registrados'}</p>
-                        {!searchQuery && (
+                        {!searchQuery && canEditEmployees && (
                             <Link to="/employee/new" className="btn btn-primary" style={{ marginTop: '16px' }}>
                                 <Plus size={16} />
                                 Agregar empleado

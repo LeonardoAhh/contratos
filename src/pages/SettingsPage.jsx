@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, doc, setDoc, getDocs, deleteDoc, Timestamp, writeBatch } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, PERMISSIONS } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import Sidebar from '../components/Sidebar';
 import {
@@ -19,12 +19,14 @@ import {
     Moon,
     Sun,
     FolderCog,
-    ChevronRight
+    ChevronRight,
+    Shield,
+    Crown
 } from 'lucide-react';
 
 export default function SettingsPage() {
     const navigate = useNavigate();
-    const { logout, createAdmin, adminData } = useAuth();
+    const { logout, createAdmin, adminData, isSuperAdmin, hasPermission } = useAuth();
     const { isDark, toggleTheme } = useTheme();
     const fileInputRef = useRef(null);
 
@@ -37,6 +39,11 @@ export default function SettingsPage() {
 
     const [showClearModal, setShowClearModal] = useState(false);
     const [clearing, setClearing] = useState(false);
+
+    const canManageAdmins = isSuperAdmin() || hasPermission(PERMISSIONS.MANAGE_ADMINS);
+    const canImportData = isSuperAdmin() || hasPermission(PERMISSIONS.IMPORT_DATA);
+    const canManageCatalogs = isSuperAdmin() || hasPermission(PERMISSIONS.MANAGE_CATALOGS);
+    const canDeleteEmployees = isSuperAdmin() || hasPermission(PERMISSIONS.DELETE_EMPLOYEES);
 
     const handleLogout = async () => {
         await logout();
@@ -175,11 +182,21 @@ export default function SettingsPage() {
                     </div>
                     <div className="card-body">
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                            <div className="employee-avatar" style={{ background: 'var(--primary)' }}>
-                                {adminData?.name?.charAt(0) || 'A'}
+                            <div
+                                className="employee-avatar"
+                                style={{ background: isSuperAdmin() ? 'var(--warning)' : 'var(--primary)' }}
+                            >
+                                {isSuperAdmin() ? <Crown size={20} /> : (adminData?.name?.charAt(0) || 'A')}
                             </div>
-                            <div>
-                                <div style={{ fontWeight: 500 }}>{adminData?.name || 'Administrador'}</div>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    {adminData?.name || 'Administrador'}
+                                    {isSuperAdmin() && (
+                                        <span className="badge badge-warning" style={{ fontSize: '0.65rem' }}>
+                                            Super Admin
+                                        </span>
+                                    )}
+                                </div>
                                 <div className="text-sm text-muted">{adminData?.email}</div>
                             </div>
                         </div>
@@ -241,114 +258,148 @@ export default function SettingsPage() {
                     </div>
                 </div>
 
-                {/* Catalogs */}
-                <div className="card" style={{ marginTop: '16px' }}>
-                    <div className="card-header">
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <FolderCog size={18} />
-                            Catálogos
-                        </h3>
-                    </div>
-                    <div className="card-body">
-                        <Link
-                            to="/catalogs"
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                                padding: '12px',
-                                background: 'var(--neutral-50)',
-                                borderRadius: '8px',
-                                textDecoration: 'none',
-                                color: 'inherit'
-                            }}
-                        >
-                            <div>
-                                <div style={{ fontWeight: 500 }}>Gestionar catálogos</div>
-                                <div className="text-sm text-muted">Áreas, departamentos, puestos y criterios</div>
-                            </div>
-                            <ChevronRight size={20} color="var(--neutral-400)" />
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Import JSON */}
-                <div className="card" style={{ marginTop: '16px' }}>
-                    <div className="card-header">
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <Upload size={18} />
-                            Importar datos
-                        </h3>
-                    </div>
-                    <div className="card-body">
-                        <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
-                            Carga un archivo JSON con los datos de los empleados
-                        </p>
-
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept=".json"
-                            onChange={handleFileSelect}
-                            style={{ display: 'none' }}
-                        />
-
-                        <button
-                            className="btn btn-secondary btn-full"
-                            onClick={() => fileInputRef.current?.click()}
-                            disabled={importing}
-                        >
-                            <Upload size={18} />
-                            {importing ? 'Importando...' : 'Seleccionar archivo JSON'}
-                        </button>
-
-                        {importResult && (
-                            <div
-                                className={`badge ${importResult.success ? 'badge-success' : 'badge-danger'}`}
-                                style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
+                {/* Catalogs - Solo si tiene permiso */}
+                {canManageCatalogs && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <FolderCog size={18} />
+                                Catálogos
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <Link
+                                to="/catalogs"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    padding: '12px',
+                                    background: 'var(--neutral-50)',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    color: 'inherit'
+                                }}
                             >
-                                {importResult.message}
-                            </div>
-                        )}
+                                <div>
+                                    <div style={{ fontWeight: 500 }}>Gestionar catálogos</div>
+                                    <div className="text-sm text-muted">Áreas, departamentos, puestos y criterios</div>
+                                </div>
+                                <ChevronRight size={20} color="var(--neutral-400)" />
+                            </Link>
+                        </div>
                     </div>
-                </div>
+                )}
 
-                {/* Admin Management */}
+                {/* Admin Management - Solo para Super Admin o con permiso */}
+                {canManageAdmins && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Shield size={18} />
+                                Administradores
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <Link
+                                to="/admin-management"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    padding: '12px',
+                                    background: 'var(--neutral-50)',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    color: 'inherit',
+                                    marginBottom: '12px'
+                                }}
+                            >
+                                <div>
+                                    <div style={{ fontWeight: 500 }}>Gestionar administradores</div>
+                                    <div className="text-sm text-muted">Ver, editar permisos y eliminar</div>
+                                </div>
+                                <ChevronRight size={20} color="var(--neutral-400)" />
+                            </Link>
+
+                            <button
+                                className="btn btn-primary btn-full"
+                                onClick={() => setShowAdminModal(true)}
+                            >
+                                <UserPlus size={18} />
+                                Agregar administrador
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* Import JSON - Solo si tiene permiso */}
+                {canImportData && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Upload size={18} />
+                                Importar datos
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
+                                Carga un archivo JSON con los datos de los empleados
+                            </p>
+
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept=".json"
+                                onChange={handleFileSelect}
+                                style={{ display: 'none' }}
+                            />
+
+                            <button
+                                className="btn btn-secondary btn-full"
+                                onClick={() => fileInputRef.current?.click()}
+                                disabled={importing}
+                            >
+                                <Upload size={18} />
+                                {importing ? 'Importando...' : 'Seleccionar archivo JSON'}
+                            </button>
+
+                            {importResult && (
+                                <div
+                                    className={`badge ${importResult.success ? 'badge-success' : 'badge-danger'}`}
+                                    style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
+                                >
+                                    {importResult.message}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Danger Zone - Solo si tiene permiso */}
+                {canDeleteEmployees && (
+                    <div className="card" style={{ marginTop: '16px', borderColor: 'var(--danger)' }}>
+                        <div className="card-header" style={{ background: 'rgba(220, 38, 38, 0.05)' }}>
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--danger)' }}>
+                                <AlertTriangle size={18} />
+                                Zona de peligro
+                            </h3>
+                        </div>
+                        <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <button
+                                className="btn btn-danger btn-full"
+                                onClick={() => setShowClearModal(true)}
+                            >
+                                <Trash2 size={18} />
+                                Eliminar todos los empleados
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* Logout button */}
                 <div className="card" style={{ marginTop: '16px' }}>
-                    <div className="card-header">
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <UserPlus size={18} />
-                            Administradores
-                        </h3>
-                    </div>
                     <div className="card-body">
-                        <button
-                            className="btn btn-primary btn-full"
-                            onClick={() => setShowAdminModal(true)}
-                        >
-                            <UserPlus size={18} />
-                            Agregar administrador
-                        </button>
-                    </div>
-                </div>
-
-                {/* Danger Zone */}
-                <div className="card" style={{ marginTop: '16px', borderColor: 'var(--danger)' }}>
-                    <div className="card-header" style={{ background: 'rgba(220, 38, 38, 0.05)' }}>
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--danger)' }}>
-                            <AlertTriangle size={18} />
-                            Zona de peligro
-                        </h3>
-                    </div>
-                    <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        <button
-                            className="btn btn-danger btn-full"
-                            onClick={() => setShowClearModal(true)}
-                        >
-                            <Trash2 size={18} />
-                            Eliminar todos los empleados
-                        </button>
-
                         <button
                             className="btn btn-secondary btn-full"
                             onClick={handleLogout}
@@ -426,6 +477,9 @@ export default function SettingsPage() {
                                         minLength={6}
                                     />
                                 </div>
+                                <p className="text-sm text-muted">
+                                    El nuevo admin tendrá permisos básicos. Podrás configurar sus permisos después en "Gestionar administradores".
+                                </p>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={() => setShowAdminModal(false)}>
