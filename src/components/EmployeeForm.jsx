@@ -4,6 +4,7 @@ import { doc, getDoc, setDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { ArrowLeft, Save } from 'lucide-react';
 import { calculateTrainingPlanDueDate } from '../utils/trainingPlanHelpers';
+import { calculateContractEndDate, CONTRACT_DURATION_DAYS } from '../utils/contractHelpers';
 
 export default function EmployeeForm() {
     const navigate = useNavigate();
@@ -61,10 +62,23 @@ export default function EmployeeForm() {
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: type === 'checkbox' ? checked : value
-        }));
+
+        setFormData(prev => {
+            const updated = {
+                ...prev,
+                [name]: type === 'checkbox' ? checked : value
+            };
+
+            // Calcular automáticamente la fecha de fin de contrato cuando cambia la fecha de ingreso
+            if (name === 'startDate' && value) {
+                const endDate = calculateContractEndDate(value);
+                if (endDate) {
+                    updated.contractEndDate = endDate.toISOString().split('T')[0];
+                }
+            }
+
+            return updated;
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -265,6 +279,9 @@ export default function EmployeeForm() {
                                     onChange={handleChange}
                                     required
                                 />
+                                <p className="text-xs text-muted" style={{ marginTop: '4px' }}>
+                                    📅 Se calcula automáticamente: {CONTRACT_DURATION_DAYS} días a partir de la fecha de ingreso
+                                </p>
                             </div>
 
                             <div className="form-group">

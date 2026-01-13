@@ -47,16 +47,16 @@ const CORRECCIONES_ORTOGRAFICAS = {
   'CALIAD': 'CALIDAD',
   'LOGISTICA': 'LOGÍSTICA',
   'METROLOGIA': 'METROLOGÍA',
-  
+
   // Áreas
   'ADMINISTRATIVO': 'ADMINISTRATIVO',
-  
+
   // Acentos en nombres
   'MARIA': 'MARÍA',
   'JOSE': 'JOSÉ',
   'CONCEPCION': 'CONCEPCIÓN',
   'SOFIA': 'SOFÍA',
-  
+
   // Apellidos comunes
   'RODRIGUEZ': 'RODRÍGUEZ',
   'VAZQUEZ': 'VÁZQUEZ',
@@ -75,8 +75,8 @@ const CORRECCIONES_ORTOGRAFICAS = {
   'MUÑOZ': 'MUÑOZ'
 };
 
-// Días para calcular fin de contrato (90 días por defecto)
-const DIAS_CONTRATO = 90;
+// Días para calcular fin de contrato (89 días según política)
+const DIAS_CONTRATO = 89;
 
 // =============================================
 // FUNCIONES DE UTILIDAD
@@ -102,13 +102,13 @@ function toTitleCase(str) {
 function corregirOrtografia(texto) {
   if (!texto) return '';
   let corregido = texto.toUpperCase();
-  
+
   // Aplicar correcciones palabra por palabra
   const palabras = corregido.split(/\s+/);
   const palabrasCorregidas = palabras.map(palabra => {
     return CORRECCIONES_ORTOGRAFICAS[palabra] || palabra;
   });
-  
+
   return palabrasCorregidas.join(' ');
 }
 
@@ -117,23 +117,23 @@ function corregirOrtografia(texto) {
  */
 function parsearFecha(fechaStr) {
   if (!fechaStr) return null;
-  
+
   // Limpiar la cadena
   let fecha = fechaStr.replace(/\\/g, '/').trim();
-  
+
   // Formato MM/DD/YYYY o M/D/YYYY
   const partes = fecha.split('/');
   if (partes.length === 3) {
     let [mes, dia, año] = partes.map(p => parseInt(p, 10));
-    
+
     // Validar rangos
     if (mes < 1 || mes > 12) return null;
     if (dia < 1 || dia > 31) return null;
     if (año < 2020 || año > 2030) return null;
-    
+
     return new Date(año, mes - 1, dia);
   }
-  
+
   return null;
 }
 
@@ -152,10 +152,10 @@ function calcularFinContrato(fechaIngreso, dias = DIAS_CONTRATO) {
  */
 function formatearNombre(nombreCompleto) {
   if (!nombreCompleto) return '';
-  
+
   // Primero corregir ortografía
   let nombre = corregirOrtografia(nombreCompleto);
-  
+
   // Convertir a Title Case
   return toTitleCase(nombre);
 }
@@ -196,16 +196,16 @@ function estandarizarTurno(turno) {
 function validarEmpleado(emp, index) {
   const errores = [];
   const advertencias = [];
-  
+
   // Validar campos requeridos
   if (!emp['No Empleado'] && emp['No Empleado'] !== 0) {
     errores.push(`Falta número de empleado`);
   }
-  
+
   if (!emp['Nombre completo'] || emp['Nombre completo'].trim() === '') {
     errores.push(`Falta nombre completo`);
   }
-  
+
   if (!emp['Fecha Ingreso']) {
     errores.push(`Falta fecha de ingreso`);
   } else {
@@ -214,27 +214,27 @@ function validarEmpleado(emp, index) {
       errores.push(`Fecha de ingreso inválida: ${emp['Fecha Ingreso']}`);
     }
   }
-  
+
   // Advertencias (no bloquean)
   if (!emp['Departamento']) {
     advertencias.push(`Sin departamento asignado`);
   }
-  
+
   if (!emp['Área']) {
     advertencias.push(`Sin área asignada`);
   }
-  
+
   if (!emp['Turno'] && emp['Turno'] !== 0) {
     advertencias.push(`Sin turno asignado`);
   }
-  
+
   // Verificar acentos faltantes en nombres
   const nombreOriginal = emp['Nombre completo'] || '';
   const nombreCorregido = corregirOrtografia(nombreOriginal);
   if (nombreOriginal.toUpperCase() !== nombreCorregido) {
     advertencias.push(`Ortografía corregida en nombre`);
   }
-  
+
   return { errores, advertencias };
 }
 
@@ -248,7 +248,7 @@ function validarEmpleado(emp, index) {
 function transformarEmpleado(emp) {
   const fechaIngreso = parsearFecha(emp['Fecha Ingreso']);
   const fechaFinContrato = calcularFinContrato(fechaIngreso);
-  
+
   return {
     employeeNumber: `EMP${String(emp['No Empleado']).padStart(4, '0')}`,
     originalEmployeeNumber: emp['No Empleado'],
@@ -295,7 +295,7 @@ function leerArchivo(ruta) {
  */
 async function empleadoExiste(employeeNumber) {
   const q = query(
-    collection(db, 'employees'), 
+    collection(db, 'employees'),
     where('originalEmployeeNumber', '==', employeeNumber)
   );
   const snapshot = await getDocs(q);
@@ -309,12 +309,12 @@ async function main() {
   console.log('═══════════════════════════════════════════════════════');
   console.log('  IMPORTADOR DE EMPLEADOS - Gestión de Contratos');
   console.log('═══════════════════════════════════════════════════════\n');
-  
+
   // 1. Leer archivo
   console.log('📁 Leyendo archivo Libro1.json...');
   const datos = leerArchivo('./Libro1.json');
   console.log(`   ✓ ${datos.length} registros encontrados\n`);
-  
+
   // 2. Validar datos
   console.log('🔍 Validando datos...');
   const resultados = {
@@ -322,10 +322,10 @@ async function main() {
     conErrores: [],
     conAdvertencias: []
   };
-  
+
   datos.forEach((emp, index) => {
     const { errores, advertencias } = validarEmpleado(emp, index);
-    
+
     if (errores.length > 0) {
       resultados.conErrores.push({ registro: index + 1, empleado: emp, errores });
     } else {
@@ -335,11 +335,11 @@ async function main() {
       }
     }
   });
-  
+
   console.log(`   ✓ ${resultados.validos.length} registros válidos`);
   console.log(`   ⚠ ${resultados.conAdvertencias.length} registros con advertencias`);
   console.log(`   ❌ ${resultados.conErrores.length} registros con errores\n`);
-  
+
   // Mostrar errores
   if (resultados.conErrores.length > 0) {
     console.log('❌ REGISTROS CON ERRORES (no se importarán):');
@@ -349,7 +349,7 @@ async function main() {
     });
     console.log('');
   }
-  
+
   // Mostrar advertencias
   if (resultados.conAdvertencias.length > 0) {
     console.log('⚠ REGISTROS CON ADVERTENCIAS (se importarán con correcciones):');
@@ -359,11 +359,11 @@ async function main() {
     });
     console.log('');
   }
-  
+
   // 3. Transformar datos
   console.log('🔄 Transformando datos...');
   const empleadosTransformados = resultados.validos.map(transformarEmpleado);
-  
+
   // Mostrar preview de transformación
   console.log('\n📋 PREVIEW DE DATOS TRANSFORMADOS:');
   console.log('─────────────────────────────────────────────────────────');
@@ -378,36 +378,36 @@ async function main() {
   if (empleadosTransformados.length > 3) {
     console.log(`   ... y ${empleadosTransformados.length - 3} más\n`);
   }
-  
+
   // 4. Cargar a Firebase
   console.log('☁️ Cargando a Firebase...');
   let importados = 0;
   let duplicados = 0;
   let erroresFirebase = 0;
-  
+
   for (const emp of empleadosTransformados) {
     try {
       // Verificar si ya existe
       const existe = await empleadoExiste(emp.originalEmployeeNumber);
-      
+
       if (existe) {
         console.log(`   ⏭ ${emp.employeeNumber} ya existe, omitiendo...`);
         duplicados++;
         continue;
       }
-      
+
       // Crear documento con ID único
       const docId = `emp_${emp.originalEmployeeNumber}_${Date.now()}`;
       await setDoc(doc(db, 'employees', docId), emp);
       console.log(`   ✓ ${emp.employeeNumber} - ${emp.fullName}`);
       importados++;
-      
+
     } catch (error) {
       console.log(`   ❌ Error con ${emp.employeeNumber}: ${error.message}`);
       erroresFirebase++;
     }
   }
-  
+
   // 5. Resumen final
   console.log('\n═══════════════════════════════════════════════════════');
   console.log('  RESUMEN DE IMPORTACIÓN');
@@ -418,7 +418,7 @@ async function main() {
   console.log(`   ❌ Errores validación:   ${resultados.conErrores.length}`);
   console.log(`   ❌ Errores Firebase:     ${erroresFirebase}`);
   console.log('═══════════════════════════════════════════════════════\n');
-  
+
   // Guardar reporte
   const reporte = {
     fecha: new Date().toISOString(),
@@ -429,10 +429,10 @@ async function main() {
     erroresValidacion: resultados.conErrores,
     advertencias: resultados.conAdvertencias
   };
-  
+
   writeFileSync('./import-report.json', JSON.stringify(reporte, null, 2));
   console.log('📄 Reporte guardado en: import-report.json\n');
-  
+
   process.exit(0);
 }
 

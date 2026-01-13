@@ -7,6 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useLanguage, useTranslation } from '../context/LanguageContext';
 import { migrateEmployeesTrainingPlan } from '../utils/migrateTrainingPlan';
 import { importHistoricalTrainingPlanData } from '../utils/importHistoricalData';
+import { calculateContractEndDate, CONTRACT_DURATION_DAYS } from '../utils/contractHelpers';
 import Sidebar from '../components/Sidebar';
 import {
     ArrowLeft,
@@ -51,6 +52,9 @@ export default function SettingsPage() {
 
     const [importingHistorical, setImportingHistorical] = useState(false);
     const [historicalImportResult, setHistoricalImportResult] = useState(null);
+
+    const [recalculatingContracts, setRecalculatingContracts] = useState(false);
+    const [contractRecalcResult, setContractRecalcResult] = useState(null);
 
     const canManageAdmins = isSuperAdmin() || hasPermission(PERMISSIONS.MANAGE_ADMINS);
     const canImportData = isSuperAdmin() || hasPermission(PERMISSIONS.IMPORT_DATA);
@@ -207,6 +211,55 @@ export default function SettingsPage() {
         }
 
         setImportingHistorical(false);
+    };
+
+    const handleRecalculateContracts = async () => {
+        setRecalculatingContracts(true);
+        setContractRecalcResult(null);
+
+        try {
+            const snapshot = await getDocs(collection(db, 'employees'));
+            const batch = writeBatch(db);
+            let updated = 0;
+            let skipped = 0;
+
+            for (const docSnap of snapshot.docs) {
+                const emp = docSnap.data();
+
+                if (!emp.startDate) {
+                    skipped++;
+                    continue;
+                }
+
+                const startDate = emp.startDate.toDate ? emp.startDate.toDate() : new Date(emp.startDate);
+                const newEndDate = calculateContractEndDate(startDate);
+
+                if (newEndDate) {
+                    batch.update(docSnap.ref, {
+                        contractEndDate: Timestamp.fromDate(newEndDate),
+                        contractRecalculatedAt: Timestamp.now()
+                    });
+                    updated++;
+                } else {
+                    skipped++;
+                }
+            }
+
+            await batch.commit();
+
+            setContractRecalcResult({
+                success: true,
+                message: `Recálculo completado: ${updated} actualizados, ${skipped} omitidos (${CONTRACT_DURATION_DAYS} días)`
+            });
+        } catch (error) {
+            console.error('Error recalculating contracts:', error);
+            setContractRecalcResult({
+                success: false,
+                message: 'Error al recalcular contratos: ' + error.message
+            });
+        }
+
+        setRecalculatingContracts(false);
     };
 
     return (
@@ -468,6 +521,43 @@ export default function SettingsPage() {
                                     style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
                                 >
                                     {historicalImportResult.message}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Recalcular Fechas de Contrato - Solo si tiene permiso */}
+                {(isSuperAdmin() || canImportData) && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <RefreshCw size={18} />
+                                📅 Recalcular Fechas de Contrato
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
+                                Recalcula las fechas de fin de contrato de todos los empleados basándose en su fecha de ingreso.
+                                <br />
+                                <strong>Duración del contrato: {CONTRACT_DURATION_DAYS} días</strong>
+                            </p>
+
+                            <button
+                                className="btn btn-primary btn-full"
+                                onClick={handleRecalculateContracts}
+                                disabled={recalculatingContracts}
+                            >
+                                <RefreshCw size={18} />
+                                {recalculatingContracts ? 'Recalculando...' : `Recalcular a ${CONTRACT_DURATION_DAYS} días`}
+                            </button>
+
+                            {contractRecalcResult && (
+                                <div
+                                    className={`badge ${contractRecalcResult.success ? 'badge-success' : 'badge-danger'}`}
+                                    style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
+                                >
+                                    {contractRecalcResult.message}
                                 </div>
                             )}
                         </div>
