@@ -5,9 +5,7 @@ import { db } from '../firebase/firebase';
 import { useAuth, PERMISSIONS } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage, useTranslation } from '../context/LanguageContext';
-import { migrateEmployeesTrainingPlan } from '../utils/migrateTrainingPlan';
-import { importHistoricalTrainingPlanData } from '../utils/importHistoricalData';
-import { calculateContractEndDate, CONTRACT_DURATION_DAYS } from '../utils/contractHelpers';
+import turnosData from '../data/turnos.json';
 import Sidebar from '../components/Sidebar';
 import {
     ArrowLeft,
@@ -26,7 +24,9 @@ import {
     ChevronRight,
     Shield,
     Crown,
-    RefreshCw
+    RefreshCw,
+    Clock,
+    UserMinus
 } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -47,14 +47,13 @@ export default function SettingsPage() {
     const [showClearModal, setShowClearModal] = useState(false);
     const [clearing, setClearing] = useState(false);
 
-    const [migrating, setMigrating] = useState(false);
-    const [migrationResult, setMigrationResult] = useState(null);
+    const [loadingShifts, setLoadingShifts] = useState(false);
+    const [shiftsResult, setShiftsResult] = useState(null);
 
-    const [importingHistorical, setImportingHistorical] = useState(false);
-    const [historicalImportResult, setHistoricalImportResult] = useState(null);
-
-    const [recalculatingContracts, setRecalculatingContracts] = useState(false);
-    const [contractRecalcResult, setContractRecalcResult] = useState(null);
+    const [showDeleteEmployeeModal, setShowDeleteEmployeeModal] = useState(false);
+    const [employees, setEmployees] = useState([]);
+    const [selectedEmployeeToDelete, setSelectedEmployeeToDelete] = useState('');
+    const [deletingEmployee, setDeletingEmployee] = useState(false);
 
     const canManageAdmins = isSuperAdmin() || hasPermission(PERMISSIONS.MANAGE_ADMINS);
     const canImportData = isSuperAdmin() || hasPermission(PERMISSIONS.IMPORT_DATA);
@@ -171,95 +170,114 @@ export default function SettingsPage() {
         setClearing(false);
     };
 
-    const handleMigrateTrainingPlan = async () => {
-        setMigrating(true);
-        setMigrationResult(null);
-
-        try {
-            const result = await migrateEmployeesTrainingPlan();
-            setMigrationResult({
-                success: true,
-                message: `Migración completada: ${result.updated} actualizados, ${result.skipped} omitidos, ${result.errors} errores`
-            });
-        } catch (error) {
-            console.error('Error in migration:', error);
-            setMigrationResult({
-                success: false,
-                message: 'Error al ejecutar la migración'
-            });
-        }
-
-        setMigrating(false);
+    // Mapeo de turnos
+    const TURNO_MAP = {
+        '1': 'Primer Turno',
+        '2': 'Segundo Turno',
+        '3': 'Tercer Turno',
+        '4': 'Cuarto Turno',
+        '5': 'Turno Mixto'
     };
 
-    const handleImportHistoricalData = async () => {
-        setImportingHistorical(true);
-        setHistoricalImportResult(null);
-
-        try {
-            const result = await importHistoricalTrainingPlanData();
-            setHistoricalImportResult({
-                success: true,
-                message: `Importación completada: ${result.created} creados, ${result.updated} actualizados, ${result.skipped} omitidos, ${result.errors} errores`
-            });
-        } catch (error) {
-            console.error('Error in historical import:', error);
-            setHistoricalImportResult({
-                success: false,
-                message: 'Error al importar datos históricos'
-            });
-        }
-
-        setImportingHistorical(false);
-    };
-
-    const handleRecalculateContracts = async () => {
-        setRecalculatingContracts(true);
-        setContractRecalcResult(null);
+    // Cargar turnos desde turnos.json
+    const handleLoadShifts = async () => {
+        setLoadingShifts(true);
+        setShiftsResult(null);
 
         try {
             const snapshot = await getDocs(collection(db, 'employees'));
             const batch = writeBatch(db);
             let updated = 0;
-            let skipped = 0;
+            let notFound = 0;
+
+            // Crear mapa de turnos por ID de empleado
+            const turnosMap = {};
+            turnosData.forEach(t => {
+                turnosMap[t.Id] = t.Turno;
+            });
 
             for (const docSnap of snapshot.docs) {
                 const emp = docSnap.data();
 
-                if (!emp.startDate) {
-                    skipped++;
-                    continue;
+                // Intentar encontrar el turno por varios campos posibles
+                const possibleIds = [
+                    String(emp.originalEmployeeNumber || ''),
+                    String(emp.employeeNumber || '').replace('EMP', ''),
+                    String(emp['No Empleado'] || ''),
+                    docSnap.id.replace(/\D/g, '') // Extraer números del ID del documento
+                ].filter(id => id && id.length > 0);
+
+                let turnoEncontrado = null;
+                let idUsado = null;
+
+                for (const id of possibleIds) {
+                    if (turnosMap[id]) {
+                        turnoEncontrado = turnosMap[id];
+                        idUsado = id;
+                        break;
+                    }
                 }
 
-                const startDate = emp.startDate.toDate ? emp.startDate.toDate() : new Date(emp.startDate);
-                const newEndDate = calculateContractEndDate(startDate);
+                if (turnoEncontrado) {
+                    const turnoTexto = TURNO_MAP[turnoEncontrado] || `Turno ${turnoEncontrado}`;
 
-                if (newEndDate) {
                     batch.update(docSnap.ref, {
-                        contractEndDate: Timestamp.fromDate(newEndDate),
-                        contractRecalculatedAt: Timestamp.now()
+                        shift: turnoTexto,
+                        shiftNumber: parseInt(turnoEncontrado)
                     });
                     updated++;
                 } else {
-                    skipped++;
+                    notFound++;
                 }
             }
 
             await batch.commit();
 
-            setContractRecalcResult({
+            setShiftsResult({
                 success: true,
-                message: `Recálculo completado: ${updated} actualizados, ${skipped} omitidos (${CONTRACT_DURATION_DAYS} días)`
+                message: `Turnos actualizados: ${updated} empleados. ${notFound} no encontrados en turnos.json`
             });
         } catch (error) {
-            console.error('Error recalculating contracts:', error);
-            setContractRecalcResult({
+            console.error('Error loading shifts:', error);
+            setShiftsResult({
                 success: false,
-                message: 'Error al recalcular contratos: ' + error.message
+                message: 'Error al cargar turnos: ' + error.message
             });
         }
 
-        setRecalculatingContracts(false);
+        setLoadingShifts(false);
+    };
+
+    // Cargar lista de empleados para eliminar
+    const loadEmployeesForDelete = async () => {
+        try {
+            const snapshot = await getDocs(collection(db, 'employees'));
+            const empList = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setEmployees(empList.sort((a, b) => (a.fullName || '').localeCompare(b.fullName || '')));
+        } catch (error) {
+            console.error('Error loading employees:', error);
+        }
+    };
+
+    // Eliminar empleado individual
+    const handleDeleteEmployee = async () => {
+        if (!selectedEmployeeToDelete) return;
+
+        setDeletingEmployee(true);
+        try {
+            await deleteDoc(doc(db, 'employees', selectedEmployeeToDelete));
+            setEmployees(prev => prev.filter(e => e.id !== selectedEmployeeToDelete));
+            setSelectedEmployeeToDelete('');
+            setShowDeleteEmployeeModal(false);
+            alert('Empleado eliminado correctamente');
+        } catch (error) {
+            console.error('Error deleting employee:', error);
+            alert('Error al eliminar empleado: ' + error.message);
+        }
+        setDeletingEmployee(false);
     };
 
     return (
@@ -457,109 +475,66 @@ export default function SettingsPage() {
                     </div>
                 )}
 
-                {/* Migración Plan de Formación - Solo si tiene permiso */}
+                {/* Cargar Turnos - Solo si tiene permiso */}
                 {(isSuperAdmin() || canImportData) && (
                     <div className="card" style={{ marginTop: '16px' }}>
                         <div className="card-header">
                             <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <FileText size={18} />
-                                Migrar Plan de Formación
+                                <Clock size={18} />
+                                🕐 Cargar Turnos de Empleados
                             </h3>
                         </div>
                         <div className="card-body">
                             <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
-                                Actualiza los empleados existentes para agregar el campo de Plan de Formación RG-REC-048 con fechas límite calculadas automáticamente.
-                            </p>
-
-                            <button
-                                className="btn btn-secondary btn-full"
-                                onClick={handleMigrateTrainingPlan}
-                                disabled={migrating}
-                            >
-                                <RefreshCw size={18} />
-                                {migrating ? 'Migrando...' : 'Ejecutar migración'}
-                            </button>
-
-                            {migrationResult && (
-                                <div
-                                    className={`badge ${migrationResult.success ? 'badge-success' : 'badge-danger'}`}
-                                    style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
-                                >
-                                    {migrationResult.message}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                )}
-
-                {/* Importar Datos Históricos - Solo si tiene permiso */}
-                {(isSuperAdmin() || canImportData) && (
-                    <div className="card" style={{ marginTop: '16px' }}>
-                        <div className="card-header">
-                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <Upload size={18} />
-                                Importar Datos Históricos
-                            </h3>
-                        </div>
-                        <div className="card-body">
-                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
-                                Importa los datos históricos de planes de formación desde datos.json. Actualiza empleados existentes y crea nuevos si no existen.
-                            </p>
-
-                            <button
-                                className="btn btn-secondary btn-full"
-                                onClick={handleImportHistoricalData}
-                                disabled={importingHistorical}
-                            >
-                                <Upload size={18} />
-                                {importingHistorical ? 'Importando...' : 'Importar datos históricos'}
-                            </button>
-
-                            {historicalImportResult && (
-                                <div
-                                    className={`badge ${historicalImportResult.success ? 'badge-success' : 'badge-danger'}`}
-                                    style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
-                                >
-                                    {historicalImportResult.message}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                )}
-
-                {/* Recalcular Fechas de Contrato - Solo si tiene permiso */}
-                {(isSuperAdmin() || canImportData) && (
-                    <div className="card" style={{ marginTop: '16px' }}>
-                        <div className="card-header">
-                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <RefreshCw size={18} />
-                                📅 Recalcular Fechas de Contrato
-                            </h3>
-                        </div>
-                        <div className="card-body">
-                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
-                                Recalcula las fechas de fin de contrato de todos los empleados basándose en su fecha de ingreso.
-                                <br />
-                                <strong>Duración del contrato: {CONTRACT_DURATION_DAYS} días</strong>
+                                Actualiza los turnos de todos los empleados basándose en el archivo turnos.json.
+                                Los empleados se identifican por su número de empleado original.
                             </p>
 
                             <button
                                 className="btn btn-primary btn-full"
-                                onClick={handleRecalculateContracts}
-                                disabled={recalculatingContracts}
+                                onClick={handleLoadShifts}
+                                disabled={loadingShifts}
                             >
-                                <RefreshCw size={18} />
-                                {recalculatingContracts ? 'Recalculando...' : `Recalcular a ${CONTRACT_DURATION_DAYS} días`}
+                                <Clock size={18} />
+                                {loadingShifts ? 'Cargando turnos...' : 'Cargar Turnos desde JSON'}
                             </button>
 
-                            {contractRecalcResult && (
+                            {shiftsResult && (
                                 <div
-                                    className={`badge ${contractRecalcResult.success ? 'badge-success' : 'badge-danger'}`}
+                                    className={`badge ${shiftsResult.success ? 'badge-success' : 'badge-danger'}`}
                                     style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}
                                 >
-                                    {contractRecalcResult.message}
+                                    {shiftsResult.message}
                                 </div>
                             )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Eliminar Empleado Individual - Solo si tiene permiso */}
+                {canDeleteEmployees && (
+                    <div className="card" style={{ marginTop: '16px' }}>
+                        <div className="card-header">
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <UserMinus size={18} />
+                                Eliminar Empleado
+                            </h3>
+                        </div>
+                        <div className="card-body">
+                            <p className="text-sm text-muted" style={{ marginBottom: '12px' }}>
+                                Elimina un empleado específico y toda su información del sistema de forma permanente.
+                            </p>
+
+                            <button
+                                className="btn btn-secondary btn-full"
+                                onClick={() => {
+                                    loadEmployeesForDelete();
+                                    setShowDeleteEmployeeModal(true);
+                                }}
+                            >
+                                <UserMinus size={18} />
+                                Seleccionar empleado a eliminar
+                            </button>
                         </div>
                     </div>
                 )}
@@ -704,6 +679,60 @@ export default function SettingsPage() {
                             </button>
                             <button className="btn btn-danger" onClick={handleClearData} disabled={clearing}>
                                 {clearing ? 'Eliminando...' : 'Eliminar todo'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Delete Employee Modal */}
+            {showDeleteEmployeeModal && (
+                <div className="modal-overlay" onClick={() => setShowDeleteEmployeeModal(false)}>
+                    <div className="modal" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3>Eliminar Empleado</h3>
+                            <button className="btn btn-ghost btn-icon" onClick={() => setShowDeleteEmployeeModal(false)}>
+                                ✕
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <p className="text-sm text-muted" style={{ marginBottom: '16px' }}>
+                                Selecciona el empleado que deseas eliminar. Esta acción es permanente y eliminará toda su información.
+                            </p>
+
+                            <div className="form-group">
+                                <label className="form-label">Empleado *</label>
+                                <select
+                                    className="form-input form-select"
+                                    value={selectedEmployeeToDelete}
+                                    onChange={(e) => setSelectedEmployeeToDelete(e.target.value)}
+                                >
+                                    <option value="">Seleccionar empleado...</option>
+                                    {employees.map(emp => (
+                                        <option key={emp.id} value={emp.id}>
+                                            {emp.employeeNumber} - {emp.fullName}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {selectedEmployeeToDelete && (
+                                <div className="badge badge-danger" style={{ marginTop: '12px', padding: '12px', display: 'block', textAlign: 'center' }}>
+                                    ⚠️ Se eliminará permanentemente al empleado seleccionado
+                                </div>
+                            )}
+                        </div>
+                        <div className="modal-footer">
+                            <button className="btn btn-secondary" onClick={() => setShowDeleteEmployeeModal(false)}>
+                                Cancelar
+                            </button>
+                            <button
+                                className="btn btn-danger"
+                                onClick={handleDeleteEmployee}
+                                disabled={!selectedEmployeeToDelete || deletingEmployee}
+                            >
+                                <Trash2 size={16} />
+                                {deletingEmployee ? 'Eliminando...' : 'Eliminar empleado'}
                             </button>
                         </div>
                     </div>

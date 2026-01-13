@@ -7,6 +7,7 @@ import { usePermissions } from '../components/PermissionGuard';
 import * as XLSX from 'xlsx';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { calculateTrainingPlanDueDate } from '../utils/trainingPlanHelpers';
 import {
     ArrowLeft,
     FileSpreadsheet,
@@ -74,20 +75,33 @@ export default function ReportsPage() {
     };
 
     const prepareData = () => {
-        return filteredEmployees.map(emp => ({
-            'No. Empleado': emp.employeeNumber,
-            'Nombre': emp.fullName,
-            'Área': emp.area,
-            'Departamento': emp.department,
-            'Turno': emp.shift,
-            'Fecha Ingreso': formatDate(emp.startDate),
-            'Fin Contrato': formatDate(emp.contractEndDate),
-            'Estado': getStatusLabel(emp.status),
-            'RG-REC-048': emp.formRGREC048Delivered ? 'Sí' : 'No',
-            'First eval': emp.evaluations?.day30?.score ?? '-',
-            'Second eval': emp.evaluations?.day60?.score ?? '-',
-            'Third eval': emp.evaluations?.day75?.score ?? '-'
-        }));
+        return filteredEmployees.map(emp => {
+            // Calcular fecha límite del plan de formación
+            let fechaLimitePlan = '-';
+            if (emp.startDate) {
+                const startDate = emp.startDate.toDate ? emp.startDate.toDate() : new Date(emp.startDate);
+                const { dueDate } = calculateTrainingPlanDueDate(startDate, emp.department, emp.area);
+                if (dueDate) {
+                    fechaLimitePlan = formatDate(dueDate);
+                }
+            }
+
+            return {
+                'No. Empleado': emp.employeeNumber,
+                'Nombre': emp.fullName,
+                'Área': emp.area,
+                'Departamento': emp.department,
+                'Turno': emp.shift,
+                'Fecha Ingreso': formatDate(emp.startDate),
+                'Fin Contrato': formatDate(emp.contractEndDate),
+                'Estado': getStatusLabel(emp.status),
+                'RG-REC-048': emp.formRGREC048Delivered ? 'Sí' : 'No',
+                'Límite RG-REC-048': fechaLimitePlan,
+                'Eval 30': emp.evaluations?.day30?.score ?? '-',
+                'Eval 60': emp.evaluations?.day60?.score ?? '-',
+                'Eval 75': emp.evaluations?.day75?.score ?? '-'
+            };
+        });
     };
 
     const exportToExcel = () => {
@@ -109,7 +123,8 @@ export default function ReportsPage() {
                 { wch: 12 }, // Fecha Ingreso
                 { wch: 12 }, // Fin Contrato
                 { wch: 12 }, // Estado
-                { wch: 10 }, // RG-REC-048
+                { wch: 12 }, // RG-REC-048
+                { wch: 14 }, // Fecha Límite Plan
                 { wch: 10 }, // Eval 30
                 { wch: 10 }, // Eval 60
                 { wch: 10 }, // Eval 75
@@ -152,27 +167,40 @@ export default function ReportsPage() {
                 doc.text(`Filtros: ${activeFilters.join(', ')}`, 14, 28);
             }
 
-            // Tabla con datos simplificados
-            const tableData = filteredEmployees.map(emp => [
-                emp.employeeNumber || '',
-                (emp.fullName || '').substring(0, 25),
-                (emp.area || '').substring(0, 15),
-                (emp.department || '').substring(0, 12),
-                (emp.shift || '').substring(0, 8),
-                formatDate(emp.startDate),
-                formatDate(emp.contractEndDate),
-                getStatusLabel(emp.status).substring(0, 8),
-                emp.formRGREC048Delivered ? 'Sí' : 'No',
-                emp.evaluations?.day30?.score ?? '-',
-                emp.evaluations?.day60?.score ?? '-',
-                emp.evaluations?.day75?.score ?? '-'
-            ]);
+            // Tabla con datos completos
+            const tableData = filteredEmployees.map(emp => {
+                // Calcular fecha límite del plan
+                let fechaLimitePlan = '-';
+                if (emp.startDate) {
+                    const startDate = emp.startDate.toDate ? emp.startDate.toDate() : new Date(emp.startDate);
+                    const { dueDate } = calculateTrainingPlanDueDate(startDate, emp.department, emp.area);
+                    if (dueDate) {
+                        fechaLimitePlan = formatDate(dueDate);
+                    }
+                }
+
+                return [
+                    emp.employeeNumber || '',
+                    emp.fullName || '',
+                    emp.area || '',
+                    emp.department || '',
+                    emp.shift || '',
+                    formatDate(emp.startDate),
+                    formatDate(emp.contractEndDate),
+                    getStatusLabel(emp.status),
+                    emp.formRGREC048Delivered ? 'Sí' : 'No',
+                    fechaLimitePlan,
+                    emp.evaluations?.day30?.score ?? '-',
+                    emp.evaluations?.day60?.score ?? '-',
+                    emp.evaluations?.day75?.score ?? '-'
+                ];
+            });
 
             autoTable(doc, {
                 startY: activeFilters.length > 0 ? 34 : 28,
                 head: [[
-                    'No.Emp', 'Nombre', 'Área', 'Depto', 'Turno',
-                    'Ingreso', 'Fin', 'Estado', 'RG',
+                    'No.Emp', 'Nombre', 'Área', 'Departamento', 'Turno',
+                    'Ingreso', 'Fin Contrato', 'Estado', 'RG-REC-048', 'Límite RG-REC-048',
                     'E1', 'E2', 'E3'
                 ]],
                 body: tableData,
@@ -180,14 +208,14 @@ export default function ReportsPage() {
                 headStyles: {
                     fillColor: [30, 58, 138],
                     textColor: 255,
-                    fontSize: 7,
+                    fontSize: 5.5,
                     fontStyle: 'bold',
                     halign: 'center',
-                    cellPadding: 2
+                    cellPadding: 1.2
                 },
                 bodyStyles: {
-                    fontSize: 6,
-                    cellPadding: 1.5,
+                    fontSize: 5,
+                    cellPadding: 1,
                     valign: 'middle'
                 },
                 alternateRowStyles: {
@@ -198,20 +226,21 @@ export default function ReportsPage() {
                     cellWidth: 'wrap'
                 },
                 columnStyles: {
-                    0: { cellWidth: 14, halign: 'center' },
-                    1: { cellWidth: 38 },
-                    2: { cellWidth: 22 },
-                    3: { cellWidth: 20 },
-                    4: { cellWidth: 14, halign: 'center' },
-                    5: { cellWidth: 18, halign: 'center' },
-                    6: { cellWidth: 18, halign: 'center' },
+                    0: { cellWidth: 12, halign: 'center' },
+                    1: { cellWidth: 'auto' },
+                    2: { cellWidth: 'auto' },
+                    3: { cellWidth: 18 },
+                    4: { cellWidth: 12 },
+                    5: { cellWidth: 14, halign: 'center' },
+                    6: { cellWidth: 14, halign: 'center' },
                     7: { cellWidth: 14, halign: 'center' },
-                    8: { cellWidth: 10, halign: 'center' },
-                    9: { cellWidth: 10, halign: 'center' },
-                    10: { cellWidth: 10, halign: 'center' },
-                    11: { cellWidth: 10, halign: 'center' }
+                    8: { cellWidth: 14, halign: 'center' },
+                    9: { cellWidth: 16, halign: 'center' },
+                    10: { cellWidth: 8, halign: 'center' },
+                    11: { cellWidth: 8, halign: 'center' },
+                    12: { cellWidth: 8, halign: 'center' }
                 },
-                margin: { left: 8, right: 8 }
+                margin: { left: 5, right: 5 }
             });
 
             // Pie de página
@@ -376,7 +405,7 @@ export default function ReportsPage() {
                         <h3>Vista previa</h3>
                     </div>
                     <div style={{ overflowX: 'auto' }}>
-                        <table className="table" style={{ minWidth: '600px' }}>
+                        <table className="table" style={{ minWidth: '700px' }}>
                             <thead>
                                 <tr>
                                     <th style={{ whiteSpace: 'nowrap' }}>No. Emp</th>
@@ -385,29 +414,43 @@ export default function ReportsPage() {
                                     <th style={{ whiteSpace: 'nowrap' }}>Depto</th>
                                     <th style={{ whiteSpace: 'nowrap' }}>Ingreso</th>
                                     <th style={{ whiteSpace: 'nowrap' }}>Estado</th>
-                                    <th style={{ whiteSpace: 'nowrap' }}>RG-048</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>RG-REC-048</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Límite RG-REC-048</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredEmployees.slice(0, 8).map(emp => (
-                                    <tr key={emp.id}>
-                                        <td>{emp.employeeNumber}</td>
-                                        <td style={{ whiteSpace: 'nowrap' }}>{emp.fullName}</td>
-                                        <td>{emp.area}</td>
-                                        <td>{emp.department}</td>
-                                        <td style={{ whiteSpace: 'nowrap' }}>{formatDate(emp.startDate)}</td>
-                                        <td>
-                                            <span className={`badge badge-${emp.status === 'active' ? 'success' : emp.status === 'terminated' ? 'danger' : 'warning'}`}>
-                                                {getStatusLabel(emp.status)}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className={`badge badge-${emp.formRGREC048Delivered ? 'success' : 'warning'}`}>
-                                                {emp.formRGREC048Delivered ? 'Sí' : 'No'}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
+                                {filteredEmployees.slice(0, 8).map(emp => {
+                                    // Calcular fecha límite del plan
+                                    let fechaLimitePlan = '-';
+                                    if (emp.startDate) {
+                                        const startDate = emp.startDate.toDate ? emp.startDate.toDate() : new Date(emp.startDate);
+                                        const { dueDate } = calculateTrainingPlanDueDate(startDate, emp.department, emp.area);
+                                        if (dueDate) {
+                                            fechaLimitePlan = formatDate(dueDate);
+                                        }
+                                    }
+
+                                    return (
+                                        <tr key={emp.id}>
+                                            <td>{emp.employeeNumber}</td>
+                                            <td style={{ whiteSpace: 'nowrap' }}>{emp.fullName}</td>
+                                            <td>{emp.area}</td>
+                                            <td>{emp.department}</td>
+                                            <td style={{ whiteSpace: 'nowrap' }}>{formatDate(emp.startDate)}</td>
+                                            <td>
+                                                <span className={`badge badge-${emp.status === 'active' ? 'success' : emp.status === 'terminated' ? 'danger' : 'warning'}`}>
+                                                    {getStatusLabel(emp.status)}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span className={`badge badge-${emp.formRGREC048Delivered ? 'success' : 'warning'}`}>
+                                                    {emp.formRGREC048Delivered ? 'Sí' : 'No'}
+                                                </span>
+                                            </td>
+                                            <td style={{ whiteSpace: 'nowrap' }}>{fechaLimitePlan}</td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>

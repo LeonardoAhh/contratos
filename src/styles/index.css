@@ -97,17 +97,17 @@
   --warning: #FF9F0A;
   --info: #64D2FF;
 
-  /* Neutros invertidos */
-  --neutral-50: #1C1C1E;
-  --neutral-100: #2C2C2E;
-  --neutral-200: #3A3A3C;
-  --neutral-300: #48484A;
-  --neutral-400: #636366;
-  --neutral-500: #8E8E93;
-  --neutral-600: #AEAEB2;
-  --neutral-700: #C7C7CC;
-  --neutral-800: #E5E5EA;
-  --neutral-900: #F2F2F7;
+  /* Neutros invertidos - Escala oscura para backgrounds */
+  --neutral-50: #1C1C1E;   /* Oscuro base */
+  --neutral-100: #2C2C2E;  /* Oscuro elevado */
+  --neutral-200: #3A3A3C;  /* Oscuro medio */
+  --neutral-300: #48484A;  /* Gris oscuro */
+  --neutral-400: #636366;  /* Gris medio-oscuro */
+  --neutral-500: #8E8E93;  /* Gris medio */
+  --neutral-600: #AEAEB2;  /* Gris medio-claro (para textos secundarios) */
+  --neutral-700: #3A3A3C;  /* Oscuro para cards (mismo que 200) */
+  --neutral-800: #2C2C2E;  /* Más oscuro para cards principales (mismo que 100) */
+  --neutral-900: #1C1C1E;  /* Muy oscuro para backgrounds (mismo que 50) */
 
   /* Superficies - Dark Glass */
   --background: #000000;
