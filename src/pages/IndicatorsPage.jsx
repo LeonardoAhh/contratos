@@ -36,15 +36,15 @@ export default function IndicatorsPage() {
     const [selectedMonth, setSelectedMonth] = useState(null); // Format: 'YYYY-MM'
     const [expandedAreas, setExpandedAreas] = useState({});
 
-    // Theme-aware styles
+    // Theme-aware styles - Always dark theme
     const styles = {
-        cardBg: isDark ? 'var(--neutral-800)' : 'white',
-        cardBorder: isDark ? 'var(--neutral-700)' : 'var(--neutral-200)',
-        headerBg: isDark ? 'var(--neutral-900)' : 'var(--neutral-50)',
-        textPrimary: isDark ? 'var(--neutral-100)' : 'var(--neutral-800)',
-        textSecondary: isDark ? 'var(--neutral-400)' : 'var(--neutral-500)',
-        filterBg: isDark ? 'var(--neutral-800)' : 'var(--neutral-100)',
-        employeeCardBg: isDark ? 'var(--neutral-700)' : 'var(--neutral-50)',
+        cardBg: 'var(--surface)',
+        cardBorder: 'rgba(255, 255, 255, 0.08)',
+        headerBg: 'rgba(0, 0, 0, 0.3)',
+        textPrimary: 'var(--text-primary)',
+        textSecondary: 'var(--text-secondary)',
+        filterBg: 'rgba(28, 28, 30, 0.8)',
+        employeeCardBg: 'rgba(44, 44, 46, 0.6)',
     };
 
     useEffect(() => {
