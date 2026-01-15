@@ -5,7 +5,8 @@ import {
     Layers,
     LogOut,
     Home,
-    Award
+    Award,
+    Settings
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -76,6 +77,14 @@ export default function CapacitacionSidebar() {
                 >
                     <Award size={20} />
                     Exámenes
+                </Link>
+
+                <Link
+                    to="/capacitacion/reglas"
+                    className={`desktop-nav-item ${isActive('/capacitacion/reglas') ? 'active' : ''}`}
+                >
+                    <Settings size={20} />
+                    Reglas
                 </Link>
             </nav>
 

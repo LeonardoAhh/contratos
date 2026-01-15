@@ -103,6 +103,14 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Colección: rules_promotion (reglas de promoción/cambio de categoría)
+    match /rules_promotion/{ruleId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
     // ==========================================
     // COLECCIONES COMPARTIDAS
     // ==========================================

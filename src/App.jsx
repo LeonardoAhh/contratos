@@ -19,6 +19,7 @@ import CapacitacionDashboard from './pages/CapacitacionDashboard';
 import CapacitacionEmployeesPage from './pages/CapacitacionEmployeesPage';
 import CapacitacionCategoriasPage from './pages/CapacitacionCategoriasPage';
 import ExamHistoryPage from './pages/ExamHistoryPage';
+import PromotionRulesPage from './pages/PromotionRulesPage';
 
 function ProtectedRoute({ children }) {
     const { isAuthenticated, loading } = useAuth();
@@ -195,6 +196,14 @@ function AppRoutes() {
                 element={
                     <ProtectedRoute>
                         <ExamHistoryPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/capacitacion/reglas"
+                element={
+                    <ProtectedRoute>
+                        <PromotionRulesPage />
                     </ProtectedRoute>
                 }
             />
