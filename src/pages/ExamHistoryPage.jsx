@@ -30,7 +30,8 @@ import {
     AlertTriangle,
     Calendar,
     FileText,
-    RefreshCw
+    RefreshCw,
+    Filter
 } from 'lucide-react';
 import CapacitacionSidebar from '../components/CapacitacionSidebar';
 import promotionRules from '../data/promotionRules.json';
@@ -47,6 +48,8 @@ export default function ExamHistoryPage() {
     const [showModal, setShowModal] = useState(false);
     const [saving, setSaving] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [categoriesData, setCategoriesData] = useState({});
+    const [statusFilter, setStatusFilter] = useState('all'); // all, canTake, waiting, noExams
 
     // Formulario para nuevo examen
     const [examForm, setExamForm] = useState({
@@ -78,6 +81,19 @@ export default function ExamHistoryPage() {
                 ...doc.data()
             }));
             setExamRecords(data);
+        });
+        return unsubscribe;
+    }, []);
+
+    // Cargar datos de categories_data (para validar positionDate)
+    useEffect(() => {
+        const q = query(collection(db, 'categories_data'));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const dataMap = {};
+            snapshot.docs.forEach(doc => {
+                dataMap[doc.id] = doc.data();
+            });
+            setCategoriesData(dataMap);
         });
         return unsubscribe;
     }, []);
@@ -116,20 +132,63 @@ export default function ExamHistoryPage() {
     const calculateNextExamDate = useCallback((employeeId) => {
         const exams = getEmployeeExams(employeeId);
         const failedExams = exams.filter(e => !e.passed);
+        const categoryData = categoriesData[employeeId];
 
+        // Obtener positionDate de categories_data
+        let positionDate = null;
+        if (categoryData?.positionDate) {
+            if (typeof categoryData.positionDate === 'string') {
+                positionDate = new Date(categoryData.positionDate + 'T00:00:00');
+            } else if (categoryData.positionDate.seconds) {
+                positionDate = new Date(categoryData.positionDate.seconds * 1000);
+            }
+        }
+
+        // Obtener fecha del último examen (aprobado o reprobado)
+        let lastExamDate = null;
+        if (exams.length > 0) {
+            const lastExam = exams[0]; // El más reciente
+            lastExamDate = lastExam.examDate?.seconds
+                ? new Date(lastExam.examDate.seconds * 1000)
+                : new Date(lastExam.examDate);
+        }
+
+        // VALIDACIÓN PRIMARIA: Si hubo cambio de puesto después del último examen
+        // El empleado debe esperar 6 meses desde el cambio de puesto
+        if (positionDate && lastExamDate && positionDate > lastExamDate) {
+            const waitMonths = 6; // Esperar 6 meses desde cambio de puesto
+            const nextDate = new Date(positionDate);
+            nextDate.setMonth(nextDate.getMonth() + waitMonths);
+
+            const today = new Date();
+            const canTakeExam = today >= nextDate;
+
+            return {
+                canTakeExam,
+                nextDate,
+                waitMonths,
+                failedCount: failedExams.length,
+                daysRemaining: canTakeExam ? 0 : Math.ceil((nextDate - today) / (1000 * 60 * 60 * 24)),
+                hadPositionChange: true,
+                positionChangeDate: positionDate
+            };
+        }
+
+        // Si no hay exámenes reprobados, puede presentar
         if (failedExams.length === 0) {
             return { canTakeExam: true, nextDate: null, waitMonths: 0 };
         }
 
+        // Lógica estándar para exámenes reprobados
         const lastFailedExam = failedExams[0]; // El más reciente
-        const lastExamDate = lastFailedExam.examDate?.seconds
+        const lastFailedExamDate = lastFailedExam.examDate?.seconds
             ? new Date(lastFailedExam.examDate.seconds * 1000)
             : new Date(lastFailedExam.examDate);
 
         // Si es el primer reprobado, esperar 1 mes; si es el segundo o más, esperar 6 meses
         const waitMonths = failedExams.length === 1 ? 1 : 6;
 
-        const nextDate = new Date(lastExamDate);
+        const nextDate = new Date(lastFailedExamDate);
         nextDate.setMonth(nextDate.getMonth() + waitMonths);
 
         const today = new Date();
@@ -140,9 +199,11 @@ export default function ExamHistoryPage() {
             nextDate,
             waitMonths,
             failedCount: failedExams.length,
-            daysRemaining: canTakeExam ? 0 : Math.ceil((nextDate - today) / (1000 * 60 * 60 * 24))
+            daysRemaining: canTakeExam ? 0 : Math.ceil((nextDate - today) / (1000 * 60 * 60 * 24)),
+            hadPositionChange: false,
+            positionChangeDate: null
         };
-    }, [getEmployeeExams]);
+    }, [getEmployeeExams, categoriesData]);
 
     // Guardar nuevo examen
     const handleSaveExam = async () => {
@@ -216,14 +277,39 @@ export default function ExamHistoryPage() {
 
     // Filtrar empleados
     const filteredEmployees = useMemo(() => {
-        if (!searchQuery) return employees;
-        const q = searchQuery.toLowerCase();
-        return employees.filter(emp =>
-            emp.name?.toLowerCase().includes(q) ||
-            emp.position?.toLowerCase().includes(q) ||
-            emp.employeeId?.toString().includes(q)
-        );
-    }, [employees, searchQuery]);
+        let result = employees;
+
+        // Filtro por búsqueda
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            result = result.filter(emp =>
+                emp.name?.toLowerCase().includes(q) ||
+                emp.position?.toLowerCase().includes(q) ||
+                emp.employeeId?.toString().includes(q)
+            );
+        }
+
+        // Filtro por estado
+        if (statusFilter !== 'all') {
+            result = result.filter(emp => {
+                const exams = getEmployeeExams(emp.id);
+                const examStatus = calculateNextExamDate(emp.id);
+
+                switch (statusFilter) {
+                    case 'canTake':
+                        return exams.length > 0 && examStatus.canTakeExam;
+                    case 'waiting':
+                        return exams.length > 0 && !examStatus.canTakeExam;
+                    case 'noExams':
+                        return exams.length === 0;
+                    default:
+                        return true;
+                }
+            });
+        }
+
+        return result;
+    }, [employees, searchQuery, statusFilter, getEmployeeExams, calculateNextExamDate]);
 
     // Formatear fecha
     const formatDate = (dateValue) => {
@@ -294,6 +380,39 @@ export default function ExamHistoryPage() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
+                    </div>
+
+                    {/* Filter Pills */}
+                    <div className="filter-pills">
+                        <span className="filter-pills-label">
+                            <Filter size={16} /> Filtrar
+                        </span>
+                        <div className="filter-pills-group">
+                            <button
+                                className={`filter-pill ${statusFilter === 'all' ? 'active active--primary' : ''}`}
+                                onClick={() => setStatusFilter('all')}
+                            >
+                                Todos
+                            </button>
+                            <button
+                                className={`filter-pill ${statusFilter === 'canTake' ? 'active' : ''}`}
+                                onClick={() => setStatusFilter('canTake')}
+                            >
+                                <CheckCircle2 size={14} /> Puede Presentar
+                            </button>
+                            <button
+                                className={`filter-pill ${statusFilter === 'waiting' ? 'active active--warning' : ''}`}
+                                onClick={() => setStatusFilter('waiting')}
+                            >
+                                <Clock size={14} /> En Espera
+                            </button>
+                            <button
+                                className={`filter-pill ${statusFilter === 'noExams' ? 'active active--idle' : ''}`}
+                                onClick={() => setStatusFilter('noExams')}
+                            >
+                                <Award size={14} /> Sin Exámenes
+                            </button>
+                        </div>
                     </div>
 
                     {/* Section Header Premium */}
@@ -433,7 +552,8 @@ export default function ExamHistoryPage() {
                                                 <span>
                                                     Debe esperar hasta el {status.nextDate?.toLocaleDateString('es-MX')}
                                                     ({status.daysRemaining} días restantes).
-                                                    {status.failedCount >= 2 && ' (Penalización de 6 meses por múltiples reprobados)'}
+                                                    {status.hadPositionChange && ` (Tiempo reiniciado por cambio de puesto el ${status.positionChangeDate?.toLocaleDateString('es-MX')})`}
+                                                    {!status.hadPositionChange && status.failedCount >= 2 && ' (Penalización de 6 meses por múltiples reprobados)'}
                                                 </span>
                                             </>
                                         )}
