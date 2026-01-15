@@ -4,6 +4,7 @@ import { NotificationProvider } from './context/NotificationContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import LoginPage from './pages/LoginPage';
+import ModuleSelectionPage from './pages/ModuleSelectionPage';
 import Dashboard from './pages/Dashboard';
 import EmployeeDetail from './pages/EmployeeDetail';
 import EmployeeForm from './components/EmployeeForm';
@@ -14,6 +15,10 @@ import CatalogsPage from './pages/CatalogsPage';
 import AdminManagementPage from './pages/AdminManagementPage';
 import CalendarPage from './pages/CalendarPage';
 import IndicatorsPage from './pages/IndicatorsPage';
+import CapacitacionDashboard from './pages/CapacitacionDashboard';
+import CapacitacionEmployeesPage from './pages/CapacitacionEmployeesPage';
+import CapacitacionCategoriasPage from './pages/CapacitacionCategoriasPage';
+import ExamHistoryPage from './pages/ExamHistoryPage';
 
 function ProtectedRoute({ children }) {
     const { isAuthenticated, loading } = useAuth();
@@ -62,8 +67,18 @@ function AppRoutes() {
                     </PublicRoute>
                 }
             />
+            {/* Selección de módulo */}
             <Route
                 path="/"
+                element={
+                    <ProtectedRoute>
+                        <ModuleSelectionPage />
+                    </ProtectedRoute>
+                }
+            />
+            {/* Módulo de Contratos */}
+            <Route
+                path="/contratos"
                 element={
                     <ProtectedRoute>
                         <Dashboard />
@@ -71,7 +86,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/employee/new"
+                path="/contratos/employee/new"
                 element={
                     <ProtectedRoute>
                         <EmployeeForm />
@@ -79,7 +94,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/employee/:id"
+                path="/contratos/employee/:id"
                 element={
                     <ProtectedRoute>
                         <EmployeeDetail />
@@ -87,7 +102,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/employee/:id/edit"
+                path="/contratos/employee/:id/edit"
                 element={
                     <ProtectedRoute>
                         <EmployeeForm />
@@ -95,7 +110,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/reports"
+                path="/contratos/reports"
                 element={
                     <ProtectedRoute>
                         <ReportsPage />
@@ -103,7 +118,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/notifications"
+                path="/contratos/notifications"
                 element={
                     <ProtectedRoute>
                         <NotificationsPage />
@@ -111,7 +126,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/settings"
+                path="/contratos/settings"
                 element={
                     <ProtectedRoute>
                         <SettingsPage />
@@ -119,7 +134,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/catalogs"
+                path="/contratos/catalogs"
                 element={
                     <ProtectedRoute>
                         <CatalogsPage />
@@ -127,7 +142,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/admin-management"
+                path="/contratos/admin-management"
                 element={
                     <ProtectedRoute>
                         <AdminManagementPage />
@@ -135,7 +150,7 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/calendar"
+                path="/contratos/calendar"
                 element={
                     <ProtectedRoute>
                         <CalendarPage />
@@ -143,10 +158,43 @@ function AppRoutes() {
                 }
             />
             <Route
-                path="/indicators"
+                path="/contratos/indicators"
                 element={
                     <ProtectedRoute>
                         <IndicatorsPage />
+                    </ProtectedRoute>
+                }
+            />
+            {/* Módulo de Capacitación */}
+            <Route
+                path="/capacitacion"
+                element={
+                    <ProtectedRoute>
+                        <CapacitacionDashboard />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/capacitacion/employees"
+                element={
+                    <ProtectedRoute>
+                        <CapacitacionEmployeesPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/capacitacion/categorias"
+                element={
+                    <ProtectedRoute>
+                        <CapacitacionCategoriasPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/capacitacion/examenes"
+                element={
+                    <ProtectedRoute>
+                        <ExamHistoryPage />
                     </ProtectedRoute>
                 }
             />

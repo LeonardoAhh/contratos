@@ -1,0 +1,442 @@
+[
+    {
+        "current position": "ANALISTA DE RECLUTAMIENTO Y SELECCIÓN B",
+        "promotion": "ANALISTA DE RECLUTAMIENTO Y SELECCIÓN A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "ASISTENTE DE PRODUCCIÓN B",
+        "promotion": "ASISTENTE DE PRODUCCIÓN A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR ADMINISTRATIVO DE ALMACÉN B",
+        "promotion": "AUXILIAR ADMINISTRATIVO DE ALMACÉN A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR ADMINISTRATIVO DE ALMACÉN C ",
+        "promotion": "AUXILIAR ADMINISTRATIVO DE ALMACÉN B",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE ALMACÉN B",
+        "promotion": "AUXILIAR DE ALMACÉN A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE ALMACÉN C",
+        "promotion": "AUXILIAR DE ALMACÉN B",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE ALMACÉN D",
+        "promotion": "AUXILIAR DE ALMACÉN C",
+        "last change": "6 MESES",
+        "exam grade": "40%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE BÁSCULA B",
+        "promotion": "AUXILIAR DE BÁSCULA A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE LIMPIEZA B",
+        "promotion": "AUXILIAR DE LIMPIEZA A",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE MANTENIMIENTO B",
+        "promotion": "AUXILIAR DE MANTENIMIENTO A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE MANTENIMIENTO C",
+        "promotion": "AUXILIAR DE MANTENIMIENTO B",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "50%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE METROLOGÍA",
+        "promotion": "METRÓLOGO C",
+        "last change": "8 MESES",
+        "exam grade": "80%",
+        "course coverage": "70%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE SUPERVISOR B",
+        "promotion": "AUXILIAR DE SUPERVISOR A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DEL SGI C",
+        "promotion": "AUXILIAR DEL SGI B",
+        "last change": "8 MESES",
+        "exam grade": "80%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "CHECK LIST B",
+        "promotion": "CHECK LIST A",
+        "last change": "9 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE CALIDAD B",
+        "promotion": "INGENIERO DE CALIDAD A",
+        "last change": "9 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE CALIDAD C",
+        "promotion": "INGENIERO DE CALIDAD B",
+        "last change": "9 MESES",
+        "exam grade": "85%",
+        "course coverage": "80%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE PROCESO B",
+        "promotion": "INGENIERO DE PROCESO A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "95%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE PROCESO C",
+        "promotion": "INGENIERO DE PROCESO B",
+        "last change": "12 MESES",
+        "exam grade": "85%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE PROCESO D",
+        "promotion": "INGENIERO DE PROCESO C",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE PROYECTOS B",
+        "promotion": "INGENIERO DE PROYECTOS A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE PROYECTOS C",
+        "promotion": "INGENIERO DE PROYECTOS B",
+        "last change": "12 MESES",
+        "exam grade": "85%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INGENIERO DE PROYECTOS D",
+        "promotion": "INGENIERO DE PROYECTOS C",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INSPECTOR DE CALIDAD B",
+        "promotion": "INSPECTOR DE CALIDAD A",
+        "last change": "6 MESES",
+        "exam grade": "95%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INSPECTOR DE CALIDAD C",
+        "promotion": "INSPECTOR DE CALIDAD B",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "70%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "INSPECTOR DE CALIDAD D",
+        "promotion": "INSPECTOR DE CALIDAD C",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "50%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "LÍDER DE PROYECTOS B",
+        "promotion": "LIDER DE PROYECTOS A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "LÍDER DE PROYECTOS C",
+        "promotion": "LIDER DE PROYECTOS B",
+        "last change": "12 MESES",
+        "exam grade": "85%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "MATERIALISTA B",
+        "promotion": "MATERIALISTA A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "METRÓLOGO B",
+        "promotion": "METRÓLOGO A",
+        "last change": "8 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "METRÓLOGO C",
+        "promotion": "METRÓLOGO B",
+        "last change": "8 MESES",
+        "exam grade": "80%",
+        "course coverage": "70%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "MONTADOR DE MOLDES B",
+        "promotion": "MONTADOR DE MOLDES A",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "MONTADOR DE MOLDES C",
+        "promotion": "MONTADOR DE MOLDES B",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "OPERADOR DE ACABADOS - GP12 B",
+        "promotion": "OPERADOR DE ACABADOS - GP12 A",
+        "last change": "6 MESES",
+        "exam grade": "70%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "OPERADOR DE ACABADOS - GP12 C",
+        "promotion": "OPERADOR DE ACABADOS - GP12 B",
+        "last change": "6 MESES",
+        "exam grade": "70%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "OPERADOR DE ACABADOS - GP12 D",
+        "promotion": "OPERADOR DE ACABADOS - GP12 C",
+        "last change": "3 MESES",
+        "exam grade": "70%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "OPERADOR DE MÁQUINA B",
+        "promotion": "OPERADOR DE MÁQUINA A",
+        "last change": "6 MESES",
+        "exam grade": "70%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "OPERADOR DE MÁQUINA C",
+        "promotion": "OPERADOR DE MÁQUINA B",
+        "last change": "6 MESES",
+        "exam grade": "70%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "OPERADOR DE MÁQUINA D",
+        "promotion": "OPERADOR DE MÁQUINA C",
+        "last change": "3 MESES",
+        "exam grade": "70%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "PREPARADOR B",
+        "promotion": "PREPARADOR A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "AUXILIAR DE SCRAP B",
+        "promotion": "AUXILIAR DE SCRAP A",
+        "last change": "6 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "SUPERVISOR DE ACABADOS - GP12 B",
+        "promotion": "SUPERVISOR DE ACABADOS - GP12 A",
+        "last change": "8 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "SUPERVISOR DE ACABADOS - GP12 C",
+        "promotion": "SUPERVISOR DE ACABADOS - GP12 B",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "80%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "SUPERVISOR DE PRODUCCIÓN B",
+        "promotion": "SUPERVISOR DE PRODUCCIÓN A ",
+        "last change": "12 MESES",
+        "exam grade": "90%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "SUPERVISOR DE PRODUCCIÓN C",
+        "promotion": "SUPERVISOR DE PRODUCCIÓN B ",
+        "last change": "12 MESES",
+        "exam grade": "85%",
+        "course coverage": "60%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "SUPERVISOR DE PRODUCCIÓN D",
+        "promotion": "SUPERVISOR DE PRODUCCIÓN C",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MANTENIMIENTO DE EDIFICIOS B",
+        "promotion": "TÉCNICO DE MANTENIMIENTO A EDIFICIOS A",
+        "last change": "8 MESES",
+        "exam grade": "95%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MANTENIMIENTO B",
+        "promotion": "TÉCNICO DE MANTENIMIENTO A",
+        "last change": "8 MESES",
+        "exam grade": "95%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MANTENIMIENTO C",
+        "promotion": "TÉCNICO DE MANTENIMIENTO B",
+        "last change": "8 MESES",
+        "exam grade": "90%",
+        "course coverage": "50%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MANTENIMIENTO D",
+        "promotion": "TÉCNICO DE MANTENIMIENTO C",
+        "last change": "8 MESES",
+        "exam grade": "80%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MOLDES B",
+        "promotion": "TÉCNICO DE MOLDES A",
+        "last change": "17 MESES",
+        "exam grade": "80%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MOLDES C",
+        "promotion": "TÉCNICO DE MOLDES B",
+        "last change": "12 MESES",
+        "exam grade": "80%",
+        "course coverage": "80%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MOLDES D",
+        "promotion": "TÉCNICO DE MOLDES C",
+        "last change": "12 MESES",
+        "exam grade": "80%",
+        "course coverage": "50%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO DE MOLDES E",
+        "promotion": "TÉCNICO DE MOLDES D",
+        "last change": "6 MESES",
+        "exam grade": "80%",
+        "course coverage": "30%",
+        "performance rating": "80%"
+    },
+    {
+        "current position": "TÉCNICO ESPECIALISTA DE MANTENIMIENTO B",
+        "promotion": "TÉCNICO ESPECIALISTA DE MANTENIMIENTO A",
+        "last change": "8 MESES",
+        "exam grade": "95%",
+        "course coverage": "90%",
+        "performance rating": "80%"
+    }
+]

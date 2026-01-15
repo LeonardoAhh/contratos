@@ -12,6 +12,7 @@ const AuthContext = createContext(null);
 
 // Definición de permisos disponibles
 export const PERMISSIONS = {
+    // Módulo Contratos
     VIEW_EMPLOYEES: 'view_employees',
     EDIT_EMPLOYEES: 'edit_employees',
     DELETE_EMPLOYEES: 'delete_employees',
@@ -21,7 +22,14 @@ export const PERMISSIONS = {
     RENEW_CONTRACTS: 'renew_contracts',
     MANAGE_CATALOGS: 'manage_catalogs',
     IMPORT_DATA: 'import_data',
-    MANAGE_ADMINS: 'manage_admins'
+    MANAGE_ADMINS: 'manage_admins',
+
+    // Módulo Capacitación
+    ACCESS_CAPACITACION: 'access_capacitacion',
+    VIEW_CAPACITACION_EMPLOYEES: 'view_capacitacion_employees',
+    EDIT_CAPACITACION_EMPLOYEES: 'edit_capacitacion_employees',
+    MANAGE_CATEGORIES: 'manage_categories',
+    MANAGE_EXAMS: 'manage_exams'
 };
 
 // Permisos por defecto para nuevos admins

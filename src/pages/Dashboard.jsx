@@ -220,7 +220,7 @@ export default function Dashboard() {
                         </p>
                     </div>
                     <div style={{ display: 'flex', gap: '8px' }}>
-                        <Link to="/notifications" className="btn btn-icon" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', position: 'relative' }}>
+                        <Link to="/contratos/notifications" className="btn btn-icon" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', position: 'relative' }}>
                             <Bell size={20} />
                             {notifications.length > 0 && (
                                 <span className="nav-badge">{notifications.length}</span>
@@ -401,7 +401,7 @@ export default function Dashboard() {
                 <div className="section-title">
                     <span>Empleados ({filteredEmployees.length})</span>
                     {canEditEmployees ? (
-                        <Link to="/employee/new" className="btn btn-primary btn-sm">
+                        <Link to="/contratos/employee/new" className="btn btn-primary btn-sm">
                             <Plus size={16} />
                             Nuevo
                         </Link>
@@ -424,7 +424,7 @@ export default function Dashboard() {
                         </div>
                         <p>{searchQuery ? 'No se encontraron resultados' : 'No hay empleados registrados'}</p>
                         {!searchQuery && canEditEmployees && (
-                            <Link to="/employee/new" className="btn btn-primary" style={{ marginTop: '16px' }}>
+                            <Link to="/contratos/employee/new" className="btn btn-primary" style={{ marginTop: '16px' }}>
                                 <Plus size={16} />
                                 Agregar empleado
                             </Link>
@@ -435,7 +435,7 @@ export default function Dashboard() {
                         {filteredEmployees.map(emp => (
                             <Link
                                 key={emp.id}
-                                to={`/employee/${emp.id}`}
+                                to={`/contratos/employee/${emp.id}`}
                                 className="employee-item"
                             >
                                 <button
@@ -476,22 +476,22 @@ export default function Dashboard() {
 
             {/* Bottom Navigation */}
             <nav className="app-nav">
-                <Link to="/" className="nav-item active">
+                <Link to="/contratos" className="nav-item active">
                     <Users size={22} />
                     <span>Inicio</span>
                 </Link>
-                <Link to="/notifications" className="nav-item">
+                <Link to="/contratos/notifications" className="nav-item">
                     <Bell size={22} />
                     <span>Alertas</span>
                     {notifications.length > 0 && (
                         <span className="nav-badge">{notifications.length}</span>
                     )}
                 </Link>
-                <Link to="/reports" className="nav-item">
+                <Link to="/contratos/reports" className="nav-item">
                     <FileText size={22} />
                     <span>Reportes</span>
                 </Link>
-                <Link to="/settings" className="nav-item">
+                <Link to="/contratos/settings" className="nav-item">
                     <Settings size={22} />
                     <span>Ajustes</span>
                 </Link>

@@ -1,0 +1,9 @@
+{
+  "fecha": "2026-01-15T14:21:17.543Z",
+  "archivo": "src/data/employees.json",
+  "coleccion": "employees_capacitacion",
+  "totalRegistros": 317,
+  "importados": 317,
+  "duplicados": 0,
+  "erroresFirebase": 0
+}

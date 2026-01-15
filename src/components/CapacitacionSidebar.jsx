@@ -1,34 +1,37 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
     Users,
-    Bell,
-    FileText,
+    GraduationCap,
+    Layers,
     Settings,
     LogOut,
-    Calendar,
-    Layers,
-    BarChart3,
-    Home
+    Home,
+    Award
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { useTranslation } from '../context/LanguageContext';
 
-export default function Sidebar({ notificationCount = 0 }) {
+export default function CapacitacionSidebar() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { adminData, logout } = useAuth();
-    const { t } = useTranslation();
 
-    const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/');
+    const isActive = (path) => {
+        if (path === '/capacitacion') {
+            return location.pathname === '/capacitacion';
+        }
+        return location.pathname.startsWith(path);
+    };
 
     const handleLogout = async () => {
         await logout();
+        navigate('/login');
     };
 
     return (
         <aside className="desktop-sidebar">
             <div className="desktop-sidebar-logo">
-                <Layers size={24} strokeWidth={1.5} />
-                <span>Contratos</span>
+                <GraduationCap size={24} strokeWidth={1.5} />
+                <span>Capacitación</span>
             </div>
 
             <nav className="desktop-nav">
@@ -44,54 +47,35 @@ export default function Sidebar({ notificationCount = 0 }) {
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', margin: '8px 0' }} />
 
                 <Link
-                    to="/contratos"
-                    className={`desktop-nav-item ${isActive('/contratos') ? 'active' : ''}`}
+                    to="/capacitacion"
+                    className={`desktop-nav-item ${isActive('/capacitacion') && !isActive('/capacitacion/') ? 'active' : ''}`}
+                >
+                    <GraduationCap size={20} />
+                    Inicio
+                </Link>
+
+                <Link
+                    to="/capacitacion/employees"
+                    className={`desktop-nav-item ${isActive('/capacitacion/employees') ? 'active' : ''}`}
                 >
                     <Users size={20} />
-                    {t('dashboard')}
+                    Empleados
                 </Link>
 
                 <Link
-                    to="/contratos/notifications"
-                    className={`desktop-nav-item ${isActive('/contratos/notifications') ? 'active' : ''}`}
+                    to="/capacitacion/categorias"
+                    className={`desktop-nav-item ${isActive('/capacitacion/categorias') ? 'active' : ''}`}
                 >
-                    <Bell size={20} />
-                    {t('notifications')}
-                    {notificationCount > 0 && (
-                        <span className="desktop-nav-badge">{notificationCount}</span>
-                    )}
+                    <Layers size={20} />
+                    Categorías
                 </Link>
 
                 <Link
-                    to="/contratos/calendar"
-                    className={`desktop-nav-item ${isActive('/contratos/calendar') ? 'active' : ''}`}
+                    to="/capacitacion/examenes"
+                    className={`desktop-nav-item ${isActive('/capacitacion/examenes') ? 'active' : ''}`}
                 >
-                    <Calendar size={20} />
-                    {t('calendar')}
-                </Link>
-
-                <Link
-                    to="/contratos/reports"
-                    className={`desktop-nav-item ${isActive('/contratos/reports') ? 'active' : ''}`}
-                >
-                    <FileText size={20} />
-                    {t('reports')}
-                </Link>
-
-                <Link
-                    to="/contratos/indicators"
-                    className={`desktop-nav-item ${isActive('/contratos/indicators') ? 'active' : ''}`}
-                >
-                    <BarChart3 size={20} />
-                    Indicadores
-                </Link>
-
-                <Link
-                    to="/contratos/settings"
-                    className={`desktop-nav-item ${isActive('/contratos/settings') ? 'active' : ''}`}
-                >
-                    <Settings size={20} />
-                    {t('settings')}
+                    <Award size={20} />
+                    Exámenes
                 </Link>
             </nav>
 
@@ -113,7 +97,7 @@ export default function Sidebar({ notificationCount = 0 }) {
                         width: '36px',
                         height: '36px',
                         borderRadius: '50%',
-                        background: 'rgba(255,255,255,0.2)',
+                        background: 'linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -142,7 +126,7 @@ export default function Sidebar({ notificationCount = 0 }) {
                     }}
                 >
                     <LogOut size={20} />
-                    {t('logout')}
+                    Cerrar Sesión
                 </button>
             </div>
         </aside>

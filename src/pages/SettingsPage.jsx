@@ -401,7 +401,7 @@ export default function SettingsPage() {
                         </div>
                         <div className="card-body">
                             <Link
-                                to="/admin-management"
+                                to="/contratos/admin-management"
                                 style={{
                                     display: 'flex',
                                     alignItems: 'center',

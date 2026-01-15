@@ -1,0 +1,2538 @@
+[
+    {
+        "id": "3",
+        "name": "TERRAZAS MARTÍNEZ JAIME",
+        "position": "GERENTE DE PLANTA",
+        "category": "A",
+        "deparment": "GERENCIA DE PLANTA",
+        "hireDate": "1/12/12"
+    },
+    {
+        "id": "4",
+        "name": "PACHECO ALCAYA MARÍA GABRIELA",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "3/21/12"
+    },
+    {
+        "id": "7",
+        "name": "ROBLES ZUÑIGA JORGE LUIS",
+        "position": "TÉCNICO ESPECIALISTA DE MANTENIMIENTO A",
+        "category": "A",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "3/21/12"
+    },
+    {
+        "id": "54",
+        "name": "URIAS SÁNCHEZ ARMANDO",
+        "position": "INGENIERO DE PROCESO C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/8/12"
+    },
+    {
+        "id": "123",
+        "name": "HERNÁNDEZ CRUZ JORGE",
+        "position": "SUPERVISOR DE MONTAJE",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/12/13"
+    },
+    {
+        "id": "330",
+        "name": "SÁNCHEZ HERNÁNDEZ MARICELA",
+        "position": "AUXILIAR DE LIMPIEZA A",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "4/11/15"
+    },
+    {
+        "id": "400",
+        "name": "TERRAZAS SAMANIEGO GUSTAVO",
+        "position": "AUXILIAR DE ALMACÉN A",
+        "category": "A",
+        "deparment": "ALMACEN",
+        "hireDate": "7/28/15"
+    },
+    {
+        "id": "421",
+        "name": "VÁZQUEZ LÓPEZ MARÍA ALEJANDRA",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "10/6/15"
+    },
+    {
+        "id": "645",
+        "name": "PACHECO CORDOBA MA. DE LOS ANGELES",
+        "position": "AUXILIAR DE BÁSCULA  A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/14/17"
+    },
+    {
+        "id": "773",
+        "name": "ESPINOZA AGUILAR MARCELA",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "7/25/17"
+    },
+    {
+        "id": "913",
+        "name": "CABRERA BOO MANUEL ALBERTO",
+        "position": "COORDINADOR DE RPS",
+        "category": "A",
+        "deparment": "SISTEMAS",
+        "hireDate": "3/12/18"
+    },
+    {
+        "id": "1102",
+        "name": "ACUÑA PÉREZ JOSEFINA",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/15/19"
+    },
+    {
+        "id": "1106",
+        "name": "ANGELES MARCIAL ANALLELI",
+        "position": "METRÓLOGO A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "10/16/18"
+    },
+    {
+        "id": "1112",
+        "name": "RODRÍGUEZ ZACARIAS ERNESTO ANTONIO",
+        "position": "LÍDER DE PROYECTOS C",
+        "category": "C",
+        "deparment": "PROYECTOS",
+        "hireDate": "10/23/18"
+    },
+    {
+        "id": "1130",
+        "name": "GOMEZ SÁNCHEZ CARLOS ARIEL",
+        "position": "GERENTE DE PRODUCCIÓN",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/16/07"
+    },
+    {
+        "id": "1131",
+        "name": "RUEDA MUÑOZ FRANCISCO",
+        "position": "JEFE DE PROCESO",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/14/01"
+    },
+    {
+        "id": "1185",
+        "name": "CASTAÑEDA SÁNCHEZ JANET",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/30/19"
+    },
+    {
+        "id": "1298",
+        "name": "BANDERA ALCOCER JAVIER ALBERTO",
+        "position": "INGENIERO DE CALIDAD B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "12/17/19"
+    },
+    {
+        "id": "1318",
+        "name": "BRAVO GARCÍA JESÚS FERNANDO",
+        "position": "JEFE DE MANTENIMIENTO",
+        "category": "A",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "2/4/20"
+    },
+    {
+        "id": "1369",
+        "name": "VÁZQUEZ CAMPOS HORTENSIA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/21/20"
+    },
+    {
+        "id": "1428",
+        "name": "CORONA ARCE LILIANA",
+        "position": "JEFE DE LOGÍSTICA",
+        "category": "A",
+        "deparment": "LOGISTICA",
+        "hireDate": "10/22/20"
+    },
+    {
+        "id": "1444",
+        "name": "RIVERA ROBLES VERONICA",
+        "position": "AUXILIAR DE SCRAP A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/5/21"
+    },
+    {
+        "id": "1467",
+        "name": "MEJIA MEJIA ANA MARÍA JUANA",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "1/21/21"
+    },
+    {
+        "id": "1473",
+        "name": "JUÁREZ CALVO VERONICA CHRISTAL",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/21/21"
+    },
+    {
+        "id": "1496",
+        "name": "SÁNCHEZ LÓPEZ ELIUD",
+        "position": "MONTADOR DE MOLDES A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/5/19"
+    },
+    {
+        "id": "1526",
+        "name": "SILVA GUERRERO ALLISON AISLINN",
+        "position": "AUXILIAR DE SUPERVISOR A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/18/21"
+    },
+    {
+        "id": "1528",
+        "name": "PILAR BARCENAS GUADALUPE",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/18/21"
+    },
+    {
+        "id": "1539",
+        "name": "GUTIÉRREZ LÓPEZ CATALINA YESENIA",
+        "position": "CAPTURISTA RPS A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/25/21"
+    },
+    {
+        "id": "1542",
+        "name": "PIMENTEL RUEDA MARÍA DE JESÚS",
+        "position": "AUXILIAR DE SUPERVISOR A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/25/21"
+    },
+    {
+        "id": "1582",
+        "name": "CENOBIO HERNÁNDEZ JORGE ALBERTO",
+        "position": "GERENTE DE CALIDAD",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "3/25/21"
+    },
+    {
+        "id": "1635",
+        "name": "SANDOVAL MONDRAGÓN ENRIQUE",
+        "position": "LÍDER DE PROYECTOS C",
+        "category": "C",
+        "deparment": "PROYECTOS",
+        "hireDate": "4/27/21"
+    },
+    {
+        "id": "1668",
+        "name": "AMADOR GUZMÁN HUGO EMMANUEL",
+        "position": "MATERIALISTA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/4/21"
+    },
+    {
+        "id": "1671",
+        "name": "IVAN GUILLERMO AMADOR FRANCO",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/6/21"
+    },
+    {
+        "id": "1677",
+        "name": "SOSA MEDRANO MA. ISABEL",
+        "position": "CAPTURISTA RPS A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/6/21"
+    },
+    {
+        "id": "1694",
+        "name": "SALINAS ORTIZ ANA ERIKA",
+        "position": "JEFE DE PRODUCCIÓN",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/27/10"
+    },
+    {
+        "id": "1715",
+        "name": "GARNICA SÁNCHEZ BEATRIZ",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "5/18/21"
+    },
+    {
+        "id": "1719",
+        "name": "HURTADO BALDERAS ALEJANDRA",
+        "position": "AUXILIAR DE BÁSCULA  B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/25/21"
+    },
+    {
+        "id": "1731",
+        "name": "NARANJO HERNÁNDEZ JOSÉ MANUEL",
+        "position": "INGENIERO DE PROCESO D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/25/21"
+    },
+    {
+        "id": "1757",
+        "name": "GALVAN GUEVARA JAVIER",
+        "position": "PREPARADOR A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/8/21"
+    },
+    {
+        "id": "1793",
+        "name": "GUTIÉRREZ LÓPEZ GUADALUPE",
+        "position": "SUPERVISOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "7/6/21"
+    },
+    {
+        "id": "1877",
+        "name": "SAGAHON MEZA ESPERANZA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/12/21"
+    },
+    {
+        "id": "1878",
+        "name": "SÁNCHEZ VEGA MARIO",
+        "position": "TÉCNICO ESPECIALISTA DE MANTENIMIENTO B",
+        "category": "B",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "8/12/21"
+    },
+    {
+        "id": "1997",
+        "name": "ROBLES LEDESMA MARÍA ERICA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/3/21"
+    },
+    {
+        "id": "1998",
+        "name": "LUGO BOLAÑOS MIGUEL",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/3/21"
+    },
+    {
+        "id": "2008",
+        "name": "JUÁREZ HERNÁNDEZ SERGIO RICARDO",
+        "position": "GERENTE DE PROYECTOS",
+        "category": "A",
+        "deparment": "PROYECTOS",
+        "hireDate": "1/11/11"
+    },
+    {
+        "id": "2010",
+        "name": "GARCÍA ARCE STEPHANIE",
+        "position": "PLANEADOR DE PRODUCCIÓN",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/10/21"
+    },
+    {
+        "id": "2025",
+        "name": "HERNÁNDEZ QUEZADA VERONICA JAHEL",
+        "position": "CHECK LIST B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/4/22"
+    },
+    {
+        "id": "2028",
+        "name": "MALPICA MALDONADO INDIRA",
+        "position": "LÍDER DE PROYECTOS C",
+        "category": "C",
+        "deparment": "PROYECTOS",
+        "hireDate": "1/4/22"
+    },
+    {
+        "id": "2034",
+        "name": "ELEUTERIO ROMERO ROSA ISELA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/7/22"
+    },
+    {
+        "id": "2035",
+        "name": "RODRÍGUEZ MORENO MIGUEL ÁNGEL",
+        "position": "INGENIERO DE PROYECTOS A",
+        "category": "A",
+        "deparment": "PROYECTOS",
+        "hireDate": "1/7/22"
+    },
+    {
+        "id": "2038",
+        "name": "FLORES GARCÍA JAVIER ISRAEL",
+        "position": "MONTADOR DE MOLDES B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/7/22"
+    },
+    {
+        "id": "2043",
+        "name": "MEJIA MARTÍNEZ RUBEN",
+        "position": "MATERIALISTA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/12/22"
+    },
+    {
+        "id": "2076",
+        "name": "ROBLES MEJIA JOSÉ LUIS",
+        "position": "TÉCNICO DE MOLDES B",
+        "category": "B",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "2/11/22"
+    },
+    {
+        "id": "2088",
+        "name": "GARCÍA GARCIA MARIELA",
+        "position": "INGENIERO DE PROYECTOS D",
+        "category": "D",
+        "deparment": "PROYECTOS",
+        "hireDate": "2/22/22"
+    },
+    {
+        "id": "2091",
+        "name": "TREJO TREJO YEIMI",
+        "position": "CHECK LIST A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/25/22"
+    },
+    {
+        "id": "2095",
+        "name": "GUZMÁN AGUILAR LILIA",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/1/22"
+    },
+    {
+        "id": "2099",
+        "name": "RODRÍGUEZ TALONIA ADRIANA DE JESÚS",
+        "position": "ASISTENTE DE RECURSOS HUMANOS",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "3/15/22"
+    },
+    {
+        "id": "2106",
+        "name": "ALEGRIA BALDERAS EVELIA",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "3/29/22"
+    },
+    {
+        "id": "2154",
+        "name": "CAMPOS MEJIA HERNAN",
+        "position": "MATERIALISTA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/13/22"
+    },
+    {
+        "id": "2160",
+        "name": "GUZMÁN ALFARO DAVID ALEXEI",
+        "position": "CAPTURISTA RPS A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/20/22"
+    },
+    {
+        "id": "2164",
+        "name": "VILLEDA RUARO KARLA EMIR",
+        "position": "LÍDER DE COTIZACIONES",
+        "category": "A",
+        "deparment": "PROYECTOS",
+        "hireDate": "5/20/22"
+    },
+    {
+        "id": "2172",
+        "name": "PÉREZ HERNÁNDEZ LAURA MARIANA",
+        "position": "INGENIERO DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "6/3/22"
+    },
+    {
+        "id": "2193",
+        "name": "HERNÁNDEZ HERNANDEZ STEFFI MONSERRATH",
+        "position": "INSPECTOR RECIBO",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "6/28/22"
+    },
+    {
+        "id": "2201",
+        "name": "MÁRQUEZ HIPOLITO YAZMIN NAYELI",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/15/22"
+    },
+    {
+        "id": "2215",
+        "name": "MANZO GUILLEN LUIS MARIO",
+        "position": "INGENIERO DE PROCESO D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/2/22"
+    },
+    {
+        "id": "2227",
+        "name": "LEON TAPIA MARIO",
+        "position": "MONTADOR DE MOLDES B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/12/22"
+    },
+    {
+        "id": "2247",
+        "name": "BIBIANO GARCÍA FLOR",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/30/22"
+    },
+    {
+        "id": "2249",
+        "name": "LÓPEZ HERRERA SARA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/2/22"
+    },
+    {
+        "id": "2254",
+        "name": "HERNÁNDEZ LÓPEZ MARÍA DE LOS REMEDIOS",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "9/9/22"
+    },
+    {
+        "id": "2260",
+        "name": "RAMÍREZ MEJIA ERNESTO",
+        "position": "AUXILIAR PROGRAMADOR",
+        "category": "A",
+        "deparment": "SISTEMAS",
+        "hireDate": "9/13/22"
+    },
+    {
+        "id": "2277",
+        "name": "PÉREZ CORTES ELIZABETH",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/30/22"
+    },
+    {
+        "id": "2286",
+        "name": "CORTES VELAZQUEZ ANALLELY",
+        "position": "AUXILIAR DE BÁSCULA  B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/7/22"
+    },
+    {
+        "id": "2305",
+        "name": "VILLA SERVIN LORENA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/25/22"
+    },
+    {
+        "id": "2315",
+        "name": "NIEVES MANDUJANO YOLANDA",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/28/22"
+    },
+    {
+        "id": "2317",
+        "name": "HERNÁNDEZ AGUILLON ISABEL",
+        "position": "INGENIERO DE PROYECTOS B",
+        "category": "B",
+        "deparment": "PROYECTOS",
+        "hireDate": "11/3/22"
+    },
+    {
+        "id": "2324",
+        "name": "AGUILLON HERNÁNDEZ MARÍA LETICIA MARINA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/8/22"
+    },
+    {
+        "id": "2330",
+        "name": "LOYOLA CASTAÑÓN VICTOR",
+        "position": "METRÓLOGO B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "11/22/22"
+    },
+    {
+        "id": "2333",
+        "name": "ARIAS AGUILAR SALMA LIZETH",
+        "position": "SUPERVISOR DE ACABADOS - GP12 C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "11/29/22"
+    },
+    {
+        "id": "2338",
+        "name": "VARGAS MEJIA SONIA ABIGAIL",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/2/22"
+    },
+    {
+        "id": "2341",
+        "name": "CORNEJO JUÁREZ JOSÉ ALFREDO",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "12/9/22"
+    },
+    {
+        "id": "2342",
+        "name": "LAZARO MARTÍNEZ ELEYDA ELIZABETH",
+        "position": "METRÓLOGO B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "12/13/22"
+    },
+    {
+        "id": "2348",
+        "name": "ANGELES ROJAS EFREN",
+        "position": "MATERIALISTA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/3/23"
+    },
+    {
+        "id": "2350",
+        "name": "FLORES ORTIZ VALERIA MONSERRAT",
+        "position": "METRÓLOGO A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "1/3/23"
+    },
+    {
+        "id": "2365",
+        "name": "PACHECO ALVAREZ MARISOL",
+        "position": "AUXILIAR DE SUPERVISOR A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/24/23"
+    },
+    {
+        "id": "2391",
+        "name": "GAYOSSO CRUZ ERIKA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/17/23"
+    },
+    {
+        "id": "2393",
+        "name": "LEDEZMA SOTELO MA. LOURDES",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "2/21/23"
+    },
+    {
+        "id": "2400",
+        "name": "RESENDIZ SÁNCHEZ MARISOL",
+        "position": "OPERADOR DE ACABADOS - GP12 A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "2/28/23"
+    },
+    {
+        "id": "2401",
+        "name": "MORENO MEJIA AMALIA BERENICE",
+        "position": "PREPARADOR B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/28/23"
+    },
+    {
+        "id": "2402",
+        "name": "ROMERO MIRELES CLAUDIA BEATRIZ",
+        "position": "AUXILIAR ADMINISTRATIVO DE ALMACÉN A",
+        "category": "A",
+        "deparment": "ALMACEN",
+        "hireDate": "2/28/23"
+    },
+    {
+        "id": "2420",
+        "name": "CABALLERO MARTÍNEZ ROSALIA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/14/23"
+    },
+    {
+        "id": "2440",
+        "name": "GALLARDO DÍAZ CIUNELY YETZABEL",
+        "position": "INSPECTOR DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "4/4/23"
+    },
+    {
+        "id": "2442",
+        "name": "GARCÍA CARRILLO PABLO",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "4/4/23"
+    },
+    {
+        "id": "2461",
+        "name": "ARTEAGA PÉREZ CARLOS",
+        "position": "ALMACENISTA DE MATERIA PRIMA",
+        "category": "A",
+        "deparment": "ALMACEN",
+        "hireDate": "4/14/23"
+    },
+    {
+        "id": "2476",
+        "name": "VARGAS AGUILAR KAREN ESMERALDA",
+        "position": "AUXILIAR ADMINISTRATIVO DE TALLER DE MOLDES",
+        "category": "A",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "4/25/23"
+    },
+    {
+        "id": "2479",
+        "name": "FLORES DOMINGUEZ CORAL ESTEFANIA",
+        "position": "METRÓLOGO B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "4/28/23"
+    },
+    {
+        "id": "2494",
+        "name": "GARCÍA GONZÁLEZ GUILLERMINA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/12/23"
+    },
+    {
+        "id": "2529",
+        "name": "NEGRETE MARTÍNEZ CYNTHIA IVETH",
+        "position": "AUXILIAR DE PROYECTOS",
+        "category": "A",
+        "deparment": "PROYECTOS",
+        "hireDate": "6/6/23"
+    },
+    {
+        "id": "2545",
+        "name": "VARGAS GUZMÁN RAQUEL",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/16/23"
+    },
+    {
+        "id": "2550",
+        "name": "VARGAS AGUILLON ROSA MARÍA",
+        "position": "METRÓLOGO C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "6/21/23"
+    },
+    {
+        "id": "2571",
+        "name": "AGUILLON RANGEL LIZBETH",
+        "position": "COORDINADOR DEL SGC",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "7/4/23"
+    },
+    {
+        "id": "2572",
+        "name": "VARGAS FRANCO MILDREN YARET",
+        "position": "AUXILIAR ADMINISTRATIVO DE ALMACÉN B",
+        "category": "B",
+        "deparment": "ALMACEN",
+        "hireDate": "7/4/23"
+    },
+    {
+        "id": "2576",
+        "name": "MORALES LÓPEZ OCTAVIO",
+        "position": "INSPECTOR DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "7/5/23"
+    },
+    {
+        "id": "2617",
+        "name": "GONZÁLEZ SUAREZ KARLA DIANE",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/25/23"
+    },
+    {
+        "id": "2618",
+        "name": "ALVAREZ ROMERO MARÍA GUADALUPE",
+        "position": "OPERADOR DE MÁQUINA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/25/23"
+    },
+    {
+        "id": "2633",
+        "name": "SALINAS PÉREZ GABRIELA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/28/23"
+    },
+    {
+        "id": "2635",
+        "name": "LÓPEZ CARRILLO JONATHAN EDUARDO",
+        "position": "METRÓLOGO A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "7/28/23"
+    },
+    {
+        "id": "2645",
+        "name": "BELTRAN RAMÍREZ MA. CONSUELO ASUCENA",
+        "position": "PREPARADOR B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/1/23"
+    },
+    {
+        "id": "2649",
+        "name": "GOMEZ SÁNCHEZ CESAR",
+        "position": "TEC. ESPECIALISTA DE MOLDES (JEFE)",
+        "category": "A",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "3/19/20"
+    },
+    {
+        "id": "2666",
+        "name": "LIRA REYNOSO JOSHUA SHADDAY",
+        "position": "INSPECTOR DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "8/11/23"
+    },
+    {
+        "id": "2672",
+        "name": "SOLIS OSORIO MIREYA",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "8/11/23"
+    },
+    {
+        "id": "2676",
+        "name": "CECILIANO GONZÁLEZ MARÍA PUEBLITO AIDE",
+        "position": "MATERIALISTA A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/16/23"
+    },
+    {
+        "id": "2697",
+        "name": "VICENTE GAONA CONCEPCIÓN",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/25/23"
+    },
+    {
+        "id": "2698",
+        "name": "VALDIVIA FRANCO CARLOS ALAIN",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/25/23"
+    },
+    {
+        "id": "2706",
+        "name": "ARREDONDO GATICA REBECA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/1/23"
+    },
+    {
+        "id": "2710",
+        "name": "JIMENEZ GARCÍA SHEYLA ISABEL",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/6/23"
+    },
+    {
+        "id": "2714",
+        "name": "CORONA GONZÁLEZ LUIS MIGUEL",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/8/23"
+    },
+    {
+        "id": "2725",
+        "name": "VALDEZ CAZARES RICARDO LORENZO",
+        "position": "METRÓLOGO A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "9/15/23"
+    },
+    {
+        "id": "2727",
+        "name": "FABIAN SÁNCHEZ BRENDA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/15/23"
+    },
+    {
+        "id": "2734",
+        "name": "MARTÍNEZ COBOS OMAR",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/22/23"
+    },
+    {
+        "id": "2741",
+        "name": "GARCÍA AVILES JAVIER",
+        "position": "PREPARADOR A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/26/23"
+    },
+    {
+        "id": "2756",
+        "name": "RAMÍREZ ESPINOZA JUAN PABLO",
+        "position": "AUXILIAR DE ALMACÉN B",
+        "category": "B",
+        "deparment": "ALMACEN",
+        "hireDate": "10/3/23"
+    },
+    {
+        "id": "2777",
+        "name": "ROSAS ALMANZA MARÍA ALEJANDRA",
+        "position": "INSPECTOR DE CALIDAD B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "10/17/23"
+    },
+    {
+        "id": "2779",
+        "name": "CHAPARRO OÑATE JESÚS",
+        "position": "TÉCNICO DE MOLDES B",
+        "category": "B",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "10/17/23"
+    },
+    {
+        "id": "2816",
+        "name": "CONTRERAS QUIJANO LUIS MANUEL",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "10/31/23"
+    },
+    {
+        "id": "2863",
+        "name": "MENDOZA CASTILLO BRENDA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/29/23"
+    },
+    {
+        "id": "2874",
+        "name": "NATAREN AGUAS MARÍA DEL CARMEN",
+        "position": "METRÓLOGO B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "12/8/23"
+    },
+    {
+        "id": "2895",
+        "name": "PEDRAZA ALVAREZ CARMEN CECILIA",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "1/10/24"
+    },
+    {
+        "id": "2912",
+        "name": "LEYTON CRUZ NANCY",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/16/24"
+    },
+    {
+        "id": "2916",
+        "name": "BARON GARCÍA KATIA",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "1/16/24"
+    },
+    {
+        "id": "2931",
+        "name": "CABRERA TRONCOSO LUIS EDUARDO",
+        "position": "AUXILIAR DE MANTENIMIENTO C",
+        "category": "C",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "1/23/24"
+    },
+    {
+        "id": "2932",
+        "name": "RAMÍREZ ESPINOZA ANDREA CELESTE",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "1/23/24"
+    },
+    {
+        "id": "2934",
+        "name": "SILVAR FLORES MONICA CECILIA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/23/24"
+    },
+    {
+        "id": "2942",
+        "name": "PADRON GONZÁLEZ FLOR EDITH",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/26/24"
+    },
+    {
+        "id": "2943",
+        "name": "BRAVO ANDRADE MIRELLA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/26/24"
+    },
+    {
+        "id": "2946",
+        "name": "MARTÍNEZ HERNÁNDEZ MAARA ELIZABETH",
+        "position": "CHECK LIST B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/30/24"
+    },
+    {
+        "id": "2949",
+        "name": "VARGAS ONTIVEROS YOSELINE",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "1/30/24"
+    },
+    {
+        "id": "2950",
+        "name": "ACUENTECO AGUSTIN MARÍA TERESA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/2/24"
+    },
+    {
+        "id": "2951",
+        "name": "RIVERA LANDA FILIBERTO",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/2/24"
+    },
+    {
+        "id": "2967",
+        "name": "ALVAREZ MARTÍNEZ VERONICA",
+        "position": "TÉCNICO DE MOLDES D",
+        "category": "D",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "2/14/24"
+    },
+    {
+        "id": "2974",
+        "name": "OLGUIN VEGA CRUZ ANTONIO",
+        "position": "TÉCNICO DE MOLDES C",
+        "category": "C",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "2/16/24"
+    },
+    {
+        "id": "2981",
+        "name": "FLORES OLVERA MARÍA FERNANDA",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "2/21/24"
+    },
+    {
+        "id": "2994",
+        "name": "QUEZADA GUILLEN JULIO EVEREST",
+        "position": "INSPECTOR DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "2/23/24"
+    },
+    {
+        "id": "2996",
+        "name": "MARTÍNEZ ESPINO PATRICIA",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "2/23/24"
+    },
+    {
+        "id": "3026",
+        "name": "VÁZQUEZ FLORES ERICK",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/13/24"
+    },
+    {
+        "id": "3031",
+        "name": "MATA ESCAMILLA LETICIA VIRIDIANA",
+        "position": "AUXILIAR ADMINISTRATIVO DE MANTENIMIENTO",
+        "category": "A",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "3/13/24"
+    },
+    {
+        "id": "3079",
+        "name": "JUÁREZ CALVO MARTHA GRISEL",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/12/24"
+    },
+    {
+        "id": "3088",
+        "name": "GARCÍA JUÁREZ XICOTENCATL",
+        "position": "JEFE DE ALMACÉN",
+        "category": "A",
+        "deparment": "ALMACEN",
+        "hireDate": "4/23/24"
+    },
+    {
+        "id": "3093",
+        "name": "ROMAN ZAMORA LETICIA",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/24/24"
+    },
+    {
+        "id": "3105",
+        "name": "OCHOA ORTUÑO JOSÉ MA.",
+        "position": "SUPERVISOR DE PRODUCCIÓN B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/30/24"
+    },
+    {
+        "id": "3118",
+        "name": "SUAREZ ALANIS SABINO CRUZ",
+        "position": "PREPARADOR B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/14/24"
+    },
+    {
+        "id": "3140",
+        "name": "MANUEL RAMÍREZ IVAN",
+        "position": "TÉCNICO DE MOLDES D",
+        "category": "D",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "5/17/24"
+    },
+    {
+        "id": "3143",
+        "name": "MENDOZA ESTUDILLO CARLOS",
+        "position": "INSPECTOR DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "5/22/24"
+    },
+    {
+        "id": "3144",
+        "name": "GONZÁLEZ SÁNCHEZ NADIA YOSAHANDY",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "5/22/24"
+    },
+    {
+        "id": "3160",
+        "name": "HERNÁNDEZ GUDIÑO NOEMI",
+        "position": "JEFE DE RECURSOS HUMANOS",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "5/24/24"
+    },
+    {
+        "id": "3163",
+        "name": "SILVA CARMONA MARIAN ITZEL",
+        "position": "INSPECTOR DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "5/29/24"
+    },
+    {
+        "id": "3166",
+        "name": "NAVARRO SOLANO KELLY",
+        "position": "OPERADOR DE ACABADOS - GP12 C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "5/29/24"
+    },
+    {
+        "id": "3168",
+        "name": "FLORES IBARRA VICTOR MANUEL",
+        "position": "SUPERVISOR DE PRODUCCIÓN B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "5/31/24"
+    },
+    {
+        "id": "3187",
+        "name": "SERRANO NAVA JUAN CARLOS",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/12/24"
+    },
+    {
+        "id": "3188",
+        "name": "SERRANO NAVA MARCOS",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/12/24"
+    },
+    {
+        "id": "3190",
+        "name": "HERNÁNDEZ DE LA CRUZ GUADALUPE",
+        "position": "INSPECTOR DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "6/12/24"
+    },
+    {
+        "id": "3198",
+        "name": "MORON ARREDONDO JENNY SEVERA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/14/24"
+    },
+    {
+        "id": "3202",
+        "name": "ZAMANO CAMACHO MARÍA DEL ROCÍO",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/19/24"
+    },
+    {
+        "id": "3204",
+        "name": "HERNÁNDEZ HERRERA LEONARDO AHMED",
+        "position": "ANALISTA DE CAPACITACIÓN",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "6/19/24"
+    },
+    {
+        "id": "3226",
+        "name": "GRANADOS JIMENEZ CHRISTIAN GEOVANNI",
+        "position": "TÉCNICO DE MOLDES C",
+        "category": "C",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "7/3/24"
+    },
+    {
+        "id": "3232",
+        "name": "ORTIZ OLVERA JUAN FIDEL",
+        "position": "SUPERVISOR DE PRODUCCIÓN A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/3/24"
+    },
+    {
+        "id": "3243",
+        "name": "OLVERA CHAVEZ DULCE MARÍA",
+        "position": "ANALISTA DE CONTROL",
+        "category": "A",
+        "deparment": "DIRECCIÓN",
+        "hireDate": "7/5/24"
+    },
+    {
+        "id": "3256",
+        "name": "ORTIZ FLORES ROMAN",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/10/24"
+    },
+    {
+        "id": "3257",
+        "name": "TAFOLLA RODRÍGUEZ ARTURO VIDAL",
+        "position": "PREPARADOR B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/12/24"
+    },
+    {
+        "id": "3263",
+        "name": "CELESTINO HERNÁNDEZ RICARDO",
+        "position": "MATERIALISTA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/12/24"
+    },
+    {
+        "id": "3266",
+        "name": "HERNÁNDEZ GALLARDO JOSÉ MARTIN",
+        "position": "OPERADOR DE MÁQUINA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/17/24"
+    },
+    {
+        "id": "3276",
+        "name": "CRUZ ESPINOZA LIDIA CONCEPCIÓN",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/19/24"
+    },
+    {
+        "id": "3289",
+        "name": "CRUZ REYES ANTONIO",
+        "position": "AUXILIAR DE ALMACÉN A",
+        "category": "A",
+        "deparment": "ALMACEN",
+        "hireDate": "7/24/24"
+    },
+    {
+        "id": "3306",
+        "name": "ESCAMILLA VÁZQUEZ KARLA HEIMI",
+        "position": "MATERIALISTA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/30/24"
+    },
+    {
+        "id": "3310",
+        "name": "SALDAÑA RIVERA JESÚS ALFREDO",
+        "position": "TÉCNICO DE MOLDES A",
+        "category": "A",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "7/30/24"
+    },
+    {
+        "id": "3316",
+        "name": "PÉREZ SÁNCHEZ LUIS ALBERTO",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/2/24"
+    },
+    {
+        "id": "3324",
+        "name": "ÁNGEL BLANCO RAUL ENRIQUE",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/2/24"
+    },
+    {
+        "id": "3366",
+        "name": "TREJO REYES FRANCISCA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/16/24"
+    },
+    {
+        "id": "3373",
+        "name": "CRUZ GUZMÁN THALIA LIZBETH",
+        "position": "COORDINADOR DE RECLUTAMIENTO Y SELECCIÓN",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "8/20/24"
+    },
+    {
+        "id": "3375",
+        "name": "SANTIZ GOMEZ BELINDA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/21/24"
+    },
+    {
+        "id": "3376",
+        "name": "HERNÁNDEZ HERNANDEZ NAYELI ALEXANDRA",
+        "position": "ANALISTA DE RECLUTAMIENTO Y SELECCIÓN B",
+        "category": "B",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "8/21/24"
+    },
+    {
+        "id": "3381",
+        "name": "JACINTO TEXMAYE BRENDA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/21/24"
+    },
+    {
+        "id": "3385",
+        "name": "PÉREZ SAMANIEGO ISRAEL",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/23/24"
+    },
+    {
+        "id": "3389",
+        "name": "HERNÁNDEZ MEJIA BLANCA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/23/24"
+    },
+    {
+        "id": "3396",
+        "name": "TREJO GARCÍA EUGENIO",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/28/24"
+    },
+    {
+        "id": "3398",
+        "name": "LEDESMA MORALES LYNDA JANETH",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "8/28/24"
+    },
+    {
+        "id": "3403",
+        "name": "MORALES ZUÑIGA JUAN FRANCISCO",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/28/24"
+    },
+    {
+        "id": "3409",
+        "name": "LOZADA HERNÁNDEZ ROBERTO",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "8/28/24"
+    },
+    {
+        "id": "3411",
+        "name": "HERNÁNDEZ ALVARADO NAYELI",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/30/24"
+    },
+    {
+        "id": "3414",
+        "name": "PÉREZ PEREZ JOSÉ RONALDO",
+        "position": "MATERIALISTA B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/30/24"
+    },
+    {
+        "id": "3419",
+        "name": "GOMEZ OLVERA EVELIN",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/4/24"
+    },
+    {
+        "id": "3432",
+        "name": "ARIZA BENITEZ ESTEPHANIE ELISBETH",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/6/24"
+    },
+    {
+        "id": "3450",
+        "name": "NICASIO ROMUALDO MIGUEL ÁNGEL",
+        "position": "INSPECTOR DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "9/13/24"
+    },
+    {
+        "id": "3466",
+        "name": "AGUILAR GUERRERO JOSÉ ALONSO",
+        "position": "TÉCNICO DE MANTENIMIENTO B",
+        "category": "B",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "9/20/24"
+    },
+    {
+        "id": "3471",
+        "name": "VARGAS VELAZQUEZ MARÍA ELENA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/25/24"
+    },
+    {
+        "id": "3473",
+        "name": "MURILLO TLAZALO PABLO",
+        "position": "OPERADOR DE ACABADOS - GP12 C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "9/25/24"
+    },
+    {
+        "id": "3478",
+        "name": "RODRÍGUEZ ALONSO VANESSA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/25/24"
+    },
+    {
+        "id": "3511",
+        "name": "OLIN IXBA SILVIA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/11/24"
+    },
+    {
+        "id": "3515",
+        "name": "HERNÁNDEZ RUIZ RUBI",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/16/24"
+    },
+    {
+        "id": "3520",
+        "name": "SALINAS MARTÍNEZ ROSA MARÍA",
+        "position": "AUXILIAR DE LIMPIEZA B",
+        "category": "B",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "10/16/24"
+    },
+    {
+        "id": "3524",
+        "name": "ALTAMIRANO LUGO NAYELI",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/25/24"
+    },
+    {
+        "id": "3531",
+        "name": "MORA JUÁREZ JOSÉ OSWALDO",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/30/24"
+    },
+    {
+        "id": "3534",
+        "name": "GUILLEN ALOR FELIPE",
+        "position": "TÉCNICO DE MANTENIMIENTO DE EDIFICIOS A",
+        "category": "A",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "11/1/24"
+    },
+    {
+        "id": "3535",
+        "name": "CRUZ FERRUSCA MARÍA ALEJANDRA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/1/24"
+    },
+    {
+        "id": "3536",
+        "name": "LIEVANO HERNÁNDEZ MARÍA SOLEDAD",
+        "position": "ASISTENTE DE PRODUCCIÓN A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/1/24"
+    },
+    {
+        "id": "3537",
+        "name": "GUTIÉRREZ LÓPEZ ADRIANA PAOLA",
+        "position": "ASISTENTE DE PRODUCCIÓN A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/1/24"
+    },
+    {
+        "id": "3538",
+        "name": "OSORIO IVANNA YOALI",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/1/24"
+    },
+    {
+        "id": "3548",
+        "name": "PÉREZ CABELLO JUAN ANTONIO",
+        "position": "TÉCNICO DE MOLDES B",
+        "category": "B",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "11/8/24"
+    },
+    {
+        "id": "3551",
+        "name": "ZARRABAL DÍAZ JORGE JAVIER",
+        "position": "INSPECTOR DE CALIDAD B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "11/8/24"
+    },
+    {
+        "id": "3555",
+        "name": "SÁNCHEZ ESPINOZA FERNANDO EZEQUIEL",
+        "position": "TÉCNICO DE MOLDES B",
+        "category": "B",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "11/8/24"
+    },
+    {
+        "id": "3563",
+        "name": "PÉREZ PLATON SANDRA ESTHER",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/15/24"
+    },
+    {
+        "id": "3575",
+        "name": "MORENO CASTAÑÓN JUAN CARLOS",
+        "position": "MONTADOR DE MOLDES C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/27/24"
+    },
+    {
+        "id": "3576",
+        "name": "VIZCAYA AGUILLON MARÍA GUADALUPE",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/27/24"
+    },
+    {
+        "id": "3582",
+        "name": "VILLAMAR HINOJOSA DEISY",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/29/24"
+    },
+    {
+        "id": "3587",
+        "name": "AVILA ALDANA KEVIN ULISES",
+        "position": "TÉCNICO DE MANTENIMIENTO D",
+        "category": "D",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "12/4/24"
+    },
+    {
+        "id": "3588",
+        "name": "RAMÍREZ IBARRA SANDRA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/4/24"
+    },
+    {
+        "id": "3590",
+        "name": "BALDERAS RICO GERARDO GABRIEL",
+        "position": "TÉCNICO DE MANTENIMIENTO B",
+        "category": "B",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "12/4/24"
+    },
+    {
+        "id": "3593",
+        "name": "DE LA CRUZ BECERRA ENRIQUE",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/6/24"
+    },
+    {
+        "id": "3600",
+        "name": "ROSAS FLORES DANIEL DAVID",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/13/24"
+    },
+    {
+        "id": "3601",
+        "name": "MELCHOR GARCÍA MARTHA LILIANA",
+        "position": "OPERADOR DE ACABADOS - GP12 C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "12/13/24"
+    },
+    {
+        "id": "3610",
+        "name": "DÍAZ GUTIÉRREZ JOSÉ GUADALUPE",
+        "position": "SUPERVISOR DE PRODUCCIÓN C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/18/24"
+    },
+    {
+        "id": "3611",
+        "name": "GONZÁLEZ VILLANUEVA PAULINA MIREYA",
+        "position": "PREPARADOR A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "12/18/24"
+    },
+    {
+        "id": "3624",
+        "name": "ALONSO MORENO GIOVANNA GUADALUPE",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/8/25"
+    },
+    {
+        "id": "3626",
+        "name": "FLORES MORENO OSCAR ARCENIO",
+        "position": "TÉCNICO DE MANTENIMIENTO C",
+        "category": "C",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "1/8/25"
+    },
+    {
+        "id": "3627",
+        "name": "TRUJILLO VEGA MARÍA SOLEDAD",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/8/25"
+    },
+    {
+        "id": "3632",
+        "name": "HERNÁNDEZ DE LA CRUZ MARÍA ELENA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/10/25"
+    },
+    {
+        "id": "3637",
+        "name": "AGUILAR VICENCIO DAVID",
+        "position": "TÉCNICO DE MANTENIMIENTO C",
+        "category": "C",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "1/15/25"
+    },
+    {
+        "id": "3646",
+        "name": "PERFECTO NEPOMUCENO MARÍA GUADALUPE",
+        "position": "AUXILIAR DEL SGI C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "1/20/25"
+    },
+    {
+        "id": "3650",
+        "name": "TELLES MORALES MAURICIO ADÁN",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "1/22/25"
+    },
+    {
+        "id": "3663",
+        "name": "HERNÁNDEZ MARTÍNEZ EZEQUIEL",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/27/25"
+    },
+    {
+        "id": "3669",
+        "name": "DE LUNA CASTILLO ANA BERENICE",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/31/25"
+    },
+    {
+        "id": "3671",
+        "name": "JIMENEZ ROMAN CRISTHIAN RICARDO",
+        "position": "INSPECTOR DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "1/31/25"
+    },
+    {
+        "id": "3672",
+        "name": "GALLARDO CHAVEZ ODILIA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "1/31/25"
+    },
+    {
+        "id": "3678",
+        "name": "ESCOBEDO RODRÍGUEZ JOSÉ DAVID",
+        "position": "AUXILIAR DE PROYECTOS",
+        "category": "A",
+        "deparment": "PROYECTOS",
+        "hireDate": "2/10/25"
+    },
+    {
+        "id": "3680",
+        "name": "MUÑOZ ESPINOZA ERIKA PATRICIA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/10/25"
+    },
+    {
+        "id": "3694",
+        "name": "PÉREZ BAHENA ALEJANDRA",
+        "position": "AUXILIAR DE METROLOGÍA",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "2/19/25"
+    },
+    {
+        "id": "3698",
+        "name": "ROMERO ARIAS DIANA LAURA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "2/19/25"
+    },
+    {
+        "id": "3706",
+        "name": "VALLADARES MARTÍNEZ CRISTIAN",
+        "position": "AUXILIAR DE METROLOGÍA",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "2/25/25"
+    },
+    {
+        "id": "3734",
+        "name": "CORTEZ HILARIO CARLOS ALBERTO",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/14/25"
+    },
+    {
+        "id": "3737",
+        "name": "BAHENA AGUILAR DAVID",
+        "position": "MONTADOR DE MOLDES B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/19/25"
+    },
+    {
+        "id": "3738",
+        "name": "RAMÍREZ MORENO VICTOR ALBERTO",
+        "position": "MONTADOR DE MOLDES A",
+        "category": "A",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/19/25"
+    },
+    {
+        "id": "3742",
+        "name": "RIVERA CHAVEZ JUAN MIGUEL",
+        "position": "TÉCNICO DE MOLDES B",
+        "category": "B",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "3/19/25"
+    },
+    {
+        "id": "3745",
+        "name": "JIMENEZ DE LA CRUZ ELVIRA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "3/28/25"
+    },
+    {
+        "id": "3754",
+        "name": "HERNÁNDEZ CAMACHO LILIANA",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/2/25"
+    },
+    {
+        "id": "3764",
+        "name": "GONZÁLEZ RAMÍREZ ISRAEL",
+        "position": "TÉCNICO DE MOLDES D",
+        "category": "D",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "4/8/25"
+    },
+    {
+        "id": "3772",
+        "name": "MORENO ROMERO OSMAR",
+        "position": "INGENIERO DE PROCESO D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/11/25"
+    },
+    {
+        "id": "3773",
+        "name": "PÉREZ UGALDE KARLA MARIANA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/11/25"
+    },
+    {
+        "id": "3776",
+        "name": "ROJAS SÁNCHEZ ELIZABETH",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/16/25"
+    },
+    {
+        "id": "3780",
+        "name": "SUAREZ HERNÁNDEZ DANIEL SANTIAGO",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/22/25"
+    },
+    {
+        "id": "3785",
+        "name": "FLORES OLVERA FERNANDO",
+        "position": "OPERADOR DE ACABADOS - GP12 C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "4/25/25"
+    },
+    {
+        "id": "3787",
+        "name": "HERNÁNDEZ VELASCO ALBERTO",
+        "position": "TÉCNICO DE MANTENIMIENTO A",
+        "category": "A",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "4/29/25"
+    },
+    {
+        "id": "3788",
+        "name": "SANTA CRUZ GALVEZ CHRISTIAN",
+        "position": "INSPECTOR DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "4/29/25"
+    },
+    {
+        "id": "3790",
+        "name": "GONZÁLEZ CARMONA GUADALUPE",
+        "position": "OPERADOR DE MÁQUINA C",
+        "category": "C",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "4/29/25"
+    },
+    {
+        "id": "3796",
+        "name": "ALVARADO COSME ÁNGEL ALBERTO",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "5/6/25"
+    },
+    {
+        "id": "3801",
+        "name": "MORALES PARRA EDUARDO",
+        "position": "TÉCNICO DE MANTENIMIENTO B",
+        "category": "B",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "5/28/25"
+    },
+    {
+        "id": "3803",
+        "name": "MÁRQUEZ EVANGELISTA YERANI",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "6/3/25"
+    },
+    {
+        "id": "3809",
+        "name": "SIXTOS PINEDA LUIS ÁNGEL",
+        "position": "SUPERVISOR DE PRODUCCIÓN D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "6/13/25"
+    },
+    {
+        "id": "3816",
+        "name": "GALICIA ROJAS JONATAN",
+        "position": "AUXILIAR DE MANTENIMIENTO A",
+        "category": "A",
+        "deparment": "MANTENIMIENTO",
+        "hireDate": "6/18/25"
+    },
+    {
+        "id": "3818",
+        "name": "CALZADA HERNÁNDEZ MARIAM XIMENA",
+        "position": "ANALISTA DE RECURSOS HUMANOS",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "6/20/25"
+    },
+    {
+        "id": "3819",
+        "name": "GOMEZ TOVAR MA. ARCELIA",
+        "position": "AUXILIAR DE LIMPIEZA B",
+        "category": "B",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "6/25/25"
+    },
+    {
+        "id": "3830",
+        "name": "RAMOS ORTIZ JUAN CARLOS",
+        "position": "TÉCNICO DE MOLDES A",
+        "category": "A",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "7/2/25"
+    },
+    {
+        "id": "3831",
+        "name": "ARTEAGA MEJIA SARAHI",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "7/2/25"
+    },
+    {
+        "id": "3832",
+        "name": "JIMENEZ AGUILLON DIEGO DAVID",
+        "position": "TÉCNICO DE MOLDES A",
+        "category": "A",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "7/2/25"
+    },
+    {
+        "id": "3836",
+        "name": "CORONEL GALVAN DALILA",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "7/4/25"
+    },
+    {
+        "id": "3837",
+        "name": "GARCÍA LÓPEZ MARIANA PAOLA",
+        "position": "INSPECTOR DE CALIDAD D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "7/4/25"
+    },
+    {
+        "id": "3843",
+        "name": "DÍAZ DIAZ CARLOS DANIEL",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "7/9/25"
+    },
+    {
+        "id": "3846",
+        "name": "GONZÁLEZ VARGAS KATHERINE NAOMI",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "7/9/25"
+    },
+    {
+        "id": "3853",
+        "name": "LEÓN TORRES MARÍA VANESSA",
+        "position": "ANALISTA DE SEGURIDAD E HIGIENE",
+        "category": "A",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "7/9/25"
+    },
+    {
+        "id": "3870",
+        "name": "SÁNCHEZ LUNA MOIRA DARELI",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "7/18/25"
+    },
+    {
+        "id": "3881",
+        "name": "GARCÍA DE LA CRUZ VICTORIA EDITH",
+        "position": "INSPECTOR DE CALIDAD D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "8/1/25"
+    },
+    {
+        "id": "3882",
+        "name": "RICO RODRÍGUEZ MARÍA BIBIANA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/6/25"
+    },
+    {
+        "id": "3883",
+        "name": "AGUILAR HERNÁNDEZ SAMARA ODETTE",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/6/25"
+    },
+    {
+        "id": "3884",
+        "name": "DE SANTIAGO RAMÍREZ DANIELA",
+        "position": "ANALISTA DE RECLUTAMIENTO Y SELECCIÓN B",
+        "category": "B",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "8/6/25"
+    },
+    {
+        "id": "3889",
+        "name": "HERNÁNDEZ ANSELMO BRAYAN",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "8/8/25"
+    },
+    {
+        "id": "3890",
+        "name": "OLGUIN GONZÁLEZ JESÚS YAEL",
+        "position": "TÉCNICO DE MOLDES E",
+        "category": "E",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "8/8/25"
+    },
+    {
+        "id": "3897",
+        "name": "GONZÁLEZ GALLARETA VIANNEY",
+        "position": "OPERADOR DE ACABADOS - GP12 B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "8/13/25"
+    },
+    {
+        "id": "3898",
+        "name": "ORTIZ BARRERA NATALY",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/13/25"
+    },
+    {
+        "id": "3899",
+        "name": "URIBE VELAZQUEZ MARINA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/13/25"
+    },
+    {
+        "id": "3909",
+        "name": "MORELOS MARTÍNEZ NATIVIDAD",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/20/25"
+    },
+    {
+        "id": "3930",
+        "name": "LUNA SÁNCHEZ ALDO ALFREDO",
+        "position": "MONTADOR DE MOLDES B",
+        "category": "B",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/27/25"
+    },
+    {
+        "id": "3932",
+        "name": "CASTAÑEDA HERNÁNDEZ ARELI",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "8/29/25"
+    },
+    {
+        "id": "3939",
+        "name": "MORALES AMADOR JUAN MANUEL",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "9/3/25"
+    },
+    {
+        "id": "3942",
+        "name": "SANTANA ZEPEDA FRANCISCA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/3/25"
+    },
+    {
+        "id": "3945",
+        "name": "LÓPEZ OLVERA JUAN DIEGO",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/3/25"
+    },
+    {
+        "id": "3951",
+        "name": "MELO LIRA JESSABEL",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/5/25"
+    },
+    {
+        "id": "3954",
+        "name": "VÁZQUEZ ZAMUDIO VICTOR",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/5/25"
+    },
+    {
+        "id": "3957",
+        "name": "SALVADOR URBINA LAURA NANCY",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/5/25"
+    },
+    {
+        "id": "3959",
+        "name": "LÓPEZ YAÑEZ DIEGO",
+        "position": "AUXILIAR DE METROLOGÍA",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "9/10/25"
+    },
+    {
+        "id": "3960",
+        "name": "GALVEZ LAZARO JUAN MANUEL",
+        "position": "AUXILIAR DE METROLOGÍA",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "9/10/25"
+    },
+    {
+        "id": "3965",
+        "name": "BAUTISTA RESENDIZ ALICIA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/10/25"
+    },
+    {
+        "id": "3966",
+        "name": "MENDOZA GOMEZ JONATHAN DE JESÚS",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "9/12/25"
+    },
+    {
+        "id": "3974",
+        "name": "CARDENAS MARTÍNEZ ISMAEL",
+        "position": "TÉCNICO DE MOLDES D",
+        "category": "D",
+        "deparment": "TALLER DE MOLDES",
+        "hireDate": "9/12/25"
+    },
+    {
+        "id": "3976",
+        "name": "JAIMES SANTANA CYNTHIA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/19/25"
+    },
+    {
+        "id": "3983",
+        "name": "MARTÍNEZ HERNÁNDEZ CLAUDIA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/19/25"
+    },
+    {
+        "id": "3984",
+        "name": "LUCAS ESPINDOLA CRISTOBAL",
+        "position": "INSPECTOR DE CALIDAD D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "9/19/25"
+    },
+    {
+        "id": "3992",
+        "name": "RIVERA SÁNCHEZ MARÍA DEL ROSARIO",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/24/25"
+    },
+    {
+        "id": "3997",
+        "name": "VILLA RAMÍREZ IRIS",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "9/26/25"
+    },
+    {
+        "id": "3999",
+        "name": "LUNA VELAZQUEZ MA. ESTHER",
+        "position": "AUXILIAR DE LIMPIEZA B",
+        "category": "B",
+        "deparment": "RECURSOS HUMANOS",
+        "hireDate": "9/26/25"
+    },
+    {
+        "id": "4000",
+        "name": "MÁRQUEZ MORENO ALONDRA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "9/26/25"
+    },
+    {
+        "id": "4010",
+        "name": "HERNADEZ HERNADEZ ADÁN ULISES",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "10/1/25"
+    },
+    {
+        "id": "4014",
+        "name": "ESQUIVEL MATA ARIADNA NAYELY",
+        "position": "METRÓLOGO B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "10/3/25"
+    },
+    {
+        "id": "4017",
+        "name": "CRUZ NAVARRETE DIANA ALHELI",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "10/8/25"
+    },
+    {
+        "id": "4018",
+        "name": "MARTÍNEZ JULIAN ANIRUBIT",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "10/8/25"
+    },
+    {
+        "id": "4019",
+        "name": "JIMENEZ OLALDE JUAN MANUEL",
+        "position": "AUXILIAR DE ALMACÉN C",
+        "category": "C",
+        "deparment": "ALMACEN",
+        "hireDate": "10/8/25"
+    },
+    {
+        "id": "4020",
+        "name": "HERNÁNDEZ HERNANDEZ JAVIER",
+        "position": "AUXILIAR DE ALMACÉN D",
+        "category": "D",
+        "deparment": "ALMACEN",
+        "hireDate": "10/14/25"
+    },
+    {
+        "id": "4024",
+        "name": "SANTIAGO RESENDIZ CINTHIA VERONICA",
+        "position": "METRÓLOGO C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "10/21/25"
+    },
+    {
+        "id": "4025",
+        "name": "CARRILLO MADRIGAL HERMILO",
+        "position": "METRÓLOGO C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "10/24/25"
+    },
+    {
+        "id": "4028",
+        "name": "MEDINA SOTO MARÍA DOLORES",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/31/25"
+    },
+    {
+        "id": "4029",
+        "name": "GARCÍA ESTRADA FATIMA PALOMA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/31/25"
+    },
+    {
+        "id": "4030",
+        "name": "MIRANDA VÁZQUEZ CONCEPCIÓN",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/31/25"
+    },
+    {
+        "id": "4031",
+        "name": "BRAVO JUAN ROSA MARINA",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "10/31/25"
+    },
+    {
+        "id": "4032",
+        "name": "RICO MUÑOZ JORGE OSWALDO",
+        "position": "OPERADOR DE MÁQUINA D",
+        "category": "D",
+        "deparment": "PRODUCCIÓN",
+        "hireDate": "11/5/25"
+    },
+    {
+        "id": "4038",
+        "name": "RODRÍGUEZ RODRIGUEZ TANIA YURITZI",
+        "position": "OPERADOR DE ACABADOS - GP12 D",
+        "category": "D",
+        "deparment": "CALIDAD",
+        "hireDate": "11/7/25"
+    },
+    {
+        "id": "4039",
+        "name": "RODRÍGUEZ VEGA OCIEL ALEJANDRO",
+        "position": "METRÓLOGO B",
+        "category": "B",
+        "deparment": "CALIDAD",
+        "hireDate": "11/19/25"
+    },
+    {
+        "id": "4040",
+        "name": "VÁZQUEZ IRETA SOFÍA GUADALUPE",
+        "position": "SUPERVISOR DE ACABADOS - GP12 C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "11/25/25"
+    },
+    {
+        "id": "2708",
+        "name": "MORA ORTEGA LETICIA",
+        "position": "RESIDENTE DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "9/1/23"
+    },
+    {
+        "id": "3154",
+        "name": "RICO GARCIA MARCELO",
+        "position": "RESIDENTE DE CALIDAD A",
+        "category": "A",
+        "deparment": "CALIDAD",
+        "hireDate": "5/24/24"
+    },
+    {
+        "id": "3155",
+        "name": "RANGEL ORTIZ JOSE GUADALUPE",
+        "position": "RESIDENTE DE CALIDAD C",
+        "category": "C",
+        "deparment": "CALIDAD",
+        "hireDate": "5/24/24"
+    }
+]

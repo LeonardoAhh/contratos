@@ -1,0 +1,125 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Función para verificar si el usuario está autenticado
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Función para verificar si es admin
+    function isAdmin() {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // ==========================================
+    // COLECCIÓN: admins
+    // Administradores del sistema
+    // ==========================================
+    match /admins/{adminId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // ==========================================
+    // MÓDULO: CONTRATOS
+    // ==========================================
+    
+    // Colección: employees (Contratos)
+    match /employees/{employeeId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: settings
+    match /settings/{settingId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Colección: catalogs (departamentos, áreas, etc.)
+    match /catalogs/{catalogId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ==========================================
+    // MÓDULO: CAPACITACIÓN
+    // ==========================================
+    
+    // Colección: employees_capacitacion
+    match /employees_capacitacion/{employeeId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: trainings (capacitaciones)
+    match /trainings/{trainingId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: certifications (certificaciones)
+    match /certifications/{certificationId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: training_records (registros de capacitación por empleado)
+    match /training_records/{recordId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: settings_capacitacion (configuración del módulo)
+    match /settings_capacitacion/{settingId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Colección: categories_data (datos de elegibilidad para cambio de categoría)
+    match /categories_data/{recordId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: exam_categories (historial de exámenes para cambio de categoría)
+    match /exam_categories/{examId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ==========================================
+    // COLECCIONES COMPARTIDAS
+    // ==========================================
+    
+    // Colección: notifications
+    match /notifications/{notificationId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Colección: audit_logs (bitácora de cambios)
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      // No se permite update ni delete en logs
+    }
+  }
+}

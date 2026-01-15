@@ -17,16 +17,24 @@ import {
 } from 'lucide-react';
 
 const PERMISSION_LABELS = {
-    [PERMISSIONS.VIEW_EMPLOYEES]: { label: 'Ver empleados', desc: 'Ver lista y detalles de empleados' },
-    [PERMISSIONS.EDIT_EMPLOYEES]: { label: 'Editar empleados', desc: 'Crear y modificar empleados' },
-    [PERMISSIONS.DELETE_EMPLOYEES]: { label: 'Eliminar empleados', desc: 'Eliminar registros de empleados' },
-    [PERMISSIONS.VIEW_REPORTS]: { label: 'Ver reportes', desc: 'Acceder a la página de reportes' },
-    [PERMISSIONS.EXPORT_REPORTS]: { label: 'Exportar reportes', desc: 'Descargar Excel y PDF' },
-    [PERMISSIONS.MANAGE_EVALUATIONS]: { label: 'Gestionar evaluaciones', desc: 'Registrar evaluaciones de desempeño' },
-    [PERMISSIONS.RENEW_CONTRACTS]: { label: 'Renovar contratos', desc: 'Extender fechas de contrato' },
-    [PERMISSIONS.MANAGE_CATALOGS]: { label: 'Gestionar catálogos', desc: 'Editar áreas, departamentos, puestos' },
-    [PERMISSIONS.IMPORT_DATA]: { label: 'Importar datos', desc: 'Cargar empleados desde JSON' },
-    [PERMISSIONS.MANAGE_ADMINS]: { label: 'Gestionar administradores', desc: 'Crear y editar otros admins' }
+    // Módulo Contratos
+    [PERMISSIONS.VIEW_EMPLOYEES]: { label: 'Ver empleados', desc: 'Ver lista y detalles de empleados', module: 'contratos' },
+    [PERMISSIONS.EDIT_EMPLOYEES]: { label: 'Editar empleados', desc: 'Crear y modificar empleados', module: 'contratos' },
+    [PERMISSIONS.DELETE_EMPLOYEES]: { label: 'Eliminar empleados', desc: 'Eliminar registros de empleados', module: 'contratos' },
+    [PERMISSIONS.VIEW_REPORTS]: { label: 'Ver reportes', desc: 'Acceder a la página de reportes', module: 'contratos' },
+    [PERMISSIONS.EXPORT_REPORTS]: { label: 'Exportar reportes', desc: 'Descargar Excel y PDF', module: 'contratos' },
+    [PERMISSIONS.MANAGE_EVALUATIONS]: { label: 'Gestionar evaluaciones', desc: 'Registrar evaluaciones de desempeño', module: 'contratos' },
+    [PERMISSIONS.RENEW_CONTRACTS]: { label: 'Renovar contratos', desc: 'Extender fechas de contrato', module: 'contratos' },
+    [PERMISSIONS.MANAGE_CATALOGS]: { label: 'Gestionar catálogos', desc: 'Editar áreas, departamentos, puestos', module: 'contratos' },
+    [PERMISSIONS.IMPORT_DATA]: { label: 'Importar datos', desc: 'Cargar empleados desde JSON', module: 'contratos' },
+    [PERMISSIONS.MANAGE_ADMINS]: { label: 'Gestionar administradores', desc: 'Crear y editar otros admins', module: 'general' },
+
+    // Módulo Capacitación
+    [PERMISSIONS.ACCESS_CAPACITACION]: { label: 'Acceso a Capacitación', desc: 'Puede ver el módulo de Capacitación', module: 'capacitacion' },
+    [PERMISSIONS.VIEW_CAPACITACION_EMPLOYEES]: { label: 'Ver empleados (Capacitación)', desc: 'Ver lista de empleados en Capacitación', module: 'capacitacion' },
+    [PERMISSIONS.EDIT_CAPACITACION_EMPLOYEES]: { label: 'Editar empleados (Capacitación)', desc: 'Crear y modificar empleados en Capacitación', module: 'capacitacion' },
+    [PERMISSIONS.MANAGE_CATEGORIES]: { label: 'Gestionar categorías', desc: 'Registrar elegibilidad para cambio de categoría', module: 'capacitacion' },
+    [PERMISSIONS.MANAGE_EXAMS]: { label: 'Gestionar exámenes', desc: 'Registrar historial de exámenes', module: 'capacitacion' }
 };
 
 export default function AdminManagementPage() {
