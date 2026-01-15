@@ -361,99 +361,77 @@ export default function CapacitacionCategoriasPage() {
 
                 {/* Main Content */}
                 <main className="capacitacion-main" style={{ display: 'block', padding: 'var(--spacing-lg)' }}>
-                    {/* Stats */}
-                    <div className="stats-grid" style={{ marginBottom: 'var(--spacing-lg)' }}>
-                        <div className="stat-card">
-                            <div className="stat-icon" style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%)' }}>
-                                <Users size={20} />
+                    {/* Stats Premium */}
+                    <div className="stats-premium">
+                        <div className="stat-card-premium stat-primary">
+                            <div className="stat-icon-premium primary">
+                                <Users size={24} />
                             </div>
-                            <div className="stat-info">
-                                <div className="stat-value">{eligibleEmployees.length}</div>
-                                <div className="stat-label">Empleados Elegibles</div>
+                            <div className="stat-content-premium">
+                                <div className="stat-value-premium">{eligibleEmployees.length}</div>
+                                <div className="stat-label-premium">Empleados Elegibles</div>
                             </div>
                         </div>
-                        <div className="stat-card">
-                            <div className="stat-icon" style={{ background: 'linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%)' }}>
-                                <Award size={20} />
+                        <div className="stat-card-premium stat-success">
+                            <div className="stat-icon-premium success">
+                                <Award size={24} />
                             </div>
-                            <div className="stat-info">
-                                <div className="stat-value">{promotionRules.length}</div>
-                                <div className="stat-label">Reglas de Promoción</div>
+                            <div className="stat-content-premium">
+                                <div className="stat-value-premium">{promotionRules.length}</div>
+                                <div className="stat-label-premium">Reglas de Promoción</div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Search */}
-                    <div style={{ position: 'relative', marginBottom: 'var(--spacing-md)' }}>
-                        <Search
-                            size={18}
-                            style={{
-                                position: 'absolute',
-                                left: '14px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                color: 'var(--text-muted)'
-                            }}
-                        />
+                    {/* Search Premium */}
+                    <div className="search-container">
+                        <Search size={20} className="search-icon" />
                         <input
                             type="text"
                             className="form-input"
                             placeholder="Buscar por nombre, puesto o ID..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            style={{ paddingLeft: '44px' }}
                         />
                     </div>
 
-                    {/* Filtros */}
-                    <div className="filters-container" style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: 'var(--spacing-sm)',
-                        marginBottom: 'var(--spacing-lg)',
-                        alignItems: 'center'
-                    }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-                            <Filter size={16} /> Filtrar:
+                    {/* Filter Pills Premium */}
+                    <div className="filter-pills">
+                        <span className="filter-pills-label">
+                            <Filter size={16} /> Filtrar
                         </span>
 
-                        {/* Filtros por estado */}
-                        <div style={{ display: 'flex', gap: '4px' }}>
+                        <div className="filter-pills-group">
                             <button
-                                className={`btn btn-sm ${statusFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
+                                className={`filter-pill ${statusFilter === 'all' ? 'active active--primary' : ''}`}
                                 onClick={() => setStatusFilter('all')}
                             >
                                 Todos
                             </button>
                             <button
-                                className={`btn btn-sm ${statusFilter === 'eligible' ? 'btn-primary' : 'btn-secondary'}`}
+                                className={`filter-pill ${statusFilter === 'eligible' ? 'active' : ''}`}
                                 onClick={() => setStatusFilter('eligible')}
-                                style={{ borderColor: statusFilter === 'eligible' ? 'var(--success)' : undefined }}
                             >
                                 <CheckCircle2 size={14} /> APTO
                             </button>
                             <button
-                                className={`btn btn-sm ${statusFilter === 'canTake' ? 'btn-primary' : 'btn-secondary'}`}
+                                className={`filter-pill ${statusFilter === 'canTake' ? 'active active--warning' : ''}`}
                                 onClick={() => setStatusFilter('canTake')}
-                                style={{ borderColor: statusFilter === 'canTake' ? 'var(--warning)' : undefined }}
                             >
                                 <Award size={14} /> Puede Presentar
                             </button>
                             <button
-                                className={`btn btn-sm ${statusFilter === 'notEligible' ? 'btn-primary' : 'btn-secondary'}`}
+                                className={`filter-pill ${statusFilter === 'notEligible' ? 'active active--danger' : ''}`}
                                 onClick={() => setStatusFilter('notEligible')}
-                                style={{ borderColor: statusFilter === 'notEligible' ? 'var(--danger)' : undefined }}
                             >
                                 <XCircle size={14} /> No Cumple
                             </button>
                         </div>
 
-                        {/* Filtro por puesto */}
                         <select
-                            className="form-select"
+                            className="form-select filter-select"
                             value={positionFilter}
                             onChange={(e) => setPositionFilter(e.target.value)}
-                            style={{ minWidth: '200px', padding: '8px 12px' }}
                         >
                             <option value="all">Todos los puestos</option>
                             {uniquePositions.map(pos => (
@@ -462,9 +440,12 @@ export default function CapacitacionCategoriasPage() {
                         </select>
                     </div>
 
-                    {/* Employee Cards */}
-                    <div className="section-title">
-                        <span>Empleados con Opción a Promoción ({filteredAndFilteredEmployees.length})</span>
+                    {/* Section Header Premium */}
+                    <div className="section-header-premium">
+                        <h2>
+                            Empleados con Opción a Promoción
+                            <span className="count-badge">{filteredAndFilteredEmployees.length}</span>
+                        </h2>
                     </div>
 
                     {filteredAndFilteredEmployees.length === 0 ? (
@@ -484,17 +465,22 @@ export default function CapacitacionCategoriasPage() {
 
                                 return (
                                     <div key={emp.id} className={`promotion-card ${eligibility.eligible ? 'eligible' : ''}`}>
-                                        {/* Card Header */}
+                                        {/* Card Header Premium */}
                                         <div
                                             className="promotion-card-header"
                                             onClick={() => toggleExpanded(emp.id)}
                                         >
+                                            <div className="promotion-card-avatar">
+                                                {emp.name?.charAt(0) || '?'}
+                                            </div>
                                             <div className="promotion-card-info">
                                                 <div className="promotion-card-name">{emp.name}</div>
                                                 <div className="promotion-card-position">
                                                     {emp.position}
-                                                    <TrendingUp size={14} style={{ margin: '0 6px' }} />
-                                                    <span style={{ color: 'var(--success)' }}>{rule.promotion}</span>
+                                                    <span className="promotion-arrow">
+                                                        <TrendingUp size={14} />
+                                                    </span>
+                                                    <span className="promotion-target">{rule.promotion}</span>
                                                 </div>
                                                 <div className="promotion-card-id">ID: {emp.employeeId}</div>
                                             </div>
@@ -693,7 +679,7 @@ export default function CapacitacionCategoriasPage() {
                 </main>
 
                 {/* Bottom Navigation */}
-                <nav className="app-nav">
+                <nav className="app-nav app-nav--capacitacion">
                     <button onClick={() => navigate('/capacitacion')} className="nav-item">
                         <GraduationCap size={22} />
                         <span>Inicio</span>

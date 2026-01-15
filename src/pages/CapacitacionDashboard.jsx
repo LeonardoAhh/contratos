@@ -48,29 +48,75 @@ export default function CapacitacionDashboard() {
                     </div>
                 </header>
 
-                {/* Main Content */}
-                <main className="capacitacion-main">
-                    <div className="capacitacion-placeholder">
-                        <div className="placeholder-icon" style={{ color: 'var(--success)' }}>
-                            <GraduationCap size={64} strokeWidth={1.2} />
+                {/* Main Content Premium */}
+                <main className="capacitacion-main" style={{ display: 'block', padding: 'var(--spacing-lg)' }}>
+                    {/* Welcome Hero Section */}
+                    <div className="dashboard-hero">
+                        <div className="dashboard-hero-content">
+                            <div className="dashboard-hero-icon">
+                                <GraduationCap size={48} strokeWidth={1.2} />
+                            </div>
+                            <div className="dashboard-hero-text">
+                                <h1 className="dashboard-hero-title">¡Bienvenido al Módulo de Capacitación!</h1>
+                                <p className="dashboard-hero-subtitle">
+                                    Gestiona empleados, promociones y exámenes de categoría
+                                </p>
+                            </div>
                         </div>
-                        <h2 className="placeholder-title">Módulo de Capacitación</h2>
-                        <p className="placeholder-description">
-                            Bienvenido al módulo de Capacitación. Aquí podrás gestionar
-                            empleados, capacitaciones y formación del personal.
-                        </p>
+                    </div>
+
+                    {/* Navigation Cards */}
+                    <div className="section-header-premium" style={{ marginTop: 'var(--spacing-xl)' }}>
+                        <h2>Accesos Rápidos</h2>
+                    </div>
+
+                    <div className="dashboard-nav-cards">
                         <button
-                            className="btn btn-primary"
+                            className="dashboard-nav-card"
                             onClick={() => navigate('/capacitacion/employees')}
                         >
-                            <Users size={18} />
-                            Ver Empleados
+                            <div className="dashboard-nav-icon primary">
+                                <Users size={28} />
+                            </div>
+                            <div className="dashboard-nav-content">
+                                <h3>Empleados</h3>
+                                <p>Gestiona el directorio de empleados</p>
+                            </div>
+                            <div className="dashboard-nav-arrow">→</div>
+                        </button>
+
+                        <button
+                            className="dashboard-nav-card"
+                            onClick={() => navigate('/capacitacion/categorias')}
+                        >
+                            <div className="dashboard-nav-icon success">
+                                <Layers size={28} />
+                            </div>
+                            <div className="dashboard-nav-content">
+                                <h3>Cambio de Categoría</h3>
+                                <p>Promociones y requisitos</p>
+                            </div>
+                            <div className="dashboard-nav-arrow">→</div>
+                        </button>
+
+                        <button
+                            className="dashboard-nav-card"
+                            onClick={() => navigate('/capacitacion/examenes')}
+                        >
+                            <div className="dashboard-nav-icon warning">
+                                <GraduationCap size={28} />
+                            </div>
+                            <div className="dashboard-nav-content">
+                                <h3>Historial de Exámenes</h3>
+                                <p>Registros y calificaciones</p>
+                            </div>
+                            <div className="dashboard-nav-arrow">→</div>
                         </button>
                     </div>
                 </main>
 
                 {/* Bottom Navigation */}
-                <nav className="app-nav">
+                <nav className="app-nav app-nav--capacitacion">
                     <button className="nav-item active">
                         <GraduationCap size={22} />
                         <span>Inicio</span>

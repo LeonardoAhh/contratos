@@ -27,21 +27,22 @@ export default function Sidebar({ notificationCount = 0 }) {
     return (
         <aside className="desktop-sidebar">
             <div className="desktop-sidebar-logo">
-                <Layers size={24} strokeWidth={1.5} />
+                <div className="desktop-sidebar-logo-icon">
+                    <Layers size={24} strokeWidth={1.5} />
+                </div>
                 <span>Contratos</span>
             </div>
 
             <nav className="desktop-nav">
                 <Link
                     to="/"
-                    className="desktop-nav-item"
-                    style={{ opacity: 0.7 }}
+                    className="desktop-nav-item desktop-nav-item--muted"
                 >
                     <Home size={20} />
                     Módulos
                 </Link>
 
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', margin: '8px 0' }} />
+                <div className="desktop-nav-divider" />
 
                 <Link
                     to="/contratos"
@@ -95,37 +96,16 @@ export default function Sidebar({ notificationCount = 0 }) {
                 </Link>
             </nav>
 
-            <div style={{
-                borderTop: '1px solid rgba(255,255,255,0.1)',
-                paddingTop: '16px',
-                marginTop: 'auto'
-            }}>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    marginBottom: '12px',
-                    padding: '8px',
-                    borderRadius: '8px',
-                    background: 'rgba(255,255,255,0.05)'
-                }}>
-                    <div style={{
-                        width: '36px',
-                        height: '36px',
-                        borderRadius: '50%',
-                        background: 'rgba(255,255,255,0.2)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontWeight: 600
-                    }}>
+            <div className="desktop-sidebar-footer">
+                <div className="desktop-user-profile">
+                    <div className="desktop-user-avatar">
                         {adminData?.name?.charAt(0) || 'A'}
                     </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontWeight: 500, fontSize: '0.875rem' }}>
+                    <div className="desktop-user-info">
+                        <div className="desktop-user-name">
                             {adminData?.name || 'Admin'}
                         </div>
-                        <div style={{ fontSize: '0.75rem', opacity: 0.7, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <div className="desktop-user-email">
                             {adminData?.email}
                         </div>
                     </div>
@@ -133,13 +113,7 @@ export default function Sidebar({ notificationCount = 0 }) {
 
                 <button
                     onClick={handleLogout}
-                    className="desktop-nav-item"
-                    style={{
-                        width: '100%',
-                        border: 'none',
-                        cursor: 'pointer',
-                        background: 'transparent'
-                    }}
+                    className="desktop-nav-item desktop-logout-btn"
                 >
                     <LogOut size={20} />
                     {t('logout')}

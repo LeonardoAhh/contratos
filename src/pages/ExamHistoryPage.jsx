@@ -284,123 +284,134 @@ export default function ExamHistoryPage() {
 
                 {/* Main Content */}
                 <main className="capacitacion-main" style={{ display: 'block', padding: 'var(--spacing-lg)' }}>
-                    {/* Search */}
-                    <div style={{ position: 'relative', marginBottom: 'var(--spacing-lg)' }}>
-                        <Search
-                            size={18}
-                            style={{
-                                position: 'absolute',
-                                left: '14px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                color: 'var(--text-muted)'
-                            }}
-                        />
+                    {/* Search Premium */}
+                    <div className="search-container">
+                        <Search size={20} className="search-icon" />
                         <input
                             type="text"
                             className="form-input"
                             placeholder="Buscar empleado por nombre, puesto o ID..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            style={{ paddingLeft: '44px' }}
                         />
                     </div>
 
-                    {/* Employees Table */}
-                    <div className="section-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span>Empleados ({filteredEmployees.length})</span>
+                    {/* Section Header Premium */}
+                    <div className="section-header-premium">
+                        <h2>
+                            Empleados
+                            <span className="count-badge">{filteredEmployees.length}</span>
+                        </h2>
                         <button
-                            className="btn btn-secondary btn-sm"
+                            className="filter-pill"
                             onClick={handleUpdateAllRecords}
                             disabled={updating}
-                            title="Actualizar registros existentes con calificación mínima correcta"
+                            title="Actualizar registros existentes"
                         >
-                            <RefreshCw size={16} className={updating ? 'spinning' : ''} />
-                            {updating ? 'Actualizando...' : 'Recalcular Aprobados'}
+                            <RefreshCw size={14} className={updating ? 'spinning' : ''} />
+                            {updating ? 'Actualizando...' : 'Recalcular'}
                         </button>
                     </div>
 
-                    <div className="table-container">
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Puesto</th>
-                                    <th>Exámenes</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredEmployees.map(emp => {
-                                    const exams = getEmployeeExams(emp.id);
-                                    const examStatus = calculateNextExamDate(emp.id);
-                                    const passedExams = exams.filter(e => e.passed).length;
-                                    const failedExams = exams.filter(e => !e.passed).length;
+                    {/* Employee Table Premium */}
+                    <div className="employee-table-premium">
+                        <div className="table-container">
+                            <table className="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Puesto</th>
+                                        <th>Exámenes</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredEmployees.map(emp => {
+                                        const exams = getEmployeeExams(emp.id);
+                                        const examStatus = calculateNextExamDate(emp.id);
+                                        const passedExams = exams.filter(e => e.passed).length;
+                                        const failedExams = exams.filter(e => !e.passed).length;
 
-                                    return (
-                                        <tr key={emp.id}>
-                                            <td>{emp.employeeId}</td>
-                                            <td>{emp.name}</td>
-                                            <td>{emp.position}</td>
-                                            <td>
-                                                <span style={{ color: 'var(--success)' }}>✓ {passedExams}</span>
-                                                {' / '}
-                                                <span style={{ color: 'var(--danger)' }}>✗ {failedExams}</span>
-                                            </td>
-                                            <td>
-                                                {exams.length === 0 ? (
-                                                    <span className="status-badge" style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>
-                                                        Sin exámenes
-                                                    </span>
-                                                ) : examStatus.canTakeExam ? (
-                                                    <span className="status-badge eligible">
-                                                        <CheckCircle2 size={14} />
-                                                        Puede presentar
-                                                    </span>
-                                                ) : (
-                                                    <span className="status-badge not-eligible">
-                                                        <Clock size={14} />
-                                                        Esperar {examStatus.daysRemaining} días
-                                                    </span>
-                                                )}
-                                            </td>
-                                            <td>
-                                                <div style={{ display: 'flex', gap: '8px' }}>
-                                                    <button
-                                                        className="btn btn-primary btn-sm"
-                                                        onClick={() => {
-                                                            setSelectedEmployee(emp);
-                                                            setShowModal(true);
-                                                        }}
-                                                        title="Agregar examen"
-                                                    >
-                                                        <Plus size={16} />
-                                                    </button>
-                                                    <button
-                                                        className="btn btn-secondary btn-sm"
-                                                        onClick={() => setSelectedEmployee(selectedEmployee?.id === emp.id ? null : emp)}
-                                                        title="Ver historial"
-                                                    >
-                                                        <FileText size={16} />
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
+                                        return (
+                                            <tr key={emp.id}>
+                                                <td><span style={{ fontFamily: 'SF Mono, Monaco, monospace', fontSize: '0.8125rem' }}>{emp.employeeId}</span></td>
+                                                <td><strong>{emp.name}</strong></td>
+                                                <td>{emp.position}</td>
+                                                <td>
+                                                    <div className="exam-stats-display">
+                                                        <span className="passed-count">
+                                                            <CheckCircle2 size={14} /> {passedExams}
+                                                        </span>
+                                                        <span className="divider">/</span>
+                                                        <span className="failed-count">
+                                                            <XCircle size={14} /> {failedExams}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    {exams.length === 0 ? (
+                                                        <span className="badge-premium idle">
+                                                            Sin exámenes
+                                                        </span>
+                                                    ) : examStatus.canTakeExam ? (
+                                                        <span className="badge-premium success">
+                                                            <CheckCircle2 size={12} />
+                                                            Puede presentar
+                                                        </span>
+                                                    ) : (
+                                                        <span className="badge-premium warning">
+                                                            <Clock size={12} />
+                                                            {examStatus.daysRemaining}d restantes
+                                                        </span>
+                                                    )}
+                                                </td>
+                                                <td>
+                                                    <div className="action-buttons">
+                                                        <button
+                                                            className="action-btn primary"
+                                                            onClick={() => {
+                                                                setSelectedEmployee(emp);
+                                                                setShowModal(true);
+                                                            }}
+                                                            title="Agregar examen"
+                                                        >
+                                                            <Plus size={16} />
+                                                        </button>
+                                                        <button
+                                                            className="action-btn"
+                                                            onClick={() => setSelectedEmployee(selectedEmployee?.id === emp.id ? null : emp)}
+                                                            title="Ver historial"
+                                                        >
+                                                            <FileText size={16} />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
-                    {/* Historial del empleado seleccionado */}
+                    {/* Historial Premium del empleado seleccionado */}
                     {selectedEmployee && !showModal && (
                         <div className="exam-history-panel">
-                            <div className="section-title" style={{ marginTop: 'var(--spacing-lg)' }}>
-                                <span>Historial de: {selectedEmployee.name}</span>
+                            {/* History Header */}
+                            <div className="history-header">
+                                <div className="history-header-info">
+                                    <div className="history-header-avatar">
+                                        {selectedEmployee.name?.charAt(0) || '?'}
+                                    </div>
+                                    <div className="history-header-text">
+                                        <h3>{selectedEmployee.name}</h3>
+                                        <span>{selectedEmployee.position}</span>
+                                    </div>
+                                </div>
                                 <button
-                                    className="btn btn-ghost btn-sm"
+                                    className="action-btn"
                                     onClick={() => setSelectedEmployee(null)}
                                 >
                                     <XCircle size={18} />
@@ -440,22 +451,22 @@ export default function ExamHistoryPage() {
                                     getEmployeeExams(selectedEmployee.id).map(exam => (
                                         <div key={exam.id} className={`exam-record ${exam.passed ? 'passed' : 'failed'}`}>
                                             <div className="exam-record-icon">
-                                                {exam.passed ? <CheckCircle2 size={24} /> : <XCircle size={24} />}
+                                                {exam.passed ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
                                             </div>
                                             <div className="exam-record-info">
                                                 <div className="exam-record-date">
-                                                    <Calendar size={14} />
+                                                    <Calendar size={13} />
                                                     {formatDate(exam.examDate)}
                                                 </div>
                                                 <div className="exam-record-grade">
-                                                    Calificación: {exam.grade}%
+                                                    {exam.grade}%
                                                 </div>
                                                 <div className="exam-record-status">
-                                                    {exam.passed ? 'APROBADO' : 'REPROBADO'}
+                                                    {exam.passed ? 'Aprobado' : 'Reprobado'}
                                                 </div>
                                             </div>
                                             <button
-                                                className="btn btn-ghost btn-sm"
+                                                className="action-btn exam-record-delete"
                                                 onClick={() => handleDeleteExam(exam.id)}
                                                 title="Eliminar"
                                             >
@@ -539,7 +550,7 @@ export default function ExamHistoryPage() {
                 )}
 
                 {/* Bottom Navigation */}
-                <nav className="app-nav">
+                <nav className="app-nav app-nav--capacitacion">
                     <button onClick={() => navigate('/capacitacion')} className="nav-item">
                         <GraduationCap size={22} />
                         <span>Inicio</span>

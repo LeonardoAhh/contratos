@@ -237,60 +237,56 @@ export default function CapacitacionEmployeesPage() {
 
                 {/* Main Content */}
                 <main className="capacitacion-main" style={{ display: 'block', padding: 'var(--spacing-lg)' }}>
-                    {/* Search Bar */}
-                    <div style={{ position: 'relative', marginBottom: '16px' }}>
-                        <Search
-                            size={18}
-                            style={{
-                                position: 'absolute',
-                                left: '14px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                color: 'var(--text-muted)'
-                            }}
-                        />
+                    {/* Search Premium */}
+                    <div className="search-container">
+                        <Search size={20} className="search-icon" />
                         <input
                             type="text"
                             className="form-input"
                             placeholder="Buscar por nombre, ID o puesto..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            style={{ paddingLeft: '44px' }}
                         />
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery('')}
+                                className="search-clear-btn"
                                 style={{
                                     position: 'absolute',
-                                    right: '10px',
+                                    right: '14px',
                                     top: '50%',
                                     transform: 'translateY(-50%)',
-                                    background: 'none',
+                                    background: 'rgba(255,255,255,0.1)',
                                     border: 'none',
+                                    borderRadius: '50%',
+                                    width: '22px',
+                                    height: '22px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
                                     cursor: 'pointer',
                                     color: 'var(--text-muted)'
                                 }}
                             >
-                                <X size={18} />
+                                <X size={14} />
                             </button>
                         )}
                     </div>
 
-                    {/* Filters & Sort */}
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+                    {/* Filter Pills */}
+                    <div className="filter-pills">
                         <button
-                            className={`btn btn-sm ${showFilters ? 'btn-primary' : 'btn-secondary'}`}
+                            className={`filter-pill ${showFilters ? 'active active--primary' : ''}`}
                             onClick={() => setShowFilters(!showFilters)}
                         >
-                            <Filter size={16} />
+                            <Filter size={14} />
                             Filtros
                         </button>
 
                         <select
-                            className="form-input form-select"
+                            className="form-select filter-select"
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
-                            style={{ width: 'auto', padding: '8px 32px 8px 12px', fontSize: '0.875rem' }}
                         >
                             <option value="name">Ordenar: A-Z</option>
                             <option value="department">Ordenar: Departamento</option>
@@ -299,31 +295,31 @@ export default function CapacitacionEmployeesPage() {
                     </div>
 
                     {showFilters && (
-                        <div className="card" style={{ marginBottom: '16px' }}>
-                            <div className="card-body">
-                                <div className="form-group" style={{ marginBottom: 0 }}>
-                                    <label className="form-label">Departamento</label>
-                                    <select
-                                        className="form-input form-select"
-                                        value={filterDepartment}
-                                        onChange={(e) => setFilterDepartment(e.target.value)}
-                                    >
-                                        <option value="">Todos los departamentos</option>
-                                        {departments.map(dept => (
-                                            <option key={dept} value={dept}>{dept}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>
+                        <div className="filter-pills" style={{ marginTop: '0' }}>
+                            <span className="filter-pills-label">Departamento:</span>
+                            <select
+                                className="form-select filter-select"
+                                value={filterDepartment}
+                                onChange={(e) => setFilterDepartment(e.target.value)}
+                                style={{ flex: 1 }}
+                            >
+                                <option value="">Todos los departamentos</option>
+                                {departments.map(dept => (
+                                    <option key={dept} value={dept}>{dept}</option>
+                                ))}
+                            </select>
                         </div>
                     )}
 
-                    {/* Employee List Header */}
-                    <div className="section-title">
-                        <span>Empleados ({filteredEmployees.length})</span>
-                        <button className="btn btn-primary btn-sm" onClick={handleAddEmployee}>
-                            <Plus size={16} />
-                            Nuevo
+                    {/* Section Header Premium */}
+                    <div className="section-header-premium">
+                        <h2>
+                            Empleados
+                            <span className="count-badge">{filteredEmployees.length}</span>
+                        </h2>
+                        <button className="filter-pill active" onClick={handleAddEmployee}>
+                            <Plus size={14} />
+                            Nuevo Empleado
                         </button>
                     </div>
 
@@ -337,72 +333,84 @@ export default function CapacitacionEmployeesPage() {
                         </div>
                     ) : (
                         <>
-                            <div className="table-container">
-                                <table className="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nombre</th>
-                                            <th>Puesto</th>
-                                            <th>Departamento</th>
-                                            <th>Cat.</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {paginatedEmployees.map(emp => (
-                                            <tr key={emp.id}>
-                                                <td>{emp.employeeId}</td>
-                                                <td>{emp.name}</td>
-                                                <td>{emp.position}</td>
-                                                <td>{emp.department}</td>
-                                                <td>
-                                                    <span className={`badge badge-${emp.category === 'A' ? 'primary' : emp.category === 'B' ? 'success' : 'warning'}`}>
-                                                        {emp.category}
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <div style={{ display: 'flex', gap: '4px' }}>
-                                                        <button
-                                                            className="btn btn-ghost btn-sm"
-                                                            onClick={() => handleEditEmployee(emp)}
-                                                            title="Editar"
-                                                        >
-                                                            <Edit2 size={16} />
-                                                        </button>
-                                                        <button
-                                                            className="btn btn-ghost btn-sm"
-                                                            onClick={() => handleDeleteEmployee(emp)}
-                                                            title="Eliminar"
-                                                            style={{ color: 'var(--danger)' }}
-                                                        >
-                                                            <Trash2 size={16} />
-                                                        </button>
-                                                    </div>
-                                                </td>
+                            {/* Employee Table Premium */}
+                            <div className="employee-table-premium">
+                                <div className="table-container">
+                                    <table className="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre</th>
+                                                <th>Puesto</th>
+                                                <th>Departamento</th>
+                                                <th>Cat.</th>
+                                                <th>Acciones</th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {paginatedEmployees.map(emp => (
+                                                <tr key={emp.id}>
+                                                    <td>
+                                                        <span style={{ fontFamily: 'SF Mono, Monaco, monospace', fontSize: '0.8125rem' }}>
+                                                            {emp.employeeId}
+                                                        </span>
+                                                    </td>
+                                                    <td><strong>{emp.name}</strong></td>
+                                                    <td>{emp.position}</td>
+                                                    <td>{emp.department}</td>
+                                                    <td>
+                                                        <span className={`badge-premium ${emp.category === 'A' ? 'success' :
+                                                                emp.category === 'B' ? 'success' :
+                                                                    emp.category === 'C' ? 'warning' : 'idle'
+                                                            }`}>
+                                                            {emp.category || '-'}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <div className="action-buttons">
+                                                            <button
+                                                                className="action-btn"
+                                                                onClick={() => handleEditEmployee(emp)}
+                                                                title="Editar"
+                                                            >
+                                                                <Edit2 size={15} />
+                                                            </button>
+                                                            <button
+                                                                className="action-btn"
+                                                                onClick={() => handleDeleteEmployee(emp)}
+                                                                title="Eliminar"
+                                                                style={{ color: 'var(--danger)' }}
+                                                            >
+                                                                <Trash2 size={15} />
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
-                            {/* Pagination */}
-                            <div className="pagination-controls">
+                            {/* Pagination Premium */}
+                            <div className="pagination-controls" style={{ marginTop: 'var(--spacing-md)' }}>
                                 <button
-                                    className="btn btn-secondary btn-sm"
+                                    className="filter-pill"
                                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                     disabled={currentPage === 1}
+                                    style={{ opacity: currentPage === 1 ? 0.5 : 1 }}
                                 >
                                     <ChevronLeft size={16} />
                                     Anterior
                                 </button>
                                 <span className="pagination-info">
-                                    Página {currentPage} de {totalPages} ({filteredEmployees.length} empleados)
+                                    Pág <strong>{currentPage}</strong> de <strong>{totalPages}</strong>
                                 </span>
                                 <button
-                                    className="btn btn-secondary btn-sm"
+                                    className="filter-pill"
                                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                                     disabled={currentPage === totalPages}
+                                    style={{ opacity: currentPage === totalPages ? 0.5 : 1 }}
                                 >
                                     Siguiente
                                     <ChevronRight size={16} />
@@ -495,7 +503,7 @@ export default function CapacitacionEmployeesPage() {
                 )}
 
                 {/* Bottom Navigation */}
-                <nav className="app-nav">
+                <nav className="app-nav app-nav--capacitacion">
                     <button onClick={() => navigate('/capacitacion')} className="nav-item">
                         <GraduationCap size={22} />
                         <span>Inicio</span>
